@@ -28,7 +28,7 @@ export default function Navbar() {
                 {item}
               </a>
             ))}
-            <Button href="#contact" variant="primary" className="!px-4 !py-2 !text-sm">Hire Me</Button>
+            <Button href="#contact" variant="primary" className="px-4! py-2! text-sm!">Hire Me</Button>
           </div>
 
           <button className="md:hidden text-gray-600 dark:text-gray-300" onClick={() => setIsOpen(!isOpen)}>

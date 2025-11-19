@@ -56,11 +56,11 @@ export default function Projects() {
               </div>
             </div>
 
-            <div className="p-6 flex flex-col flex-grow">
+            <div className="p-6 flex flex-col grow">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                 {proj.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+              <p className="text-gray-600 dark:text-gray-400 mb-4 grow">
                 {proj.desc}
               </p>
               <div className="flex flex-wrap gap-2 mt-auto">
