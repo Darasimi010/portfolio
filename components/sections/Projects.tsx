@@ -53,7 +53,7 @@ export default function Projects() {
         {projects.map((proj, idx) => (
           <div
             key={idx}
-            className="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+            className="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-2xl hover:shadow-indigo-500/90 transition-all duration-300 flex flex-col"
           >
             <div className="relative overflow-hidden h-48">
               <img
