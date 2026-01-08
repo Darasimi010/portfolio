@@ -4,22 +4,44 @@ import { Icons } from "@/components/ui/Icons";
 export default function Projects() {
   const projects = [
     {
-      title: "Spotify Clone",
-      desc: "A fully functional music player with authentication, playlist management, and playback controls using the Spotify API.",
-      tags: ["React", "Tailwind", "Spotify API"],
+      title: "SaaS Landing Page",
+      desc: "A modern, responsive SaaS product landing page built with Next.js and TypeScript. Perfect for startups to showcase features, pricing, testimonials, and more.",
+      tags: ["NextJS", "Tailwind", "TypeScript", "Framer Motion"],
       image: "https://placehold.co/600x400/1e1e24/1db954?text=Spotify+Clone",
+      githubLink: "https://github.com/Darasimi010/saas-product-landing-page",
+      demoLink: "https://darasimi-saas-landing-page.vercel.app/",
+    },
+    {
+      title: "Spotify Clone",
+      desc: "A Spotify Clone that replicates the look and feel of Spotify/'s music player, providing a smooth and responsive user experience. It features playlists, songs, and an interactive seekbar functionality, making it a simple yet engaging music streaming application.",
+      tags: ["React", "Tailwind", "Github"],
+      image: "https://placehold.co/600x400/1e1e24/1db954?text=Spotify+Clone",
+      githubLink: "https://github.com/Darasimi010/spotify-clone",
+      demoLink: "https://darasimi-spotify-clone.netlify.app/",
+    },
+    {
+      title: "IP Address Tracker",
+      desc: "A web application that tracks and displays the geographical location of an IP address using Leaflet.js and a third-party IP geolocation API.",
+      tags: ["React", "Leaflet.js", "API Integration"],
+      image: "https://placehold.co/600x400/1e1e24/1db954?text=IP+Tracker",
+      githubLink: "https://github.com/Darasimi010/IP-Address-Tracker",
+      demoLink: "https://darasimi-ip-address-tracker.vercel.app/",
     },
     {
       title: "E-Commerce Dashboard",
       desc: "Analytics dashboard for online stores featuring real-time data visualization, inventory management, and order tracking.",
       tags: ["Next.js", "Recharts", "Firebase"],
       image: "https://placehold.co/600x400/4f46e5/ffffff?text=Dashboard",
+      githubLink: "#",
+      demoLink: "#",
     },
     {
       title: "Portfolio Website",
       desc: "The website you are viewing right now. Designed from scratch and built with Next.js and Tailwind CSS.",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
       image: "https://placehold.co/600x400/ec4899/ffffff?text=Portfolio",
+      githubLink: "https://github.com/Darasimi010/portfolio",
+      demoLink: "#",
     },
   ];
 
@@ -40,14 +62,18 @@ export default function Projects() {
               />
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
                 <a
-                  href="#"
+                  href={proj.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-2 bg-white rounded-full text-gray-900 hover:bg-indigo-600 hover:text-white transition-colors"
                   title="View Code"
                 >
                   <Icons.Github />
                 </a>
                 <a
-                  href="#"
+                  href={proj.demoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-2 bg-white rounded-full text-gray-900 hover:bg-indigo-600 hover:text-white transition-colors"
                   title="Live Demo"
                 >

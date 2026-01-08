@@ -9,7 +9,7 @@ export default function Footer() {
             Oluwadarasimi<span className="text-indigo-500">.</span>
           </span>
           <p className="text-sm mt-2 text-gray-500">
-            © 2025 All rights reserved.
+            © 2026 All rights reserved.
           </p>
         </div>
 
