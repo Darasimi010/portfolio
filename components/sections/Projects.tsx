@@ -1,5 +1,6 @@
 import { Section, SectionTitle } from "@/components/ui/sections";
 import { Icons } from "@/components/ui/Icons";
+import Image from "next/image";
 
 export default function Projects() {
   const projects = [
@@ -7,7 +8,7 @@ export default function Projects() {
       title: "SaaS Landing Page",
       desc: "A modern, responsive SaaS product landing page built with Next.js and TypeScript. Perfect for startups to showcase features, pricing, testimonials, and more.",
       tags: ["NextJS", "Tailwind", "TypeScript", "Framer Motion"],
-      image: "https://placehold.co/600x400/1e1e24/1db954?text=Spotify+Clone",
+      image: "/projects/saas-landing-page.png",
       githubLink: "https://github.com/Darasimi010/saas-product-landing-page",
       demoLink: "https://darasimi-saas-landing-page.vercel.app/",
     },
@@ -15,7 +16,7 @@ export default function Projects() {
       title: "Spotify Clone",
       desc: "A Spotify Clone that replicates the look and feel of Spotify/'s music player, providing a smooth and responsive user experience. It features playlists, songs, and an interactive seekbar functionality, making it a simple yet engaging music streaming application.",
       tags: ["React", "Tailwind", "Github"],
-      image: "https://placehold.co/600x400/1e1e24/1db954?text=Spotify+Clone",
+      image: "/projects/spotify-clone.png",
       githubLink: "https://github.com/Darasimi010/spotify-clone",
       demoLink: "https://darasimi-spotify-clone.netlify.app/",
     },
@@ -23,7 +24,7 @@ export default function Projects() {
       title: "IP Address Tracker",
       desc: "A web application that tracks and displays the geographical location of an IP address using Leaflet.js and a third-party IP geolocation API.",
       tags: ["React", "Leaflet.js", "API Integration"],
-      image: "https://placehold.co/600x400/1e1e24/1db954?text=IP+Tracker",
+      image: "/projects/ip-address-tracker.png",
       githubLink: "https://github.com/Darasimi010/IP-Address-Tracker",
       demoLink: "https://darasimi-ip-address-tracker.vercel.app/",
     },
@@ -39,7 +40,7 @@ export default function Projects() {
       title: "Portfolio Website",
       desc: "The website you are viewing right now. Designed from scratch and built with Next.js and Tailwind CSS.",
       tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      image: "https://placehold.co/600x400/ec4899/ffffff?text=Portfolio",
+      image: "/projects/portfolio.png",
       githubLink: "https://github.com/Darasimi010/portfolio",
       demoLink: "#",
     },
