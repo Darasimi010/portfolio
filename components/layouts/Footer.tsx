@@ -14,13 +14,13 @@ export default function Footer() {
         </div>
 
         <div className="flex space-x-6">
-          <a href="https://github.com/Darasimi010" className="hover:text-indigo-400 transition-colors" title="GitHub">
+          <a href="https://github.com/Darasimi010" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors" title="GitHub">
             <Icons.Github />
           </a>
-          <a href="https://www.linkedin.com/in/darasimi-omojola/" className="hover:text-indigo-400 transition-colors" title="LinkedIn">
+          <a href="https://www.linkedin.com/in/darasimi-omojola/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors" title="LinkedIn">
             <Icons.Linkedin />
           </a>
-          <a href="#" className="hover:text-indigo-400 transition-colors" title="Twitter">
+          <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-400 transition-colors" title="Twitter">
             <Icons.Twitter />
           </a>
         </div>
