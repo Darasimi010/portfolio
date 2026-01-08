@@ -6,7 +6,6 @@ export default function Hero() {
       id="home"
       className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-linear-to-br from-gray-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden"
     >
-      {/* Background decoration */}
       <div className="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-3xl opacity-50 animate-pulse" />
       <div className="absolute bottom-0 left-0 -mb-20 -ml-20 w-72 h-72 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl opacity-50" />
 

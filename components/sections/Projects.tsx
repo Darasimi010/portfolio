@@ -53,7 +53,7 @@ export default function Projects() {
         {projects.map((proj, idx) => (
           <div
             key={idx}
-            className="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-2xl hover:shadow-indigo-500/90 transition-all duration-300 flex flex-col"
+            className="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-xl hover:shadow-indigo-500/70 transition-all duration-300 flex flex-col"
           >
             <div className="relative overflow-hidden h-48">
               <img
@@ -61,7 +61,7 @@ export default function Projects() {
                 alt={proj.title}
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
+              <div className="absolute inset-0 bg-black/50 opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
                 <a
                   href={proj.githubLink}
                   target="_blank"
