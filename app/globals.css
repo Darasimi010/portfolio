@@ -1,8 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Purple gradient palette */
+  --purple-dark: #0f0a1f;
+  --purple-deep: #1a0a2e;
+  --purple-mid: #2d1b4e;
+  --purple-light: #4a2c7a;
+  --purple-accent: #7c3aed;
+
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #c4b5fd;
+  --text-muted: #a78bfa;
+
+  /* Accent colors */
+  --orange-start: #f97316;
+  --orange-end: #ea580c;
+  --cyan-glow: #22d3ee;
+  --pink-glow: #f472b6;
+
+  /* Background */
+  --background: var(--purple-dark);
+  --foreground: var(--text-primary);
 }
 
 @theme inline {
@@ -12,15 +31,116 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple-light) var(--purple-dark);
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(
+    135deg,
+    var(--purple-dark) 0%,
+    var(--purple-deep) 50%,
+    var(--purple-mid) 100%
+  );
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Utility classes for glowing effects */
+.glow-text {
+  text-shadow:
+    0 0 20px rgba(124, 58, 237, 0.5),
+    0 0 40px rgba(124, 58, 237, 0.3);
+}
+
+.glow-border {
+  box-shadow:
+    0 0 15px rgba(124, 58, 237, 0.4),
+    0 0 30px rgba(124, 58, 237, 0.2);
+}
+
+.glow-orange {
+  box-shadow:
+    0 0 20px rgba(249, 115, 22, 0.5),
+    0 0 40px rgba(249, 115, 22, 0.3);
+}
+
+/* Gradient backgrounds */
+.bg-purple-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--purple-dark) 0%,
+    var(--purple-deep) 50%,
+    var(--purple-mid) 100%
+  );
+}
+
+.bg-card-gradient {
+  background: linear-gradient(
+    145deg,
+    rgba(45, 27, 78, 0.6) 0%,
+    rgba(26, 10, 46, 0.8) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+
+/* Floating star animation */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Grid pattern overlay for hero */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glass morphism cards */
+.glass-card {
+  background: rgba(45, 27, 78, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: white;
 }

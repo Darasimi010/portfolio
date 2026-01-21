@@ -1,6 +1,5 @@
 import { Section, SectionTitle } from "@/components/ui/sections";
 import { Icons } from "@/components/ui/Icons";
-import Image from "next/image";
 
 export default function Projects() {
   const projects = [
@@ -14,7 +13,7 @@ export default function Projects() {
     },
     {
       title: "Spotify Clone",
-      desc: "A Spotify Clone that replicates the look and feel of Spotify/'s music player, providing a smooth and responsive user experience. It features playlists, songs, and an interactive seekbar functionality, making it a simple yet engaging music streaming application.",
+      desc: "A Spotify Clone that replicates the look and feel of Spotify's music player, providing a smooth and responsive user experience.",
       tags: ["React", "Tailwind", "Github"],
       image: "/projects/spotify-clone.png",
       githubLink: "https://github.com/Darasimi010/spotify-clone",
@@ -22,7 +21,7 @@ export default function Projects() {
     },
     {
       title: "IP Address Tracker",
-      desc: "A web application that tracks and displays the geographical location of an IP address using Leaflet.js and a third-party IP geolocation API.",
+      desc: "A web application that tracks and displays the geographical location of an IP address using Leaflet.js and a third-party API.",
       tags: ["React", "Leaflet.js", "API Integration"],
       image: "/projects/ip-address-tracker.png",
       githubLink: "https://github.com/Darasimi010/IP-Address-Tracker",
@@ -47,13 +46,13 @@ export default function Projects() {
   ];
 
   return (
-    <Section id="projects" className="bg-gray-50 dark:bg-gray-800">
-      <SectionTitle title="Featured Projects" />
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <Section id="projects" className="bg-transparent">
+      <SectionTitle title="Featured Projects" subtitle="Some of my recent work" />
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((proj, idx) => (
           <div
             key={idx}
-            className="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-xl hover:shadow-indigo-500/70 transition-all duration-300 flex flex-col"
+            className="group glass-card rounded-xl overflow-hidden border border-purple-500/30 hover:border-purple-400/60 hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 flex flex-col"
           >
             <div className="relative overflow-hidden h-48">
               <img
@@ -61,12 +60,13 @@ export default function Projects() {
                 alt={proj.title}
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-black/50 opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1a0a2e] via-transparent to-transparent opacity-60"></div>
+              <div className="absolute inset-0 bg-purple-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                 <a
                   href={proj.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-white rounded-full text-gray-900 hover:bg-indigo-600 hover:text-white transition-colors"
+                  className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-purple-500 hover:scale-110 transition-all duration-300 border border-white/20"
                   title="View Code"
                 >
                   <Icons.Github />
@@ -75,7 +75,7 @@ export default function Projects() {
                   href={proj.demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-white rounded-full text-gray-900 hover:bg-indigo-600 hover:text-white transition-colors"
+                  className="p-3 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-cyan-500 hover:scale-110 transition-all duration-300 border border-white/20"
                   title="Live Demo"
                 >
                   <Icons.ExternalLink />
@@ -84,17 +84,17 @@ export default function Projects() {
             </div>
 
             <div className="p-6 flex flex-col grow">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
                 {proj.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4 grow">
+              <p className="text-purple-100/70 mb-4 grow text-sm leading-relaxed">
                 {proj.desc}
               </p>
               <div className="flex flex-wrap gap-2 mt-auto">
                 {proj.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 text-xs font-medium bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 rounded-md"
+                    className="px-2.5 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30"
                   >
                     {tag}
                   </span>
