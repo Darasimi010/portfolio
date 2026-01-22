@@ -28,14 +28,14 @@ export default function Projects() {
       githubLink: "https://github.com/Darasimi010/IP-Address-Tracker",
       demoLink: "https://darasimi-ip-address-tracker.vercel.app/",
     },
-    {
-      title: "E-Commerce Dashboard",
-      desc: "Analytics dashboard for online stores featuring real-time data visualization, inventory management, and order tracking.",
-      tags: ["Next.js", "Recharts", "Firebase"],
-      image: "https://placehold.co/600x400/4f46e5/ffffff?text=Dashboard",
-      githubLink: "#",
-      demoLink: "#",
-    },
+    // {
+    //   title: "E-Commerce Dashboard",
+    //   desc: "Analytics dashboard for online stores featuring real-time data visualization, inventory management, and order tracking.",
+    //   tags: ["Next.js", "Recharts", "Firebase"],
+    //   image: "https://placehold.co/600x400/4f46e5/ffffff?text=Dashboard",
+    //   githubLink: "#",
+    //   demoLink: "#",
+    // },
     {
       title: "Portfolio Website",
       desc: "The website you are viewing right now. Designed from scratch and built with Next.js and Tailwind CSS.",
@@ -59,6 +59,7 @@ export default function Projects() {
               <Image
                 src={proj.image}
                 alt={proj.title}
+                fill
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1a0a2e] via-transparent to-transparent opacity-60"></div>
