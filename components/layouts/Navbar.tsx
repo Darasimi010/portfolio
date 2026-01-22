@@ -18,7 +18,7 @@ export default function Navbar() {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#1a0a2e]/90 backdrop-blur-md shadow-lg shadow-purple-900/20' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-20">
-          <a href="#home" className="text-2xl font-bold text-white tracking-tighter">
+          <a href="/" className="text-2xl font-bold text-white tracking-tighter">
             Oluwadarasimi<span className="text-purple-400">.</span>
           </a>
           
