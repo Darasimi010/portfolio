@@ -39,10 +39,10 @@ export default function Projects() {
     {
       title: "Portfolio Website",
       desc: "The website you are viewing right now. Designed from scratch and built with Next.js and Tailwind CSS.",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "EmailJS"],
       image: "/projects/portfolio.png",
       githubLink: "https://github.com/Darasimi010/portfolio",
-      demoLink: "#",
+      demoLink: "https://omojola.vercel.app/",
     },
   ];
 
