@@ -102,7 +102,7 @@ export default function Hero() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left content */}
             <div className="text-left">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight">
                 OLUWADARASIMI
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white">
@@ -125,7 +125,7 @@ export default function Hero() {
             </div>
 
             {/* Right content - Device mockups */}
-            <div className="hidden lg:flex justify-end">
+            <div className="hidden lg:flex justify-end animate-float delay-500 duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-white/10">
               <DeviceMockups />
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { Section, SectionTitle } from "@/components/ui/sections";
 import { Icons } from "@/components/ui/Icons";
+import Image from "next/image";
 
 export default function Projects() {
   const projects = [
@@ -55,7 +56,7 @@ export default function Projects() {
             className="group glass-card rounded-xl overflow-hidden border border-purple-500/30 hover:border-purple-400/60 hover:shadow-xl hover:shadow-purple-500/30 transition-all duration-300 flex flex-col"
           >
             <div className="relative overflow-hidden h-48">
-              <img
+              <Image
                 src={proj.image}
                 alt={proj.title}
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
