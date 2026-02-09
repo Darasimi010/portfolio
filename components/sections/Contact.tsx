@@ -7,11 +7,13 @@ import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formRef.current) return;
 
     setStatus("sending");
@@ -21,12 +23,12 @@ export default function Contact() {
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       );
-      
+
       setStatus("success");
       formRef.current.reset();
-      
+
       // Reset status after 5 seconds
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
@@ -38,16 +40,19 @@ export default function Contact() {
 
   return (
     <Section id="contact" className="bg-transparent">
-      <SectionTitle title="Get In Touch" subtitle="Let's work together on your next project" />
+      <SectionTitle
+        title="Get In Touch"
+        subtitle="Let's work together on your next project"
+      />
       <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
         <div>
           <h3 className="text-2xl font-bold text-white mb-4">
             Let&apos;s Talk
           </h3>
           <p className="text-purple-100/70 mb-8 leading-relaxed">
-            I&apos;m currently available for freelance projects and full-time
-            opportunities. If you have a project that needs some creative touch,
-            feel free to contact me.
+            I am currently available for full-time roles and high-impact
+            freelance projects. If you need a developer who can handle complex
+            frontend architecture or secure web solutions, let&apos;s connect.
           </p>
 
           <div className="space-y-4">
@@ -69,7 +74,9 @@ export default function Contact() {
                   />
                 </svg>
               </div>
-              <span className="group-hover:text-white transition-colors">omojoladarasimi9@gmail.com</span>
+              <span className="group-hover:text-white transition-colors">
+                omojoladarasimi9@gmail.com
+              </span>
             </div>
             <div className="flex items-center space-x-4 text-purple-100/80 group">
               <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/30 to-cyan-500/30 text-cyan-400 border border-purple-500/30 group-hover:border-purple-400/60 group-hover:shadow-lg group-hover:shadow-purple-500/20 transition-all">
@@ -95,7 +102,9 @@ export default function Contact() {
                   />
                 </svg>
               </div>
-              <span className="group-hover:text-white transition-colors">Lagos, Nigeria</span>
+              <span className="group-hover:text-white transition-colors">
+                West Africa
+              </span>
             </div>
           </div>
         </div>
@@ -151,24 +160,42 @@ export default function Contact() {
               placeholder="Tell me about your project..."
             ></textarea>
           </div>
-          
-          <Button 
-            variant="primary" 
-            className="w-full" 
-            type="submit"
-          >
+
+          <Button variant="primary" className="w-full" type="submit">
             {status === "sending" ? (
               <span className="flex items-center justify-center gap-2">
                 <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    fill="none"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
                 </svg>
                 Sending...
               </span>
             ) : status === "success" ? (
               <span className="flex items-center justify-center gap-2">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
                 Message Sent!
               </span>
