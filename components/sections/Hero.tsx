@@ -29,7 +29,7 @@ const DeviceMockups = () => (
     <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-cyan-500/20 to-purple-600/30 rounded-3xl blur-2xl opacity-60"></div>
 
     {/* Laptop */}
-    <div className="relative bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-xl p-3 shadow-2xl border border-purple-500/30">
+    <div className="relative glass-card rounded-xl p-3 shadow-2xl">
       <div className="bg-[#0f0a1f] rounded-lg p-4 font-mono text-xs text-left overflow-hidden">
         <div className="flex gap-1.5 mb-3">
           <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>

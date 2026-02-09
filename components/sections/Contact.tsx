@@ -119,7 +119,7 @@ export default function Contact() {
                 type="text"
                 name="from_name"
                 required
-                className="w-full px-4 py-3 rounded-xl bg-purple-900/30 border border-purple-500/30 text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all hover:border-purple-400/50"
+                className="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 outline-none"
                 placeholder="John Doe"
               />
             </div>
@@ -131,7 +131,7 @@ export default function Contact() {
                 type="email"
                 name="from_email"
                 required
-                className="w-full px-4 py-3 rounded-xl bg-purple-900/30 border border-purple-500/30 text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all hover:border-purple-400/50"
+                className="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 outline-none"
                 placeholder="john@example.com"
               />
             </div>
@@ -144,7 +144,7 @@ export default function Contact() {
               type="text"
               name="subject"
               required
-              className="w-full px-4 py-3 rounded-xl bg-purple-900/30 border border-purple-500/30 text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all hover:border-purple-400/50"
+              className="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 outline-none"
               placeholder="Project Inquiry"
             />
           </div>
@@ -156,7 +156,7 @@ export default function Contact() {
               rows={4}
               name="message"
               required
-              className="w-full px-4 py-3 rounded-xl bg-purple-900/30 border border-purple-500/30 text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all hover:border-purple-400/50 resize-none"
+              className="w-full px-4 py-3 rounded-xl glass-input text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 outline-none resize-none"
               placeholder="Tell me about your project..."
             ></textarea>
           </div>
