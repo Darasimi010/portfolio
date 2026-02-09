@@ -5,6 +5,20 @@ import Image from "next/image";
 export default function Projects() {
   const projects = [
     {
+      title: "SOC Incident Feed",
+      desc: "A production-ready Security Operations Center (SOC) incident feed web application using Next.js, TypeScript and using tanstack query for data fetching.",
+      tags: [
+        "NextJS",
+        "Tailwind",
+        "TypeScript",
+        "Framer Motion",
+        "Tanstack Query",
+      ],
+      image: "/projects/incident-feed.png",
+      githubLink: "https://github.com/Darasimi010/incident-feed",
+      demoLink: "https://incident-feed.vercel.app/",
+    },
+    {
       title: "SaaS Landing Page",
       desc: "A modern, responsive SaaS product landing page built with Next.js and TypeScript. Perfect for startups to showcase features, pricing, testimonials, and more.",
       tags: ["NextJS", "Tailwind", "TypeScript", "Framer Motion"],
@@ -39,7 +53,13 @@ export default function Projects() {
     {
       title: "Portfolio Website",
       desc: "The website you are viewing right now. Designed from scratch and built with Next.js and Tailwind CSS.",
-      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "EmailJS"],
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "EmailJS",
+      ],
       image: "/projects/portfolio.png",
       githubLink: "https://github.com/Darasimi010/portfolio",
       demoLink: "https://omojola.vercel.app/",
@@ -48,7 +68,10 @@ export default function Projects() {
 
   return (
     <Section id="projects" className="bg-transparent">
-      <SectionTitle title="Featured Projects" subtitle="Some of my recent work" />
+      <SectionTitle
+        title="Featured Projects"
+        subtitle="Some of my recent work"
+      />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((proj, idx) => (
           <div
