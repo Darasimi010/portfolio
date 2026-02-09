@@ -6,7 +6,7 @@ export default function Projects() {
   const projects = [
     {
       title: "SOC Incident Feed",
-      desc: "A production-ready Security Operations Center (SOC) incident feed web application using Next.js, TypeScript and using tanstack query for data fetching.",
+      desc: "A production-ready Security Operations Center dashboard. Built with Next.js and Tanstack Query to handle real-time data fetching and visualize critical security alerts efficiently.",
       tags: [
         "NextJS",
         "Tailwind",
@@ -20,7 +20,7 @@ export default function Projects() {
     },
     {
       title: "SaaS Landing Page",
-      desc: "A modern, responsive SaaS product landing page built with Next.js and TypeScript. Perfect for startups to showcase features, pricing, testimonials, and more.",
+      desc: "A high-conversion landing page designed for speed and scalability. Leverages Framer Motion for smooth interactions and TypeScript for type-safe reliability.",
       tags: ["NextJS", "Tailwind", "TypeScript", "Framer Motion"],
       image: "/projects/saas-landing-page.png",
       githubLink: "https://github.com/Darasimi010/saas-product-landing-page",
@@ -28,7 +28,7 @@ export default function Projects() {
     },
     {
       title: "Spotify Clone",
-      desc: "A Spotify Clone that replicates the look and feel of Spotify's music player, providing a smooth and responsive user experience.",
+      desc: "A Spotify Clone that replicates the look and feel of Spotify's web player. Features complex state management for audio playback and a fully responsive user interface.",
       tags: ["React", "Tailwind", "Github"],
       image: "/projects/spotify-clone.png",
       githubLink: "https://github.com/Darasimi010/spotify-clone",
@@ -36,7 +36,7 @@ export default function Projects() {
     },
     {
       title: "IP Address Tracker",
-      desc: "A web application that tracks and displays the geographical location of an IP address using Leaflet.js and a third-party API.",
+      desc: "A precision tracking tool integrating Leaflet.js and third-party APIs. Provides real-time geolocation data with an interactive map interface.",
       tags: ["React", "Leaflet.js", "API Integration"],
       image: "/projects/ip-address-tracker.png",
       githubLink: "https://github.com/Darasimi010/IP-Address-Tracker",
