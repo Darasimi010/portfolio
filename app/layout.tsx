@@ -8,7 +8,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Oluwadarasimi Omojola | Software Developer",
-  description: "Portfolio of a Software Developer specializing in React, Next.js, and TypeScript.",
+  description:
+    "Portfolio of a Software Developer specializing in React, Next.js, and TypeScript.",
 };
 
 export default function RootLayout({
