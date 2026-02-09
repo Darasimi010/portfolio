@@ -27,7 +27,7 @@ const DeviceMockups = () => (
   <div className="relative w-full max-w-xl">
     {/* Glowing backdrop */}
     <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-cyan-500/20 to-purple-600/30 rounded-3xl blur-2xl opacity-60"></div>
-    
+
     {/* Laptop */}
     <div className="relative bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-xl p-3 shadow-2xl border border-purple-500/30">
       <div className="bg-[#0f0a1f] rounded-lg p-4 font-mono text-xs text-left overflow-hidden">
@@ -37,11 +37,32 @@ const DeviceMockups = () => (
           <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
         </div>
         <div className="space-y-1.5 text-[10px] sm:text-xs">
-          <p><span className="text-purple-400">const</span> <span className="text-cyan-300">developer</span> = {"{"}</p>
-          <p className="pl-4"><span className="text-pink-400">name</span>: <span className="text-green-300">&apos;Oluwadarasimi&apos;</span>,</p>
-          <p className="pl-4"><span className="text-pink-400">role</span>: <span className="text-green-300">&apos;Frontend Dev&apos;</span>,</p>
-          <p className="pl-4"><span className="text-pink-400">skills</span>: [<span className="text-orange-300">&apos;React&apos;</span>, <span className="text-orange-300">&apos;Next.js&apos;</span>],</p>
-          <p className="pl-4"><span className="text-pink-400">passion</span>: <span className="text-green-300">&apos;Building UIs&apos;</span></p>
+          <p>
+            <span className="text-purple-400">const</span>{" "}
+            <span className="text-cyan-300">developer</span> = {"{"}
+          </p>
+          <p className="pl-4">
+            <span className="text-pink-400">name</span>:{" "}
+            <span className="text-green-300">&apos;Oluwadarasimi&apos;</span>,
+          </p>
+          <p className="pl-4">
+            <span className="text-pink-400">role</span>:{" "}
+            <span className="text-green-300">
+              &apos;Software Developer&apos;
+            </span>
+            ,
+          </p>
+          <p className="pl-4">
+            <span className="text-pink-400">skills</span>: [
+            <span className="text-orange-300">&apos;React&apos;</span>,{" "}
+            <span className="text-orange-300">&apos;Next.js&apos;</span>],
+          </p>
+          <p className="pl-4">
+            <span className="text-pink-400">passion</span>:{" "}
+            <span className="text-green-300">
+              &apos;Building UIs, Solving problems&apos;
+            </span>
+          </p>
           <p>{"}"};</p>
         </div>
       </div>
@@ -63,8 +84,12 @@ const DeviceMockups = () => (
     <div className="absolute -right-2 -bottom-8 w-20 sm:w-24 bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-xl p-1.5 shadow-xl border border-purple-500/30 transform rotate-12">
       <div className="bg-[#0f0a1f] rounded-lg p-2">
         <div className="w-6 h-6 mx-auto mb-2 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
-          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          <svg
+            className="w-3 h-3 text-white"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
           </svg>
         </div>
         <div className="space-y-1">
@@ -84,7 +109,7 @@ export default function Hero() {
     >
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 grid-pattern opacity-40"></div>
-      
+
       {/* Gradient orbs */}
       <div className="absolute top-20 right-1/4 w-72 h-72 bg-purple-600/30 rounded-full blur-[100px] animate-pulse"></div>
       <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[120px]"></div>
@@ -111,7 +136,8 @@ export default function Hero() {
               </h1>
 
               <p className="text-lg sm:text-xl md:text-2xl text-purple-100/90 mb-10 max-w-xl leading-relaxed">
-                Frontend Developer transforming ideas into exceptional digital experiences.
+                Software Developer transforming ideas into exceptional digital
+                experiences.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -134,7 +160,13 @@ export default function Hero() {
 
       {/* Bottom decorative star */}
       <div className="absolute bottom-10 right-10">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="animate-pulse-glow">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          className="animate-pulse-glow"
+        >
           <path
             d="M12 2L14.09 8.26L21 9.27L16 14.14L17.18 21.02L12 17.77L6.82 21.02L8 14.14L3 9.27L9.91 8.26L12 2Z"
             fill="url(#bottomStar)"
