@@ -9,38 +9,38 @@ export default function Footer() {
             Oluwadarasimi<span className="text-purple-400">.</span>
           </span>
           <p className="text-sm mt-2 text-purple-300/60">
-            © 2026 All rights reserved.
+            Designed & Developed by Oluwadarasimi. 0x7EA
           </p>
         </div>
 
         <div className="flex space-x-4">
-          <a 
-            href="https://github.com/Darasimi010" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500 hover:border-purple-400 hover:scale-110 transition-all duration-300" 
+          <a
+            href="https://github.com/Darasimi010"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500 hover:border-purple-400 hover:scale-110 transition-all duration-300"
             title="GitHub"
           >
             <Icons.Github />
           </a>
-          <a 
-            href="https://www.linkedin.com/in/darasimi-omojola/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500 hover:border-purple-400 hover:scale-110 transition-all duration-300" 
+          <a
+            href="https://www.linkedin.com/in/darasimi-omojola/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500 hover:border-purple-400 hover:scale-110 transition-all duration-300"
             title="LinkedIn"
           >
             <Icons.Linkedin />
           </a>
-          <a 
-            href="#" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500 hover:border-purple-400 hover:scale-110 transition-all duration-300" 
+          {/* <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/30 hover:bg-purple-500 hover:border-purple-400 hover:scale-110 transition-all duration-300"
             title="Twitter"
           >
             <Icons.Twitter />
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>
