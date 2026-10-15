@@ -1,24 +1,24 @@
 "use client";
-import Footer from '@/components/layouts/Footer';
-import Navbar from '@/components/layouts/Navbar';
-import About from '@/components/sections/About';
-import Contact from '@/components/sections/Contact';
-import Experience from '@/components/sections/Experience';
-import Hero from '@/components/sections/Hero';
-import Projects from '@/components/sections/Projects';
-import Skills from '@/components/sections/Skills';
 
-export default function App() {
+import React from "react";
+import Navbar from "@/components/layouts/Navbar";
+import Footer from "@/components/layouts/Footer";
+import Hero from "@/components/sections/Hero";
+import EngineeringPillars from "@/components/sections/EngineeringPillars";
+import FeaturedWork from "@/components/sections/FeaturedWork";
+import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
+import ContactSection from "@/components/sections/ContactSection";
+
+export default function Home() {
   return (
-    <div className="min-h-screen bg-purple-gradient text-white font-sans selection:bg-purple-500/40 selection:text-white">
+    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-main)] transition-colors duration-200">
       <Navbar />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
+        <FeaturedWork />
+        <EngineeringPillars />
+        <ExperienceTimeline />
+        <ContactSection />
       </main>
       <Footer />
     </div>

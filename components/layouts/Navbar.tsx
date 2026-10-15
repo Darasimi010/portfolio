@@ -1,80 +1,286 @@
-import { Button } from "@/components/ui/Button";
-import { Icons } from "@/components/ui/Icons";
-import { useState, useEffect } from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { Menu, X, ArrowUpRight, ChevronDown, Sparkles, FileText, Layers } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [workDropdownOpen, setWorkDropdownOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 15);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = ["Home", "About", "Skills", "Experience", "Projects"];
+  const projects = [
+    {
+      name: "Braandly",
+      subtitle: "Product engineering at scale · 71 files, 10k+ adds",
+      href: "/work/braandly",
+      tag: "Feature Architecture",
+      color: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800/40",
+    },
+    {
+      name: "Holford Homes",
+      subtitle: "International consultation booking & BFF proxy",
+      href: "/work/holford-homes",
+      tag: "API Integration",
+      color: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800/40",
+    },
+    {
+      name: "CycleLink",
+      subtitle: "From frontend MVP to live backend workflows",
+      href: "/work/cyclelink",
+      tag: "Systems & Security",
+      color: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/40",
+    },
+  ];
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "glass-panel border border-purple-500/30 bg-[#1a0a2e]/90 backdrop-blur-md shadow-lg shadow-purple-900/20" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/85 dark:bg-[#0b0f19]/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs"
+          : "bg-transparent border-b border-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <a
-            href="/"
-            className="text-2xl font-bold text-white tracking-tighter"
-          >
-            Oluwadarasimi<span className="text-purple-400">.</span>
-          </a>
-
-          <div className="hidden md:flex space-x-8 items-center">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-purple-100/80 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-purple-400 hover:after:w-full after:transition-all"
-              >
-                {item}
-              </a>
-            ))}
-            <Button
-              href="#contact"
-              variant="outline"
-              className="px-5! py-2! text-sm!"
+          {/* Logo & Availability Status */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="group flex items-center gap-2.5 text-lg font-bold tracking-tight text-slate-900 dark:text-white"
             >
-              Hire Me
-            </Button>
+              <span className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-amber-500 flex items-center justify-center text-white text-sm font-black shadow-xs group-hover:scale-105 transition-transform">
+                DO
+              </span>
+              <span className="flex flex-col">
+                <span className="leading-tight text-base font-semibold">Oluwadarasimi</span>
+                <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 -mt-0.5">
+                  Frontend Engineer
+                </span>
+              </span>
+            </Link>
+
+            <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 text-[11px] font-medium text-emerald-700 dark:text-emerald-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Available for roles
+            </div>
           </div>
 
-          <button
-            className="md:hidden text-purple-100 hover:text-white transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <Icons.X /> : <Icons.Menu />}
-          </button>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-1.5 lg:gap-2">
+            <Link
+              href="/"
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                pathname === "/"
+                  ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40"
+                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+              }`}
+            >
+              Overview
+            </Link>
+
+            {/* Case Studies Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setWorkDropdownOpen(true)}
+              onMouseLeave={() => setWorkDropdownOpen(false)}
+            >
+              <button
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  pathname.startsWith("/work")
+                    ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40"
+                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                }`}
+                onClick={() => setWorkDropdownOpen(!workDropdownOpen)}
+              >
+                <span>Case Studies</span>
+                <ChevronDown className="w-3.5 h-3.5 opacity-70 transition-transform" />
+              </button>
+
+              <AnimatePresence>
+                {workDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-0 mt-1 w-80 p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl z-50"
+                  >
+                    <div className="px-2 py-1.5 text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                      Featured Work (Equal Scope)
+                    </div>
+                    {projects.map((p) => (
+                      <Link
+                        key={p.href}
+                        href={p.href}
+                        onClick={() => setWorkDropdownOpen(false)}
+                        className="group flex flex-col p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/70 transition-all border border-transparent hover:border-slate-200/60 dark:hover:border-slate-700/60"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 flex items-center gap-1.5">
+                            {p.name}
+                            <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-indigo-500" />
+                          </span>
+                          <span
+                            className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${p.color}`}
+                          >
+                            {p.tag}
+                          </span>
+                        </div>
+                        <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">
+                          {p.subtitle}
+                        </span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link
+              href="/#engineering"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
+            >
+              Approach
+            </Link>
+
+            <Link
+              href="/#experience"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
+            >
+              Experience
+            </Link>
+
+            <Link
+              href="/resume"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                pathname === "/resume"
+                  ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40"
+                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+              }`}
+            >
+              <FileText className="w-3.5 h-3.5 text-amber-500" />
+              <span>Resume</span>
+            </Link>
+          </div>
+
+          {/* Right Action Bar */}
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+
+            <Link
+              href="/#contact"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs hover:shadow-indigo-500/25 transition-all active:scale-98"
+            >
+              <span>Get in Touch</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Toggle navigation menu"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-[#1a0a2e]/95 backdrop-blur-md border-t border-purple-500/20 absolute w-full shadow-xl">
-          <div className="flex flex-col px-6 py-4 space-y-4">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={() => setIsOpen(false)}
-                className="text-base font-medium text-purple-100/80 hover:text-white transition-colors"
-              >
-                {item}
-              </a>
-            ))}
-            <Button href="#contact" variant="primary" className="w-full mt-2">
-              Hire Me
-            </Button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 overflow-hidden"
+          >
+            <div className="px-5 pt-3 pb-6 space-y-3">
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 text-xs text-emerald-700 dark:text-emerald-300">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Available for Frontend & Fullstack Roles
+              </div>
+
+              <div className="space-y-1">
+                <Link
+                  href="/"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  Home Overview
+                </Link>
+
+                <div className="pt-2 pb-1">
+                  <div className="px-3 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase">
+                    Case Studies
+                  </div>
+                  <div className="mt-1 space-y-1">
+                    {projects.map((p) => (
+                      <Link
+                        key={p.href}
+                        href={p.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                      >
+                        <span>{p.name}</span>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${p.color}`}>
+                          {p.tag}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <Link
+                  href="/#engineering"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  Engineering Approach
+                </Link>
+
+                <Link
+                  href="/#experience"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  Experience
+                </Link>
+
+                <Link
+                  href="/resume"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/30"
+                >
+                  <FileText className="w-4 h-4" />
+                  <span>Resume (Recruiter-friendly)</span>
+                </Link>
+              </div>
+
+              <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <Link
+                  href="/#contact"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full text-center py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs"
+                >
+                  Get in Touch
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

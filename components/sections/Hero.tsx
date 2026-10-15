@@ -1,183 +1,172 @@
-import { Button } from "@/components/ui/Button";
+"use client";
 
-// Floating star component
-const FloatingStar = ({ className = "" }: { className?: string }) => (
-  <svg
-    className={`absolute animate-float ${className}`}
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-  >
-    <path
-      d="M12 2L14.09 8.26L21 9.27L16 14.14L17.18 21.02L12 17.77L6.82 21.02L8 14.14L3 9.27L9.91 8.26L12 2Z"
-      fill="url(#starGradient)"
-    />
-    <defs>
-      <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#22d3ee" />
-        <stop offset="100%" stopColor="#7c3aed" />
-      </linearGradient>
-    </defs>
-  </svg>
-);
-
-// Device mockup illustration component
-const DeviceMockups = () => (
-  <div className="relative w-full max-w-xl">
-    {/* Glowing backdrop */}
-    <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-cyan-500/20 to-purple-600/30 rounded-3xl blur-2xl opacity-60"></div>
-
-    {/* Laptop */}
-    <div className="relative glass-card rounded-xl p-3 shadow-2xl">
-      <div className="bg-[#0f0a1f] rounded-lg p-4 font-mono text-xs text-left overflow-hidden">
-        <div className="flex gap-1.5 mb-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-          <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-        </div>
-        <div className="space-y-1.5 text-[10px] sm:text-xs">
-          <p>
-            <span className="text-purple-400">const</span>{" "}
-            <span className="text-cyan-300">developer</span> = {"{"}
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">name</span>:{" "}
-            <span className="text-green-300">&apos;Oluwadarasimi&apos;</span>,
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">role</span>:{" "}
-            <span className="text-green-300">
-              &apos;Software Developer&apos;
-            </span>
-            ,
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">skills</span>: [
-            <span className="text-orange-300">&apos;React&apos;</span>,{" "}
-            <span className="text-orange-300">&apos;Next.js&apos;</span>],
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">passion</span>:{" "}
-            <span className="text-green-300">
-              &apos;Building UIs, Solving problems&apos;
-            </span>
-          </p>
-          <p>{"}"};</p>
-        </div>
-      </div>
-    </div>
-
-    {/* Tablet - positioned to right */}
-    <div className="absolute -right-4 top-1/4 w-28 sm:w-36 bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-lg p-2 shadow-xl border border-purple-500/30 transform rotate-6">
-      <div className="bg-[#0f0a1f] rounded-md p-2">
-        <div className="space-y-1.5">
-          <div className="h-2 bg-purple-500/40 rounded w-3/4"></div>
-          <div className="h-2 bg-cyan-500/40 rounded w-1/2"></div>
-          <div className="h-8 bg-gradient-to-r from-purple-600/30 to-cyan-500/30 rounded mt-2"></div>
-          <div className="h-2 bg-purple-500/30 rounded w-2/3"></div>
-        </div>
-      </div>
-    </div>
-
-    {/* Phone - positioned to bottom right */}
-    <div className="absolute -right-2 -bottom-8 w-20 sm:w-24 bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-xl p-1.5 shadow-xl border border-purple-500/30 transform rotate-12">
-      <div className="bg-[#0f0a1f] rounded-lg p-2">
-        <div className="w-6 h-6 mx-auto mb-2 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
-          <svg
-            className="w-3 h-3 text-white"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-          </svg>
-        </div>
-        <div className="space-y-1">
-          <div className="h-1.5 bg-purple-500/40 rounded w-full"></div>
-          <div className="h-1.5 bg-cyan-500/40 rounded w-3/4"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+import React from "react";
+import Link from "next/link";
+import { motion } from "motion/react";
+import {
+  ArrowRight,
+  FileText,
+  ShieldCheck,
+  Cpu,
+  Layers,
+  Database,
+  Terminal,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 
 export default function Hero() {
+  const engineeringMetrics = [
+    {
+      metric: "71 Files · 10.7k+ Additions",
+      label: "Braandly Feature Architecture",
+      sub: "Branding suite, multi-cache sync & rollback",
+      badge: "Scale & Depth",
+      color: "border-indigo-200 dark:border-indigo-800/40 text-indigo-600 dark:text-indigo-400 bg-indigo-50/60 dark:bg-indigo-950/20",
+    },
+    {
+      metric: "3 Server Handlers · 42-Day Grid",
+      label: "Holford Homes BFF & Timezones",
+      sub: "Upstream secret injection & Intl UTC normalization",
+      badge: "Systems Thinking",
+      color: "border-amber-200 dark:border-amber-800/40 text-amber-600 dark:text-amber-400 bg-amber-50/60 dark:bg-amber-950/20",
+    },
+    {
+      metric: "Multi-Role API Integration",
+      label: "CycleLink Backend Transition",
+      sub: "Replacing simulated timers & securing browser state",
+      badge: "Product Reliability",
+      color: "border-emerald-200 dark:border-emerald-800/40 text-emerald-600 dark:text-emerald-400 bg-emerald-50/60 dark:bg-emerald-950/20",
+    },
+  ];
+
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden"
-    >
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-40"></div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      {/* Background ambient friendly glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-indigo-500/10 via-amber-400/10 to-emerald-400/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      {/* Gradient orbs */}
-      <div className="absolute top-20 right-1/4 w-72 h-72 bg-purple-600/30 rounded-full blur-[100px] animate-pulse"></div>
-      <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[120px]"></div>
-      <div className="absolute top-1/2 right-0 w-64 h-64 bg-pink-600/20 rounded-full blur-[80px]"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl lg:max-w-4xl mx-auto text-center space-y-8">
+          {/* Eyebrow badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs text-xs font-medium text-slate-700 dark:text-slate-300"
+          >
+            <span className="w-2 h-2 rounded-full bg-indigo-500" />
+            <span>Beyond surface-level interfaces</span>
+            <span className="text-slate-300 dark:text-slate-700">|</span>
+            <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
+              Frontend Systems Engineering
+            </span>
+          </motion.div>
 
-      {/* Floating stars */}
-      <FloatingStar className="top-32 right-20 text-cyan-400" />
-      <FloatingStar className="bottom-40 right-1/3 text-purple-400 delay-500" />
-      <FloatingStar className="top-1/2 left-20 text-pink-400 delay-1000" />
-      <FloatingStar className="bottom-20 right-10 text-cyan-300" />
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]"
+          >
+            Engineering resilient interfaces,{" "}
+            <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-amber-500 bg-clip-text text-transparent">
+              connected to real backend systems.
+            </span>
+          </motion.h1>
 
-      {/* Use same container as other sections */}
-      <div className="w-full px-6 md:px-12 lg:px-24 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left content */}
-            <div className="text-left">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-                OLUWADARASIMI
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white">
-                  OMOJOLA
+          {/* Positioning statement */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl mx-auto"
+          >
+            I am a frontend engineer who takes ownership of complex product features, traces bugs to their underlying causes, connects user interfaces to backend services, and improves the reliability, security, and usability of real applications.
+          </motion.p>
+
+          {/* Action buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-3 pt-2"
+          >
+            <Link
+              href="#projects"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-indigo-500/20 active:scale-98 transition-all"
+            >
+              <span>Explore Case Studies</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <Link
+              href="/resume"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all active:scale-98"
+            >
+              <FileText className="w-4 h-4 text-amber-500" />
+              <span>Recruiter Resume</span>
+            </Link>
+
+            <Link
+              href="#contact"
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              <span>Get in touch</span>
+            </Link>
+          </motion.div>
+
+          {/* Tech stack badge strip */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="pt-6 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium"
+          >
+            <span className="text-slate-400 dark:text-slate-500 mr-1">Primary Toolset:</span>
+            {["Next.js App Router", "React 19", "TypeScript", "TanStack React Query", "Tailwind CSS", "REST & OpenAPI", "Zustand"].map(
+              (item) => (
+                <span
+                  key={item}
+                  className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 text-slate-700 dark:text-slate-300"
+                >
+                  {item}
                 </span>
-              </h1>
-
-              <p className="text-lg sm:text-xl md:text-2xl text-purple-100/90 mb-10 max-w-xl leading-relaxed">
-                Software Developer transforming ideas into exceptional digital
-                experiences.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="#contact" variant="primary">
-                  Contact Me
-                </Button>
-                <Button href="#projects" variant="secondary">
-                  View My Work
-                </Button>
-              </div>
-            </div>
-
-            {/* Right content - Device mockups */}
-            <div className="hidden lg:flex justify-end animate-float delay-500 duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-white/10">
-              <DeviceMockups />
-            </div>
-          </div>
+              )
+            )}
+          </motion.div>
         </div>
-      </div>
 
-      {/* Bottom decorative star */}
-      <div className="absolute bottom-10 right-10">
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          className="animate-pulse-glow"
+        {/* 3 Metric Cards highlighting the 3 equal projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16 max-w-5xl mx-auto"
         >
-          <path
-            d="M12 2L14.09 8.26L21 9.27L16 14.14L17.18 21.02L12 17.77L6.82 21.02L8 14.14L3 9.27L9.91 8.26L12 2Z"
-            fill="url(#bottomStar)"
-          />
-          <defs>
-            <linearGradient id="bottomStar" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#22d3ee" />
-              <stop offset="100%" stopColor="#7c3aed" />
-            </linearGradient>
-          </defs>
-        </svg>
+          {engineeringMetrics.map((item, idx) => (
+            <div
+              key={idx}
+              className="group p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all relative overflow-hidden"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${item.color}`}>
+                  {item.badge}
+                </span>
+                <span className="text-[11px] text-slate-400 dark:text-slate-500 font-mono">0{idx + 1}</span>
+              </div>
+              <div className="text-lg font-bold text-slate-900 dark:text-white leading-snug">
+                {item.metric}
+              </div>
+              <div className="text-xs font-semibold text-slate-700 dark:text-slate-300 mt-1">
+                {item.label}
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                {item.sub}
+              </p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
