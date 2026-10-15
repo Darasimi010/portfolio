@@ -6,10 +6,10 @@ import Footer from "@/components/layouts/Footer";
 import CaseStudyHeader from "@/components/work/CaseStudyHeader";
 import CaseStudyNav from "@/components/work/CaseStudyNav";
 import {
-  OptimisticPriorityDemo,
-  ThemeSkeletonComparisonDemo,
+  OptimisticCacheArchitecture,
+  ThemeSkeletonComparison,
   BrandingJourneyFlow,
-} from "@/components/work/BraandlySimulators";
+} from "@/components/work/BraandlyArchitectures";
 import {
   CheckCircle2,
   AlertTriangle,
@@ -156,8 +156,8 @@ export default function BraandlyCaseStudy() {
               Crucially, I synchronized optimistic priority updates across three TanStack React Query cache scopes: individual tasks (<code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">['task', id]</code>), project tasks (<code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">['project', projId, 'tasks']</code>), and workspace tasks (<code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">['workspace', 'tasks']</code>). The implementation takes a pre-mutation snapshot and executes rollback behavior if the server mutation fails, ensuring the user interface remains strictly consistent with authoritative state.
             </p>
 
-            {/* Interactive Simulator */}
-            <OptimisticPriorityDemo />
+            {/* Architecture Breakdown */}
+            <OptimisticCacheArchitecture />
 
             {/* Comment Reaction Memoization Sub-box */}
             <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
@@ -186,8 +186,8 @@ export default function BraandlyCaseStudy() {
               The default HeroUI skeleton shimmer conflicted with the application's dark theme, producing harsh white flashes during async data queries. Rather than writing one-off CSS overrides across individual pages, I engineered a universal <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded font-bold">ThemeSkeleton</code> component with explicit tokenized light- and dark-mode background and shimmer layers, then systematically migrated over 33 core dashboard and workspace files.
             </p>
 
-            {/* Interactive Skeleton Comparison */}
-            <ThemeSkeletonComparisonDemo />
+            {/* Design System Comparison */}
+            <ThemeSkeletonComparison />
           </section>
 
           {/* Section 4: Root-Cause Bug Fixes */}

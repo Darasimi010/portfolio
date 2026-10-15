@@ -6,9 +6,9 @@ import Footer from "@/components/layouts/Footer";
 import CaseStudyHeader from "@/components/work/CaseStudyHeader";
 import CaseStudyNav from "@/components/work/CaseStudyNav";
 import {
-  RoleWorkflowMatrix,
-  MockToBackendStateTransitionDemo,
-} from "@/components/work/CycleLinkSimulators";
+  DualRoleWorkflowMatrix,
+  MockToBackendArchitectureComparison,
+} from "@/components/work/CycleLinkArchitectures";
 import {
   ShieldCheck,
   Truck,
@@ -116,8 +116,8 @@ export default function CycleLinkCaseStudy() {
               I worked on assigned pickups, upcoming and later views, pickup history, pagination, and drop-off facility availability. I also refined access to dashboard functionality while verification was pending.
             </p>
 
-            {/* Role Matrix Simulator */}
-            <RoleWorkflowMatrix />
+            {/* Dual Role Workflow Matrix */}
+            <DualRoleWorkflowMatrix />
           </section>
 
           {/* Section 2: Authentication Journey & Onboarding Resolution */}
@@ -169,8 +169,8 @@ export default function CycleLinkCaseStudy() {
               </p>
             </div>
 
-            {/* Before vs After Simulator */}
-            <MockToBackendStateTransitionDemo />
+            {/* Before vs After Architecture Comparison */}
+            <MockToBackendArchitectureComparison />
           </section>
 
           {/* Section 4: Eliminating Local Storage Security Hazards */}

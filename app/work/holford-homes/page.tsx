@@ -6,9 +6,9 @@ import Footer from "@/components/layouts/Footer";
 import CaseStudyHeader from "@/components/work/CaseStudyHeader";
 import CaseStudyNav from "@/components/work/CaseStudyNav";
 import {
-  TimezoneBookingSimulator,
+  TimezoneNormalizationBreakdown,
   BffProxyArchitectureDiagram,
-} from "@/components/work/HolfordSimulators";
+} from "@/components/work/HolfordArchitectures";
 import {
   ShieldCheck,
   Globe2,
@@ -157,8 +157,8 @@ export default function HolfordHomesCaseStudy() {
               Crucially, the interface separates the human-readable display time from the timestamp submitted to the backend. This avoids treating a localized display string as the booking record itself.
             </p>
 
-            {/* Interactive Timezone Simulator */}
-            <TimezoneBookingSimulator />
+            {/* Timezone Systems Breakdown */}
+            <TimezoneNormalizationBreakdown />
           </section>
 
           {/* Section 3: 42-Day Calendar & Lead Integration */}
