@@ -100,10 +100,18 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
+                  href="/#about"
+                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                >
+                  About Me
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/#engineering"
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
-                  Engineering Approach
+                  Engineering Mindset
                 </Link>
               </li>
               <li>

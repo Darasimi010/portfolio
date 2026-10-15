@@ -4,8 +4,9 @@ import React from "react";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import Hero from "@/components/sections/Hero";
-import EngineeringPillars from "@/components/sections/EngineeringPillars";
+import AboutMe from "@/components/sections/AboutMe";
 import FeaturedWork from "@/components/sections/FeaturedWork";
+import EngineeringPillars from "@/components/sections/EngineeringPillars";
 import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
 import ContactSection from "@/components/sections/ContactSection";
 
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <AboutMe />
         <FeaturedWork />
         <EngineeringPillars />
         <ExperienceTimeline />

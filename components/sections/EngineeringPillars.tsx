@@ -12,6 +12,7 @@ import {
   Sparkles,
   Layers,
   Terminal,
+  Zap,
 } from "lucide-react";
 
 export default function EngineeringPillars() {
@@ -19,83 +20,89 @@ export default function EngineeringPillars() {
 
   const pillars = [
     {
-      title: "Root-Cause Defect Resolution",
-      subtitle: "Investigating state machines and event ordering, not surface styling",
-      icon: Search,
+      title: "I dig for root causes — never slap on quick band-aids.",
+      shortTitle: "Root-Cause Debugging",
       tag: "Debugging & Architecture",
+      icon: Search,
       color: "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40 border-indigo-200 dark:border-indigo-800/40",
-      description:
-        "Rather than treating UI glitches as cosmetic one-offs, I trace them to component composition, race conditions, event bubbling, or cache discrepancies. When a filter tray reopened immediately after clicking close in Braandly, the fix was untangling event propagation and outside-click targets, not adding arbitrary setTimeout delays.",
-      example: {
-        problem: "Filter tray outside-click race condition causing instant reopening",
-        solution: "Decoupled trigger element from outside-click handler and aligned query params with router reader state",
-        impact: "Zero regression across nested navigation dropdowns & laptop viewports",
+      story:
+        "When an interactive UI misbehaves, it's tempting to patch it with an arbitrary `setTimeout`, a boolean flag, or an `!important` style override. I don't do that. I open the profiler and inspect DOM event bubbling, state machines, and cache lifetimes to understand what is truly happening under the hood.",
+      caseContext: {
+        title: "Real Challenge in Braandly",
+        whatHappened:
+          "A filter tray would snap back open immediately after a user clicked outside to close it. Rather than hacking a delay timer, I investigated the outside-click listener sequence and discovered the toggle button itself was re-triggering the tray open handler. By cleanly isolating the trigger element, the defect vanished permanently without brittle timeouts.",
+        takeaway: "Clean event architecture beats quick cosmetic fixes every time.",
       },
     },
     {
-      title: "Backend-for-Frontend & Secret Isolation",
-      subtitle: "Protecting upstream credentials with server-side proxy boundaries",
+      title: "I treat the browser/server boundary with security & rigor.",
+      shortTitle: "BFF & Secret Isolation",
+      tag: "API Integration & Security",
       icon: ShieldCheck,
-      tag: "Security & API Proxying",
       color: "text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-800/40",
-      description:
-        "Browser clients should never store secret API keys or communicate directly with vulnerable upstream endpoints. In Holford Homes, I engineered 3 Next.js App Router route handlers that act as a strict server-side boundary, injecting the upstream X-Frontend-Key, forwarding user IP metadata, and handling upstream response statuses reliably.",
-      example: {
-        problem: "Upstream API credentials and endpoint URLs risking browser exposure",
-        solution: "Next.js App Router server proxy handlers with environment variable isolation and IP metadata propagation",
-        impact: "Clean boundary between client code and upstream microservices",
+      story:
+        "Client browsers are public environments. I never expose upstream API keys, internal staging URLs, or sensitive database endpoints in client-side code. I love designing Backend-for-Frontend (BFF) route handlers in Next.js that act as a strict server-side shield while providing a clean, typed contract for the UI.",
+      caseContext: {
+        title: "Real Challenge in Holford Homes",
+        whatHappened:
+          "The initial booking flow risked leaking upstream API keys in client JavaScript. I engineered three Next.js App Router route handlers that inject the `X-Frontend-Key` server-side, forward user IP metadata, and translate browser-local time into ISO 8601 UTC timestamps before the upstream database ever sees it.",
+        takeaway: "Keep secret keys on the server and keep the client bundle lean and secure.",
       },
     },
     {
-      title: "Coordinated State & Optimistic Rollbacks",
-      subtitle: "Preserving consistency across multiple TanStack Query cache scopes",
-      icon: RefreshCw,
+      title: "I make UI feel instant — but never leave state stranded.",
+      shortTitle: "Optimistic State & Rollbacks",
       tag: "State Management",
+      icon: RefreshCw,
       color: "text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/40",
-      description:
-        "Instant user feedback requires optimistic updates, but real production apps have dependent cache hierarchies. In Braandly, changing a task priority immediately updates UI across 3 distinct React Query cache levels (individual task, project tasks, and workspace tasks) while snapshotting previous state for instant rollback if the mutation fails.",
-      example: {
-        problem: "Stale or mismatched task priority badges across multi-level task views",
-        solution: "Snapshot-based optimistic cache synchronization with automatic rollback on mutation failure",
-        impact: "Zero UI desynchronization without expensive full-page re-fetches",
+      story:
+        "Modern users expect zero-latency feedback. But optimistic UI without defensive rollback is a recipe for broken trust when a request fails or a network hiccups. I design snapshot-based optimistic updates across multi-level cache hierarchies so the app feels instant, but remains strictly truthful.",
+      caseContext: {
+        title: "Real Challenge in Braandly",
+        whatHappened:
+          "When a user changes a task priority, I update three distinct TanStack Query cache levels at the exact same moment: the single task view, the project task list, and the workspace feed. If the server mutation fails, my handler immediately rolls back all three caches to their pre-mutation snapshot and alerts the user with an actionable toast.",
+        takeaway: "Speed matters, but data integrity is what keeps users trusting the application.",
       },
     },
     {
-      title: "Contract-Driven Integration & Data Sanitization",
-      subtitle: "Replacing simulated UI states with authoritative OpenAPI schemas",
+      title: "I treat authentication & user data as serious responsibilities.",
+      shortTitle: "Contract Alignment & Data Hygiene",
+      tag: "Data Privacy & Contracts",
       icon: FileCheck2,
-      tag: "API Contracts & Privacy",
       color: "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/40 border-sky-200 dark:border-sky-800/40",
-      description:
-        "A frontend MVP that persists everything to localStorage creates dangerous data silos and security hazards. In CycleLink, I reviewed OpenAPI schemas to replace mock timers with live backend pickups, protected KYC/password data by eliminating local persistence, and separated unauthenticated public onboarding from authenticated setup.",
-      example: {
-        problem: "Sensitive user details stored in browser localStorage; simulated pickup states",
-        solution: "Authoritative backend synchronization, OpenAPI contract review, and role-based onboarding protection",
-        impact: "Clean separation of public vs authenticated journeys with secured state",
+      story:
+        "Prototypes often fall into the trap of using browser `localStorage` as a makeshift database. That leads to stale states, dropped form fields, and severe privacy hazards like passwords or national IDs sitting in plaintext. I align frontend code with authoritative OpenAPI schemas and respect role-based journeys.",
+      caseContext: {
+        title: "Real Challenge in CycleLink",
+        whatHappened:
+          "The MVP stored sensitive user data (including KYC documents and passwords) directly in browser storage and blocked public landing pages behind indiscriminate auth checks. I helped sanitize local storage, replaced simulated pickup timers with real backend polling endpoints, and decoupled public onboarding from protected role dashboards.",
+        takeaway: "Authoritative server state and strict contract alignment prevent critical production bugs.",
       },
     },
   ];
 
   return (
-    <section id="engineering" className="py-20 border-t border-slate-200/80 dark:border-slate-800/80">
+    <section id="engineering" className="py-24 border-t border-slate-200/80 dark:border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
-        <div className="max-w-2xl mb-12">
+        <div className="max-w-3xl mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/40 text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            Engineering Philosophy
+            <Zap className="w-3.5 h-3.5 text-amber-500" />
+            <span>My Engineering Mindset</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            How I approach software engineering
+            How I think when building & debugging software
           </h2>
           <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            Building interfaces is only half the job. My focus is reasoning about system architecture, API boundaries, cache integrity, and building resilient software that withstands production realities.
+            Anyone can copy code from a tutorial or style a button. When you hire me, you get an engineer who approaches systems with curiosity, rigor, and a commitment to solving problems at their foundation.
           </p>
         </div>
 
-        {/* Interactive Pillars Grid */}
+        {/* Interactive Mindset Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Selectable Pillar Tabs */}
+          
+          {/* Left Column: Selectable Mindset Tabs */}
           <div className="lg:col-span-5 space-y-3">
             {pillars.map((pillar, index) => {
               const Icon = pillar.icon;
@@ -111,19 +118,17 @@ export default function EngineeringPillars() {
                   }`}
                 >
                   <div className="flex items-start gap-3.5">
-                    <div
-                      className={`p-2.5 rounded-xl border ${pillar.color} shrink-0 mt-0.5`}
-                    >
+                    <div className={`p-2.5 rounded-xl border ${pillar.color} shrink-0 mt-0.5`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-bold text-slate-900 dark:text-white">
-                          {pillar.title}
+                          {pillar.shortTitle}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug">
-                        {pillar.subtitle}
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-snug line-clamp-2">
+                        {pillar.title}
                       </p>
                     </div>
                   </div>
@@ -132,7 +137,7 @@ export default function EngineeringPillars() {
             })}
           </div>
 
-          {/* Right Column: Detailed Breakdown of Selected Pillar */}
+          {/* Right Column: Detailed Story in Darasimi's Voice */}
           <div className="lg:col-span-7">
             <motion.div
               key={activePillar}
@@ -148,49 +153,41 @@ export default function EngineeringPillars() {
                   {pillars[activePillar].tag}
                 </span>
                 <span className="text-xs font-mono text-slate-400 dark:text-slate-500">
-                  Principle 0{activePillar + 1} of 04
+                  Mindset 0{activePillar + 1} of 04
                 </span>
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  {pillars[activePillar].title}
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug">
+                  "{pillars[activePillar].title}"
                 </h3>
-                <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {pillars[activePillar].description}
+                <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {pillars[activePillar].story}
                 </p>
               </div>
 
-              {/* Real World Case Study Example Box */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-3">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-indigo-500" />
-                  Real Project Implementation Note
+              {/* Real Project Story Box */}
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 space-y-3">
+                <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                  <span className="flex items-center gap-1.5">
+                    <Terminal className="w-3.5 h-3.5" />
+                    {pillars[activePillar].caseContext.title}
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-normal lowercase">how I applied this</span>
                 </div>
 
-                <div className="space-y-2 text-xs sm:text-sm">
-                  <div>
-                    <span className="font-semibold text-rose-600 dark:text-rose-400">Observed issue: </span>
-                    <span className="text-slate-600 dark:text-slate-300">
-                      {pillars[activePillar].example.problem}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-indigo-600 dark:text-indigo-400">Engineered solution: </span>
-                    <span className="text-slate-600 dark:text-slate-300">
-                      {pillars[activePillar].example.solution}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400">Production impact: </span>
-                    <span className="text-slate-600 dark:text-slate-300">
-                      {pillars[activePillar].example.impact}
-                    </span>
-                  </div>
+                <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {pillars[activePillar].caseContext.whatHappened}
+                </p>
+
+                <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center gap-2 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
+                  <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                  <span>Takeaway: {pillars[activePillar].caseContext.takeaway}</span>
                 </div>
               </div>
             </motion.div>
           </div>
+
         </div>
       </div>
     </section>

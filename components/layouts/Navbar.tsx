@@ -89,6 +89,13 @@ export default function Navbar() {
               Overview
             </Link>
 
+            <Link
+              href="/#about"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
+            >
+              About
+            </Link>
+
             {/* Case Studies Dropdown */}
             <div
               className="relative"
@@ -219,6 +226,14 @@ export default function Navbar() {
                   className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
                 >
                   Home Overview
+                </Link>
+
+                <Link
+                  href="/#about"
+                  onClick={() => setIsOpen(false)}
+                  className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                >
+                  About Me
                 </Link>
 
                 <div className="pt-2 pb-1">

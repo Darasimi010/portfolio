@@ -130,13 +130,13 @@ export default function FeaturedWork() {
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-xs font-semibold text-slate-700 dark:text-slate-300 mb-3">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            Selected Work
+            <span>Featured Case Studies</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Engineering Case Studies
+            Projects I've engineered from the ground up
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            I build and improve web applications by combining frontend engineering, API integration, and systematic problem-solving. These case studies explore my individual scope, architecture decisions, trade-offs, and outcomes across three professional products.
+            I love sinking my teeth into complex web applications. Here are three professional products where I took ownership of core user workflows, resolved architectural bottlenecks, and brought features to life.
           </p>
         </div>
 
@@ -183,7 +183,7 @@ export default function FeaturedWork() {
                   <div className="space-y-3 pt-1">
                     <div>
                       <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                        The Engineering Challenge
+                        The Challenge We Faced
                       </h4>
                       <p className="mt-1 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                         {project.problem}
@@ -192,7 +192,7 @@ export default function FeaturedWork() {
 
                     <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/70 dark:border-slate-800/80">
                       <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                        Strongest Contribution
+                        What I Owned & Engineered
                       </h4>
                       <p className="mt-1 text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
                         {project.strongestContribution}
@@ -217,7 +217,7 @@ export default function FeaturedWork() {
                 <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 lg:pl-4">
                   <div className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 space-y-3">
                     <div className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                      Core Implementation Evidence
+                      Key Technical Highlights
                     </div>
                     <ul className="space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                       {project.highlights.map((item, hIdx) => (
