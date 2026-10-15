@@ -27,7 +27,7 @@ export default function ResumePage() {
   const copyPlainResume = () => {
     const text = `OLUWADARASIMI OMOJOLA
 Frontend Engineer
-Email: daraximi@gmail.com | Portfolio: darasimi.dev | GitHub: github.com/Maestroharyor | LinkedIn: linkedin.com/in/darasimi-omojola
+Email: omojoladarasimi9@gmail.com | Portfolio: darasimi.dev | GitHub: github.com/Darasimi010 | LinkedIn: linkedin.com/in/darasimi-omojola
 
 PROFESSIONAL SUMMARY
 Frontend engineer who takes ownership of complex product features, traces bugs to their underlying causes, connects user interfaces to backend services, and improves the reliability, security, and usability of real applications. Experienced in Next.js App Router, React 19, TypeScript, TanStack Query, and robust REST/OpenAPI integration.
@@ -128,20 +128,20 @@ TECHNICAL STRENGTHS
               {/* Contact info strip */}
               <div className="flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-slate-600 dark:text-slate-400 pt-1">
                 <a
-                  href="mailto:daraximi@gmail.com"
+                  href="mailto:omojoladarasimi9@gmail.com"
                   className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   <Mail className="w-3.5 h-3.5 text-slate-400" />
-                  <span>daraximi@gmail.com</span>
+                  <span>omojoladarasimi9@gmail.com</span>
                 </a>
                 <a
-                  href="https://github.com/Maestroharyor"
+                  href="https://github.com/Darasimi010"
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   <Github className="w-3.5 h-3.5 text-slate-400" />
-                  <span>github.com/Maestroharyor</span>
+                  <span>github.com/Darasimi010</span>
                 </a>
                 <a
                   href="https://linkedin.com/in/darasimi-omojola"

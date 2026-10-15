@@ -14,8 +14,8 @@ import {
   Workflow,
   Sparkles,
   GitPullRequest,
+  Lock,
 } from "lucide-react";
-import { Github } from "@/components/ui/Icons";
 
 export default function FeaturedWork() {
   const projects = [
@@ -40,7 +40,7 @@ export default function FeaturedWork() {
         "HeroUI",
       ],
       caseStudyUrl: "/work/braandly",
-      repoUrl: "https://github.com/Maestroharyor/braandly-app",
+      liveUrl: "https://braandly.com",
       pullRequests: "PRs #218, #408, #422, #423, #484, #494",
       highlights: [
         "Branding Checklist workflow (Quiz, Diagnostics, Workspace)",
@@ -73,7 +73,7 @@ export default function FeaturedWork() {
         "Tailwind CSS",
       ],
       caseStudyUrl: "/work/holford-homes",
-      repoUrl: "https://github.com/ajimoti/holfordhome",
+      liveUrl: "https://www.holfordhomes.com",
       pullRequests: "PRs #2, #3; commits d71abd7, 7879abb",
       highlights: [
         "3 Server-side API handlers with X-Frontend-Key injection",
@@ -107,7 +107,7 @@ export default function FeaturedWork() {
         "ESLint",
       ],
       caseStudyUrl: "/work/cyclelink",
-      repoUrl: null,
+      liveUrl: "https://cyclelink.vercel.app",
       pullRequests: "Iterative PRs & OpenAPI Schema Validations",
       highlights: [
         "Live pickup request, assignment, and history endpoints",
@@ -246,18 +246,20 @@ export default function FeaturedWork() {
                       <ArrowRight className="w-4 h-4" />
                     </Link>
 
-                    {project.repoUrl && (
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-medium bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-colors"
-                      >
-                        <Github className="w-4 h-4" />
-                        <span>Source</span>
-                        <ExternalLink className="w-3 h-3 opacity-60" />
-                      </a>
-                    )}
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 shadow-2xs transition-colors"
+                    >
+                      <span>Visit Live Site</span>
+                      <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                    </a>
+
+                    <span className="inline-flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500 font-medium">
+                      <Lock className="w-3 h-3 text-amber-500/80" />
+                      <span>Private Repository</span>
+                    </span>
                   </div>
                 </div>
               </div>

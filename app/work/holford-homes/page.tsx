@@ -40,7 +40,7 @@ export default function HolfordHomesCaseStudy() {
             "REST APIs",
             "Tailwind CSS",
           ]}
-          repoUrl="https://github.com/ajimoti/holfordhome"
+          liveUrl="https://www.holfordhomes.com"
           prReferences="PRs #2, #3; commits d71abd7, 7879abb, 666c583, e7bf5e2"
           category="Booking Systems & API Proxying"
           categoryColor="bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/40"
@@ -254,7 +254,7 @@ export default function HolfordHomesCaseStudy() {
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
               <div className="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
                 <GitPullRequest className="w-4 h-4 text-amber-500" />
-                <span>Implementation Evidence (GitHub repository: ajimoti/holfordhome):</span>
+                <span>Implementation Evidence (Private Enterprise Repository):</span>
               </div>
               <p className="text-slate-600 dark:text-slate-400 pl-6">
                 Branch: <strong>feature/booking-availability-flow</strong>; Pull Requests: <strong>PR #2</strong>, <strong>PR #3</strong>; Commits: <strong>d71abd7</strong>, <strong>7879abb</strong>, <strong>666c583</strong>, <strong>e7bf5e2</strong>.

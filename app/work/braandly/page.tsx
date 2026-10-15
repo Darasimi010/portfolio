@@ -45,7 +45,7 @@ export default function BraandlyCaseStudy() {
             "HeroUI",
             "Framer Motion",
           ]}
-          repoUrl="https://github.com/Maestroharyor/braandly-app"
+          liveUrl="https://braandly.com"
           prReferences="PRs #218, #408, #422, #423, #484, #494 (Admin: #211, #220)"
           category="Feature Architecture & Systems"
           categoryColor="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/40"
@@ -302,7 +302,7 @@ export default function BraandlyCaseStudy() {
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
               <div className="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
                 <GitPullRequest className="w-4 h-4 text-indigo-500" />
-                <span>Code and Review Trail (GitHub):</span>
+                <span>Code and Review Trail (Private Enterprise Repository):</span>
               </div>
               <p className="text-slate-600 dark:text-slate-400 pl-6">
                 Branding Checklist feature suite: PRs <strong>#218</strong>, <strong>#408</strong>, <strong>#422</strong>, <strong>#423</strong>, <strong>#484</strong>, <strong>#494</strong>. Admin navigation security: PRs <strong>#211</strong>, <strong>#220</strong>.

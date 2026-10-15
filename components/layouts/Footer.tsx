@@ -29,7 +29,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 pt-1">
               <a
-                href="https://github.com/Maestroharyor"
+                href="https://github.com/Darasimi010"
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all shadow-xs"
@@ -47,7 +47,7 @@ export default function Footer() {
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href="mailto:contact@darasimi.dev"
+                href="mailto:omojoladarasimi9@gmail.com"
                 className="w-9 h-9 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all shadow-xs"
                 aria-label="Send Email"
               >

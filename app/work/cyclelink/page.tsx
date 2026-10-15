@@ -41,7 +41,7 @@ export default function CycleLinkCaseStudy() {
             "OpenAPI",
             "ESLint",
           ]}
-          repoUrl={null}
+          liveUrl="https://cyclelink.vercel.app"
           prReferences="Internal Engineering Repo & OpenAPI Spec Reviews"
           category="API Integration & Security"
           categoryColor="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40"

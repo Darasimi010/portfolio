@@ -23,7 +23,7 @@ export default function ContactSection() {
   const [copied, setCopied] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const emailAddress = "daraximi@gmail.com";
+  const emailAddress = "omojoladarasimi9@gmail.com";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -98,7 +98,7 @@ export default function ContactSection() {
 
               <div className="pt-2 flex items-center gap-3">
                 <a
-                  href="https://github.com/Maestroharyor"
+                  href="https://github.com/Darasimi010"
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors"
