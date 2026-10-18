@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-main)] transition-colors duration-200">
       <Navbar />
-      <main>
+      <main className="space-y-20 sm:space-y-28 py-8 sm:py-16">
         <Hero />
         <AboutMe />
         <FeaturedWork />
