@@ -6,14 +6,14 @@ export default function AboutMe() {
   const strengths = [
     {
       title: "Design Empathy & Polish",
-      desc: "I care about visual rhythm, typography, accessible contrast, responsive breakpoints, and 60fps micro-interactions that make applications feel alive.",
+      desc: "I care about visual rhythm, typography, responsive layouts, and interactions that make applications feel alive.",
       icon: Heart,
       color:
         "text-rose-500 bg-rose-50 dark:bg-rose-950/40 border-rose-200 dark:border-rose-900/40",
     },
     {
       title: "Backend & API Fluency",
-      desc: "I speak HTTP, REST, and OpenAPI. I don't wait passively for backend services; I collaborate on schemas, handle error shapes defensively, and engineer BFF proxy layers.",
+      desc: "I read backend documents to understand the structures required for the endpoint's requests and responses. I collaborate actively with the backend engineers, and handle errors clearly.",
       icon: Cpu,
       color:
         "text-amber-500 bg-amber-50 dark:bg-amber-950/40 border-amber-200 dark:border-amber-900/40",
@@ -27,7 +27,7 @@ export default function AboutMe() {
     },
     {
       title: "Team Player & Clean PRs",
-      desc: "I write clear TypeScript, maintainable abstractions, and thorough PR summaries so my teammates can review code quickly and confidently.",
+      desc: "I write clean code, clear comments, and thorough PR summaries so my teammates can review code quickly and confidently.",
       icon: Workflow,
       color:
         "text-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-900/40",
@@ -45,7 +45,7 @@ export default function AboutMe() {
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/40 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
               <User className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Behind the Code</span>
+              <span>The Person Behind the Code</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
@@ -62,26 +62,27 @@ export default function AboutMe() {
                 auth gates, and edge cases.
               </p>
               <p>
-                That&apos;s where I thrive. When I work on a product, my goal
-                isn&apos;t just to make it match the Figma file&mdash;it&apos;s
-                to make it resilient. Whether that's coordinating optimistic
-                updates across three separate cache scopes in{" "}
-                <strong>Braandly</strong>, designing a server-side proxy to
-                protect credentials in <strong>Holford Homes</strong>, or
-                sanitizing browser storage to protect user identities in{" "}
-                <strong>CycleLink</strong>, I take pride in building software
-                that doesn&apos;t buckle under real-world usage.
+                That&apos;s where I thrive. When I work on a product, my goal is
+                to make it resilient as well as match the Figma design. Whether
+                that's coordinating optimistic updates across three separate
+                cache scopes in <strong>Braandly</strong>, designing a
+                server-side proxy to protect credentials in{" "}
+                <strong>Holford Homes</strong>, or sanitizing browser storage to
+                protect user identities in <strong>CycleLink</strong>, I take
+                pride in building softwares that don&apos;t buckle under
+                real-world usage.
               </p>
               <p>
-                I enjoy collaborating with designers who care deeply about
-                typography and spacing, as well as backend engineers who
-                appreciate a frontend developer that reads their OpenAPI docs
-                and handles error codes properly.
+                I enjoy collaborating with designers who care deeply about their
+                craft, as well as backend engineers who appreciate a frontend
+                developer that reads their OpenAPI docs and handles error codes
+                properly.
               </p>
             </div>
 
             {/* Quick quote / personal motto */}
             <div className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-sm font-medium text-slate-800 dark:text-slate-200 italic border-l-4 border-l-indigo-500">
+              <span className="font-semibold">My personal mantra:</span>{" "}
               &quot;Great frontend engineering is invisible when it works:
               interactions feel instant, errors are helpful and recoverable, and
               user trust is protected at every click.&quot;
@@ -119,32 +120,6 @@ export default function AboutMe() {
                     </div>
                   );
                 })}
-              </div>
-
-              {/* Developer snapshot badge */}
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-3 text-xs">
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60">
-                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">
-                    Location & Time
-                  </span>
-                  <span className="font-bold text-slate-800 dark:text-slate-200 mt-0.5 block">
-                    Lagos (WAT)
-                  </span>
-                  <span className="text-[11px] text-slate-500">
-                    Overlap UK, EU & US
-                  </span>
-                </div>
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60">
-                  <span className="text-slate-400 block text-[10px] uppercase font-semibold">
-                    Codebase Style
-                  </span>
-                  <span className="font-bold text-slate-800 dark:text-slate-200 mt-0.5 block">
-                    TypeScript Strict
-                  </span>
-                  <span className="text-[11px] text-slate-500">
-                    Modular & Well-typed
-                  </span>
-                </div>
               </div>
             </div>
           </div>

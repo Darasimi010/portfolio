@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, FileText, MapPin, Code2, Globe2 } from "lucide-react";
+import {
+  ArrowRight,
+  FileText,
+  MapPin,
+  Code2,
+  Globe2,
+  Mail,
+} from "lucide-react";
 
 export default function Hero() {
   const highlights = [
@@ -30,48 +37,44 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Friendly ambient background glow */}
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-indigo-500/12 via-amber-400/10 to-emerald-400/12 rounded-full blur-3xl pointer-events-none -z-10" />
+    <div className="space-y-20 sm:space-y-28 py-8 sm:py-16">
+      {/* 1. Hero Section */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl lg:max-w-4xl mx-auto space-y-8 text-center sm:text-left">
-          {/* Personal Greeting & Status Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5"
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs text-xs font-semibold text-slate-800 dark:text-slate-200">
-              <span className="text-base">👋</span>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-3xl p-6 sm:p-12 lg:p-16 bg-gradient-to-b from-indigo-50/70 via-purple-50/40 to-transparent dark:from-slate-900/60 dark:via-slate-900/30 dark:to-transparent border border-indigo-100/80 dark:border-slate-800/80 shadow-xs overflow-hidden">
+          {/* Subtle background glow */}
+          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-gradient-to-br from-indigo-400/20 via-violet-400/15 to-pink-400/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-gradient-to-tr from-emerald-400/15 to-sky-400/15 blur-3xl pointer-events-none" />
+
+          <div className="relative space-y-6 max-w-4xl">
+            {/* Status badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 shadow-2xs text-xs font-semibold text-slate-800 dark:text-slate-200"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
               <span>
                 Hello, I&apos;m{" "}
                 <strong className="text-indigo-600 dark:text-indigo-400">
                   Oluwadarasimi Omojola
                 </strong>
+                , a Frontend Engineer
               </span>
-              <span className="text-slate-400 dark:text-slate-600 font-normal">
-                (call me Darasimi)
-              </span>
-            </div>
-
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/40 text-xs font-medium text-emerald-700 dark:text-emerald-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Available for Frontend Roles</span>
-            </div>
-          </motion.div>
-
-          {/* Main Headline — Personal & Authoritative */}
-          <div className="space-y-4">
+            </motion.div>
+            {/* Main Headline — Personal & Authoritative */}
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]"
+              className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-slate-50 tracking-tight leading-[1.1]"
             >
               A frontend engineer who builds{" "}
-              <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-amber-500 bg-clip-text text-transparent">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-pink-500 dark:from-indigo-400 dark:via-violet-400 dark:to-pink-400">
                 features users love,
               </span>{" "}
               backed by systems that don&apos;t break.
@@ -82,12 +85,16 @@ export default function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-base sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-2xl"
+              className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-normal max-w-3xl"
             >
-              I don't just turn Figma mockups into divs. I take ownership of
-              complex product workflows, track down elusive state bugs to their
-              root causes, bridge user interfaces to backend APIs, and build
-              reliable software that real people depend on every day.
+              I don't just{" "}
+              <span className="italic font-medium text-slate-900 dark:text-slate-100">
+                “turn Figma mockups into divs.”
+              </span>{" "}
+              I take ownership of complex product workflows, track down elusive
+              state bugs to their root causes, bridge user interfaces to backend
+              APIs, and build reliable software that real people depend on every
+              day.
             </motion.p>
           </div>
 
@@ -96,25 +103,14 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="flex flex-wrap items-center justify-center sm:justify-start gap-y-2 gap-x-4 text-xs text-slate-500 dark:text-slate-400"
+            className="flex flex-wrap items-center justify-center sm:justify-start gap-y-2 gap-x-4 text-xs text-slate-500 dark:text-slate-400 mt-3.5"
           >
             <span className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-rose-500" />
-              <span>Based in Lagos, Nigeria (WAT / UTC+1)</span>
-            </span>
-            <span className="hidden sm:inline text-slate-300 dark:text-slate-700">
-              •
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Globe2 className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Seamless overlap with UK, EU & US teams</span>
-            </span>
-            <span className="hidden sm:inline text-slate-300 dark:text-slate-700">
-              •
-            </span>
-            <span className="flex items-center gap-1.5">
               <Code2 className="w-3.5 h-3.5 text-amber-500" />
-              <span>Next.js · React 19 · TypeScript · TanStack Query</span>
+              <span>
+                Next.js · React.js · TypeScript · TailwindCSS · TanStack Query ·
+                Git/Github
+              </span>
             </span>
           </motion.div>
 
@@ -123,30 +119,31 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-2"
+            className="flex flex-wrap items-center gap-3 pt-4"
           >
-            <Link
+            <a
               href="#projects"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-indigo-500/20 active:scale-98 transition-all"
+              className="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-md shadow-indigo-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 cursor-pointer"
             >
               <span>See What I&apos;ve Built</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
 
             <Link
               href="/resume"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all active:scale-98"
+              className="px-5 py-3 rounded-2xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 font-bold text-sm border border-slate-200 dark:border-slate-700 shadow-xs transition-all flex items-center gap-2"
             >
-              <FileText className="w-4 h-4 text-amber-500" />
-              <span>View Resume</span>
+              <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <span>View My Resume</span>
             </Link>
 
-            <Link
-              href="#about"
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            <a
+              href="#contact"
+              className="px-5 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-sm transition-all flex items-center gap-2"
             >
-              <span>About me</span>
-            </Link>
+              <Mail className="w-4 h-4 text-emerald-500" />
+              <span>Get in Touch</span>
+            </a>
           </motion.div>
 
           {/* Quick "What I Bring To Your Team" Cards */}
@@ -181,7 +178,7 @@ export default function Hero() {
             ))}
           </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
