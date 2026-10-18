@@ -19,32 +19,35 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem("portfolio-theme") as Theme | null;
-    if (saved && (saved === "light" || saved === "dark" || saved === "system")) {
+    if (
+      saved &&
+      (saved === "light" || saved === "dark" || saved === "system")
+    ) {
       setThemeState(saved);
     }
+    setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
-
+    // if (!mounted) return;
+    const root = document.documentElement;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
     const applyTheme = () => {
-      let activeTheme: "light" | "dark" = "light";
+      let isDark = false;
       if (theme === "system") {
-        activeTheme = mediaQuery.matches ? "dark" : "light";
+        isDark = mediaQuery.matches;
       } else {
-        activeTheme = theme;
+        isDark = theme === "dark";
       }
 
-      setResolvedTheme(activeTheme);
-      const root = document.documentElement;
-      if (activeTheme === "dark") {
+      if (isDark) {
         root.classList.add("dark");
+        setResolvedTheme("dark");
       } else {
         root.classList.remove("dark");
+        setResolvedTheme("light");
       }
     };
 
@@ -58,7 +61,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     mediaQuery.addEventListener("change", listener);
     return () => mediaQuery.removeEventListener("change", listener);
-  }, [theme, mounted]);
+  }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
@@ -66,15 +69,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   const toggleTheme = () => {
-    if (resolvedTheme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
+    const next = resolvedTheme === "dark" ? "light" : "dark";
+    setTheme(next);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, resolvedTheme, setTheme, toggleTheme }}
+    >
       {children}
     </ThemeContext.Provider>
   );

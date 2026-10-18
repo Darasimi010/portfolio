@@ -5,8 +5,8 @@ import { useTheme } from "./ThemeProvider";
 import { Sun, Moon, Monitor } from "lucide-react";
 import { motion } from "motion/react";
 
-export function ThemeToggle({ className = "" }: { className?: string }) {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+export function ThemeToggle({ showLabel = false }: { showLabel?: boolean }) {
+  const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -15,73 +15,29 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
 
   if (!mounted) {
     return (
-      <div className={`w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-800 animate-pulse ${className}`} />
+      <div className="w-9 h-9 rounded-full bg-slate-200/50 dark:bg-slate-800/50 animate-pulse" />
     );
   }
 
-  const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
-
   return (
-    <div className={`relative flex items-center bg-slate-100 dark:bg-slate-800/80 p-1 rounded-full border border-slate-200 dark:border-slate-700/60 shadow-xs ${className}`}>
-      <button
-        onClick={() => setTheme("light")}
-        className={`relative p-1.5 rounded-full transition-colors ${
-          theme === "light"
-            ? "text-amber-500 font-medium"
-            : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
-        }`}
-        title="Light theme"
-        aria-label="Switch to light theme"
-      >
-        {theme === "light" && (
-          <motion.div
-            layoutId="theme-active-indicator"
-            className="absolute inset-0 bg-white dark:bg-slate-700 rounded-full shadow-xs -z-10"
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          />
+    <button
+      onClick={toggleTheme}
+      aria-label="Toggle light and dark theme"
+      className="relative flex items-center justify-center p-2 rounded-xl bg-slate-200/70 hover:bg-slate-300/80 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 text-slate-800 dark:text-slate-100 transition-all duration-200 shadow-xs hover:scale-105 active:scale-95 border border-slate-300/60 dark:border-slate-700/60 cursor-pointer"
+      title={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
+    >
+      <div className="relative w-5 h-5 flex items-center justify-center">
+        {resolvedTheme === "dark" ? (
+          <Moon className="w-4 h-4 text-indigo-300 transition-transform duration-300 rotate-0 scale-100" />
+        ) : (
+          <Sun className="w-4 h-4 text-amber-500 transition-transform duration-300 rotate-0 scale-100" />
         )}
-        <Sun className="w-4 h-4" />
-      </button>
-
-      <button
-        onClick={() => setTheme("dark")}
-        className={`relative p-1.5 rounded-full transition-colors ${
-          theme === "dark"
-            ? "text-indigo-400 font-medium"
-            : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
-        }`}
-        title="Dark theme"
-        aria-label="Switch to dark theme"
-      >
-        {theme === "dark" && (
-          <motion.div
-            layoutId="theme-active-indicator"
-            className="absolute inset-0 bg-white dark:bg-slate-700 rounded-full shadow-xs -z-10"
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          />
-        )}
-        <Moon className="w-4 h-4" />
-      </button>
-
-      <button
-        onClick={() => setTheme("system")}
-        className={`relative p-1.5 rounded-full transition-colors ${
-          theme === "system"
-            ? "text-emerald-500 font-medium"
-            : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
-        }`}
-        title="System preference"
-        aria-label="Follow system theme"
-      >
-        {theme === "system" && (
-          <motion.div
-            layoutId="theme-active-indicator"
-            className="absolute inset-0 bg-white dark:bg-slate-700 rounded-full shadow-xs -z-10"
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          />
-        )}
-        <Monitor className="w-4 h-4" />
-      </button>
-    </div>
+      </div>
+      {showLabel && (
+        <span className="ml-2 text-xs font-medium">
+          {resolvedTheme === "dark" ? "Dark Mode" : "Light Mode"}
+        </span>
+      )}
+    </button>
   );
 }
