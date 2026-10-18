@@ -61,9 +61,9 @@ export default function ContactSection() {
 
             <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
               I am open to frontend engineering opportunities, contract
-              projects, and teams looking for an engineer who can reason about
-              systems, build reliable features, and own technical
-              problem-solving.
+              projects, and engineering teams looking for an engineer who can
+              take ownership of building reliable features, solve difficult
+              bugs, and contribute to reliable web applications.
             </p>
 
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
