@@ -17,8 +17,8 @@ export default function Home() {
       <main className="space-y-20 sm:space-y-28 py-8 sm:py-16">
         <Hero />
         <AboutMe />
-        <FeaturedWork />
         <EngineeringPillars />
+        <FeaturedWork />
         <ExperienceTimeline />
         <ContactSection />
       </main>
