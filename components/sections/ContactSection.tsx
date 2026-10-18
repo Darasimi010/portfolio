@@ -1,16 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "motion/react";
-import {
-  Mail,
-  Send,
-  CheckCircle2,
-  AlertCircle,
-  Copy,
-  MessageSquare,
-  Sparkles,
-} from "lucide-react";
+import { Mail, Send, CheckCircle2, Copy, Sparkles } from "lucide-react";
 import { Github, Linkedin } from "@/components/ui/Icons";
 
 export default function ContactSection() {
@@ -21,7 +12,9 @@ export default function ContactSection() {
     message: "",
   });
   const [copied, setCopied] = useState(false);
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
   const emailAddress = "omojoladarasimi9@gmail.com";
 
@@ -37,9 +30,9 @@ export default function ContactSection() {
 
     // Construct mailto link as reliable zero-failure fallback
     const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(
-      formData.subject || "Frontend Engineering Opportunity"
+      formData.subject || "Frontend Engineering Opportunity",
     )}&body=${encodeURIComponent(
-      `From: ${formData.name} (${formData.email})\n\n${formData.message}`
+      `From: ${formData.name} (${formData.email})\n\n${formData.message}`,
     )}`;
 
     setTimeout(() => {
@@ -49,14 +42,17 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 border-t border-slate-200/80 dark:border-slate-800/80 relative">
+    <section
+      id="contact"
+      className="py-24 border-t border-slate-200/80 dark:border-slate-800/80 relative"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Info & Availability */}
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/40 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
               <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
-              Let's Connect
+              Let&apos;s Connect
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
@@ -64,7 +60,10 @@ export default function ContactSection() {
             </h2>
 
             <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-              I am open to frontend engineering opportunities, contract projects, and teams looking for an engineer who can reason about systems, build reliable features, and own technical problem-solving.
+              I am open to frontend engineering opportunities, contract
+              projects, and teams looking for an engineer who can reason about
+              systems, build reliable features, and own technical
+              problem-solving.
             </p>
 
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
@@ -85,7 +84,9 @@ export default function ContactSection() {
                   {copied ? (
                     <>
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                      <span className="text-emerald-600 dark:text-emerald-400">Copied</span>
+                      <span className="text-emerald-600 dark:text-emerald-400">
+                        Copied
+                      </span>
                     </>
                   ) : (
                     <>
@@ -126,7 +127,8 @@ export default function ContactSection() {
                 Send a Message
               </h3>
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
-                Fill out the details below and it will prepare an email directly to my inbox.
+                Fill out the details below and it will prepare an email directly
+                to my inbox.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -140,7 +142,9 @@ export default function ContactSection() {
                       required
                       placeholder="Jane Doe"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition-all"
                     />
                   </div>
@@ -154,7 +158,9 @@ export default function ContactSection() {
                       required
                       placeholder="jane@company.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition-all"
                     />
                   </div>
@@ -168,7 +174,9 @@ export default function ContactSection() {
                     type="text"
                     placeholder="Frontend Engineer Opportunity / Project Collaboration"
                     value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, subject: e.target.value })
+                    }
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition-all"
                   />
                 </div>
@@ -182,7 +190,9 @@ export default function ContactSection() {
                     rows={4}
                     placeholder="Tell me about your team, product, or what you are looking to build..."
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500 transition-all resize-none"
                   />
                 </div>
@@ -205,7 +215,10 @@ export default function ContactSection() {
                 {status === "success" && (
                   <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 text-xs font-medium text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 shrink-0" />
-                    <span>Your email client has been prepared. Looking forward to speaking!</span>
+                    <span>
+                      Your email client has been prepared. Looking forward to
+                      speaking!
+                    </span>
                   </div>
                 )}
               </form>

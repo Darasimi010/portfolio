@@ -1,17 +1,8 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import {
-  Briefcase,
-  Calendar,
-  ArrowRight,
-  ExternalLink,
-  CheckCircle2,
-  FileText,
-  BadgeCheck,
-} from "lucide-react";
+import { Briefcase, Calendar, ArrowRight, FileText } from "lucide-react";
 
 export default function ExperienceTimeline() {
   const experiences = [
@@ -21,7 +12,8 @@ export default function ExperienceTimeline() {
       dates: "August 2026 – Present",
       type: "Contract / Professional Engineering",
       color: "emerald",
-      badgeColor: "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40",
+      badgeColor:
+        "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40",
       bullets: [
         "Integrated household and collector pickup workflows with live REST APIs, replacing mock data and simulated interactions with backend-driven application state.",
         "Improved role-aware onboarding and dashboard access, pickup history and pagination, drop-off availability, and pending-verification workflows while aligning frontend behavior with documented API contracts.",
@@ -35,7 +27,8 @@ export default function ExperienceTimeline() {
       dates: "October 2025 — December 2025",
       type: "Professional Engineering",
       color: "amber",
-      badgeColor: "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/40",
+      badgeColor:
+        "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/40",
       bullets: [
         "Replaced a mock consultation booking flow with backend-connected lead submission, live availability retrieval, and appointment selection through three Next.js App Router API handlers.",
         "Implemented a timezone-aware booking calendar with a 42-day grid, browser-local time display, UTC timestamp serialization, and video/phone consultation slot handling.",
@@ -49,7 +42,8 @@ export default function ExperienceTimeline() {
       dates: "September 2025 — Present",
       type: "Professional Engineering",
       color: "indigo",
-      badgeColor: "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/40",
+      badgeColor:
+        "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/40",
       bullets: [
         "Designed and implemented a multi-page Branding Checklist suite spanning brand-audit quizzes, diagnostic scoring, tailored recommendations, searchable task workflows, progress tracking, and an AI chat assistant; contributed 71 files and 10,792+ additions.",
         "Engineered optimistic task-priority updates across three TanStack React Query cache scopes, with rollback on mutation failure, and built memoized user lookup and attribution for collaborative comment reactions.",
@@ -61,7 +55,10 @@ export default function ExperienceTimeline() {
   ];
 
   return (
-    <section id="experience" className="py-24 border-t border-slate-200/80 dark:border-slate-800/80">
+    <section
+      id="experience"
+      className="py-24 border-t border-slate-200/80 dark:border-slate-800/80"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
@@ -74,7 +71,8 @@ export default function ExperienceTimeline() {
               Professional Experience
             </h2>
             <p className="mt-3 text-base text-slate-600 dark:text-slate-400">
-              Concise work-experience entries communicating concrete engineering ownership, architecture contributions, and defensible results.
+              Concise work-experience entries communicating concrete engineering
+              ownership, architecture contributions, and defensible results.
             </p>
           </div>
 
@@ -105,7 +103,9 @@ export default function ExperienceTimeline() {
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                       {exp.company}
                     </h3>
-                    <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${exp.badgeColor}`}>
+                    <span
+                      className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${exp.badgeColor}`}
+                    >
                       {exp.role.split("—")[0].trim()}
                     </span>
                   </div>

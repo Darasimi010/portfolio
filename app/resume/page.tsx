@@ -8,12 +8,9 @@ import {
   Printer,
   Copy,
   CheckCircle2,
-  Download,
   ArrowLeft,
   ArrowUpRight,
   Mail,
-  MapPin,
-  ExternalLink,
 } from "lucide-react";
 import { Github, Linkedin } from "@/components/ui/Icons";
 
@@ -27,7 +24,7 @@ export default function ResumePage() {
   const copyPlainResume = () => {
     const text = `OLUWADARASIMI OMOJOLA
 Frontend Engineer
-Email: omojoladarasimi9@gmail.com | Portfolio: darasimi.dev | GitHub: github.com/Darasimi010 | LinkedIn: linkedin.com/in/darasimi-omojola
+Email: omojoladarasimi9@gmail.com | Portfolio: omojola.vercel.app | GitHub: github.com/Darasimi010 | LinkedIn: linkedin.com/in/darasimi-omojola
 
 PROFESSIONAL SUMMARY
 Frontend engineer who takes ownership of complex product features, traces bugs to their underlying causes, connects user interfaces to backend services, and improves the reliability, security, and usability of real applications. Experienced in Next.js App Router, React 19, TypeScript, TanStack Query, and robust REST/OpenAPI integration.
@@ -41,7 +38,7 @@ September 2025 – Present
 • Developed a reusable dark-mode skeleton component and migrated it across 33+ files, standardizing loading-state styling throughout dashboard and workspace interfaces.
 • Resolved cross-application defects involving role-based admin navigation, palette and gradient interactions, event-handling race conditions, responsive layouts, and image delivery using WebP assets and responsive Next.js image sizing.
 
-Holford Homes — Frontend Engineer, Consultation Booking
+Holford Homes — Frontend Engineer
 October 2025 – December 2025
 • Replaced a mock consultation booking flow with backend-connected lead submission, live availability retrieval, and appointment selection through three Next.js App Router API handlers.
 • Implemented a timezone-aware booking calendar with a 42-day grid, browser-local time display, UTC timestamp serialization, and video/phone consultation slot handling.
@@ -90,7 +87,9 @@ TECHNICAL STRENGTHS
                 {copied ? (
                   <>
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                    <span className="text-emerald-600 dark:text-emerald-400">Copied Text!</span>
+                    <span className="text-emerald-600 dark:text-emerald-400">
+                      Copied Text!
+                    </span>
                   </>
                 ) : (
                   <>
@@ -161,7 +160,15 @@ TECHNICAL STRENGTHS
                 Professional Summary
               </h2>
               <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                Frontend engineer who takes ownership of complex product features, traces bugs to their underlying causes, connects user interfaces to backend services, and improves the reliability, security, performance, and usability of real applications. Demonstrated track record building multi-role enterprise workflows, architecting server-side Next.js proxy handlers, managing multi-cache state synchronization with rollbacks, and standardizing component systems across multi-contributor codebases.
+                Frontend engineer who takes ownership of complex product
+                features, traces bugs to their underlying causes, connects user
+                interfaces to backend services, and improves the reliability,
+                security, performance, and usability of real applications.
+                Demonstrated track record building multi-role enterprise
+                workflows, architecting server-side Next.js proxy handlers,
+                managing multi-cache state synchronization with rollbacks, and
+                standardizing component systems across multi-contributor
+                codebases.
               </p>
             </section>
 
@@ -178,7 +185,9 @@ TECHNICAL STRENGTHS
                     <h3 className="text-base font-bold text-slate-900 dark:text-white inline">
                       CycleLink
                     </h3>
-                    <span className="text-slate-400 dark:text-slate-600 mx-2">—</span>
+                    <span className="text-slate-400 dark:text-slate-600 mx-2">
+                      —
+                    </span>
                     <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                       Frontend Engineer
                     </span>
@@ -192,19 +201,29 @@ TECHNICAL STRENGTHS
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-2" />
                     <span>
-                      Integrated household and collector pickup workflows with live REST APIs, replacing mock data and simulated interactions with backend-driven application state.
+                      Integrated household and collector pickup workflows with
+                      live REST APIs, replacing mock data and simulated
+                      interactions with backend-driven application state.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-2" />
                     <span>
-                      Improved role-aware onboarding and dashboard access, pickup history and pagination, drop-off availability, and pending-verification workflows while aligning frontend behavior with documented API contracts.
+                      Improved role-aware onboarding and dashboard access,
+                      pickup history and pagination, drop-off availability, and
+                      pending-verification workflows while aligning frontend
+                      behavior with documented API contracts.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-2" />
                     <span>
-                      Investigated data-persistence and security issues, including sensitive information stored in browser storage, missing delegated pickup-handler persistence requirements, and inconsistencies in API-driven form and timestamp behavior; used TypeScript, ESLint, and OpenAPI tooling to support debugging and validation.
+                      Investigated data-persistence and security issues,
+                      including sensitive information stored in browser storage,
+                      missing delegated pickup-handler persistence requirements,
+                      and inconsistencies in API-driven form and timestamp
+                      behavior; used TypeScript, ESLint, and OpenAPI tooling to
+                      support debugging and validation.
                     </span>
                   </li>
                 </ul>
@@ -227,7 +246,9 @@ TECHNICAL STRENGTHS
                     <h3 className="text-base font-bold text-slate-900 dark:text-white inline">
                       Holford Homes
                     </h3>
-                    <span className="text-slate-400 dark:text-slate-600 mx-2">—</span>
+                    <span className="text-slate-400 dark:text-slate-600 mx-2">
+                      —
+                    </span>
                     <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                       Frontend Engineer, Consultation Booking
                     </span>
@@ -241,19 +262,30 @@ TECHNICAL STRENGTHS
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2" />
                     <span>
-                      Replaced a mock consultation booking flow with backend-connected lead submission, live availability retrieval, and appointment selection through three Next.js App Router API handlers.
+                      Replaced a mock consultation booking flow with
+                      backend-connected lead submission, live availability
+                      retrieval, and appointment selection through three Next.js
+                      App Router API handlers.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2" />
                     <span>
-                      Implemented a timezone-aware booking calendar with a <strong>42-day grid</strong>, browser-local time display, UTC timestamp serialization, and video/phone consultation slot handling.
+                      Implemented a timezone-aware booking calendar with a{" "}
+                      <strong>42-day grid</strong>, browser-local time display,
+                      UTC timestamp serialization, and video/phone consultation
+                      slot handling.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2" />
                     <span>
-                      Added server-side upstream credential injection, environment-based API configuration, client IP metadata forwarding, backend-aligned form values, and contextual error notifications; resolved endpoint path and configuration issues through iterative pull-request updates.
+                      Added server-side upstream credential injection,
+                      environment-based API configuration, client IP metadata
+                      forwarding, backend-aligned form values, and contextual
+                      error notifications; resolved endpoint path and
+                      configuration issues through iterative pull-request
+                      updates.
                     </span>
                   </li>
                 </ul>
@@ -276,7 +308,9 @@ TECHNICAL STRENGTHS
                     <h3 className="text-base font-bold text-slate-900 dark:text-white inline">
                       Braandly
                     </h3>
-                    <span className="text-slate-400 dark:text-slate-600 mx-2">—</span>
+                    <span className="text-slate-400 dark:text-slate-600 mx-2">
+                      —
+                    </span>
                     <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                       Frontend Developer
                     </span>
@@ -290,25 +324,39 @@ TECHNICAL STRENGTHS
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
                     <span>
-                      Designed and implemented a multi-page Branding Checklist suite spanning brand-audit quizzes, diagnostic scoring, tailored recommendations, searchable task workflows, progress tracking, and an AI chat assistant; contributed <strong>71 files and 10,792+ additions</strong>.
+                      Designed and implemented a multi-page Branding Checklist
+                      suite spanning brand-audit quizzes, diagnostic scoring,
+                      tailored recommendations, searchable task workflows,
+                      progress tracking, and an AI chat assistant; contributed{" "}
+                      <strong>71 files and 10,792+ additions</strong>.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
                     <span>
-                      Engineered optimistic task-priority updates across three TanStack React Query cache scopes, with rollback on mutation failure, and built memoized user lookup and attribution for collaborative comment reactions.
+                      Engineered optimistic task-priority updates across three
+                      TanStack React Query cache scopes, with rollback on
+                      mutation failure, and built memoized user lookup and
+                      attribution for collaborative comment reactions.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
                     <span>
-                      Developed a reusable dark-mode skeleton component and migrated it across <strong>33+ files</strong>, standardizing loading-state styling throughout dashboard and workspace interfaces.
+                      Developed a reusable dark-mode skeleton component and
+                      migrated it across <strong>33+ files</strong>,
+                      standardizing loading-state styling throughout dashboard
+                      and workspace interfaces.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
                     <span>
-                      Resolved cross-application defects involving role-based admin navigation, palette and gradient interactions, event-handling race conditions, responsive layouts, and image delivery using WebP assets and responsive Next.js image sizing.
+                      Resolved cross-application defects involving role-based
+                      admin navigation, palette and gradient interactions,
+                      event-handling race conditions, responsive layouts, and
+                      image delivery using WebP assets and responsive Next.js
+                      image sizing.
                     </span>
                   </li>
                 </ul>
@@ -336,7 +384,8 @@ TECHNICAL STRENGTHS
                     Core Languages & Frameworks
                   </span>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    TypeScript, JavaScript (ES6+), Next.js (App Router & Pages), React 19, Tailwind CSS, HTML5, CSS3 / CSS Variables.
+                    TypeScript, JavaScript (ES6+), Next.js (App Router & Pages),
+                    React 19, Tailwind CSS, HTML5, CSS3 / CSS Variables.
                   </p>
                 </div>
 
@@ -345,7 +394,9 @@ TECHNICAL STRENGTHS
                     State Management & Data Integration
                   </span>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    TanStack React Query (Multi-scope optimistic caching & rollback), Zustand, Redux Toolkit, REST APIs, OpenAPI / Swagger contracts.
+                    TanStack React Query (Multi-scope optimistic caching &
+                    rollback), Zustand, Redux Toolkit, REST APIs, OpenAPI /
+                    Swagger contracts.
                   </p>
                 </div>
 
@@ -354,7 +405,9 @@ TECHNICAL STRENGTHS
                     Systems & Security Practices
                   </span>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Backend-for-Frontend (BFF) proxying, Upstream credential isolation, Browser storage sanitization, Role-based route authorization.
+                    Backend-for-Frontend (BFF) proxying, Upstream credential
+                    isolation, Browser storage sanitization, Role-based route
+                    authorization.
                   </p>
                 </div>
 
@@ -363,7 +416,9 @@ TECHNICAL STRENGTHS
                     Quality, Testing & Tooling
                   </span>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Intl & UTC date normalization, ESLint, Git & GitHub PR reviews, Responsive layout engineering, WebP & Next.js Image optimization.
+                    Intl & UTC date normalization, ESLint, Git & GitHub PR
+                    reviews, Responsive layout engineering, WebP & Next.js Image
+                    optimization.
                   </p>
                 </div>
               </div>

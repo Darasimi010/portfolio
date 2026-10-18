@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import CaseStudyHeader from "@/components/work/CaseStudyHeader";
@@ -10,18 +9,7 @@ import {
   ThemeSkeletonComparison,
   BrandingJourneyFlow,
 } from "@/components/work/BraandlyArchitectures";
-import {
-  CheckCircle2,
-  AlertTriangle,
-  Layers,
-  Sparkles,
-  GitPullRequest,
-  ExternalLink,
-  Code2,
-  Terminal,
-  FileText,
-  ShieldAlert,
-} from "lucide-react";
+import { AlertTriangle, Sparkles, GitPullRequest } from "lucide-react";
 
 export default function BraandlyCaseStudy() {
   return (
@@ -59,13 +47,23 @@ export default function BraandlyCaseStudy() {
               Overview
             </h2>
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              Braandly is a platform that helps businesses and creative teams build brand identities, manage digital assets, generate visual resources, and collaborate on projects.
+              Braandly is a platform that helps businesses and creative teams
+              build brand identities, manage digital assets, generate visual
+              resources, and collaborate on projects.
             </p>
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              My work focused on expanding product capabilities and improving the reliability of existing workflows. I built a multi-page Branding Checklist suite, improved task management interactions, standardized dark-mode loading states across more than 33 files, resolved navigation and UI state bugs, tightened role-based navigation visibility, and optimized marketing-page imagery.
+              My work focused on expanding product capabilities and improving
+              the reliability of existing workflows. I built a multi-page
+              Branding Checklist suite, improved task management interactions,
+              standardized dark-mode loading states across more than 33 files,
+              resolved navigation and UI state bugs, tightened role-based
+              navigation visibility, and optimized marketing-page imagery.
             </p>
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              Rather than treating every issue as an isolated UI defect, I investigated underlying causes in component composition, state management, event handling, caching, and responsive layout behavior.
+              Rather than treating every issue as an isolated UI defect, I
+              investigated underlying causes in component composition, state
+              management, event handling, caching, and responsive layout
+              behavior.
             </p>
           </section>
 
@@ -81,31 +79,52 @@ export default function BraandlyCaseStudy() {
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm text-slate-700 dark:text-slate-300">
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>Users needed a structured way to assess brand maturity and work through branding tasks.</span>
+                <span>
+                  Users needed a structured way to assess brand maturity and
+                  work through branding tasks.
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>Task priority changes needed to feel immediate while remaining consistent with server state.</span>
+                <span>
+                  Task priority changes needed to feel immediate while remaining
+                  consistent with server state.
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>Comment reactions needed clearer attribution to individual workspace members without expensive linear searches.</span>
+                <span>
+                  Comment reactions needed clearer attribution to individual
+                  workspace members without expensive linear searches.
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>Default loading skeletons behaved inconsistently and caused glaring shimmers in dark mode.</span>
+                <span>
+                  Default loading skeletons behaved inconsistently and caused
+                  glaring shimmers in dark mode.
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>Palette and gradient tools had navigation, filtering, and stacking-context defects.</span>
+                <span>
+                  Palette and gradient tools had navigation, filtering, and
+                  stacking-context defects.
+                </span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>Several complex layouts broke down at laptop and smaller viewport widths.</span>
+                <span>
+                  Several complex layouts broke down at laptop and smaller
+                  viewport widths.
+                </span>
               </li>
               <li className="flex items-start gap-2.5 sm:col-span-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>Admin dashboard navigation links needed strict role-based allowlist restrictions rather than negative checks.</span>
+                <span>
+                  Admin dashboard navigation links needed strict role-based
+                  allowlist restrictions rather than negative checks.
+                </span>
               </li>
             </ul>
           </section>
@@ -122,15 +141,26 @@ export default function BraandlyCaseStudy() {
             </div>
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              I implemented a multi-page branding workflow spanning the tool hub, brand audit quiz, diagnostic results, checklist workspace, and checklist catalog.
+              I implemented a multi-page branding workflow spanning the tool
+              hub, brand audit quiz, diagnostic results, checklist workspace,
+              and checklist catalog.
             </p>
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              The quiz evaluates brand maturity and generates tailored recommendations. The results view presents category-level diagnostics, while the checklist workspace supports task completion, progress tracking, search, checklist switching, archiving, and duplication.
+              The quiz evaluates brand maturity and generates tailored
+              recommendations. The results view presents category-level
+              diagnostics, while the checklist workspace supports task
+              completion, progress tracking, search, checklist switching,
+              archiving, and duplication.
             </p>
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              I also implemented supporting engagement features, including a contextual AI chat assistant, milestone badge unlocks, and a celebratory confetti component. I diagnosed and resolved a state-reset defect that prevented celebrations from triggering on subsequent milestones and corrected checklist-sharing URL generation.
+              I also implemented supporting engagement features, including a
+              contextual AI chat assistant, milestone badge unlocks, and a
+              celebratory confetti component. I diagnosed and resolved a
+              state-reset defect that prevented celebrations from triggering on
+              subsequent milestones and corrected checklist-sharing URL
+              generation.
             </p>
 
             {/* Interactive Journey Component */}
@@ -149,11 +179,28 @@ export default function BraandlyCaseStudy() {
             </div>
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              I implemented priority selection workflows across task panels and sidebar menus, including clearer interaction targets, color-coded priority options, and viewport-aware dropdown positioning.
+              I implemented priority selection workflows across task panels and
+              sidebar menus, including clearer interaction targets, color-coded
+              priority options, and viewport-aware dropdown positioning.
             </p>
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              Crucially, I synchronized optimistic priority updates across three TanStack React Query cache scopes: individual tasks (<code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">['task', id]</code>), project tasks (<code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">['project', projId, 'tasks']</code>), and workspace tasks (<code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">['workspace', 'tasks']</code>). The implementation takes a pre-mutation snapshot and executes rollback behavior if the server mutation fails, ensuring the user interface remains strictly consistent with authoritative state.
+              Crucially, I synchronized optimistic priority updates across three
+              TanStack React Query cache scopes: individual tasks (
+              <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
+                ['task', id]
+              </code>
+              ), project tasks (
+              <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
+                ['project', projId, 'tasks']
+              </code>
+              ), and workspace tasks (
+              <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
+                ['workspace', 'tasks']
+              </code>
+              ). The implementation takes a pre-mutation snapshot and executes
+              rollback behavior if the server mutation fails, ensuring the user
+              interface remains strictly consistent with authoritative state.
             </p>
 
             {/* Architecture Breakdown */}
@@ -166,7 +213,16 @@ export default function BraandlyCaseStudy() {
                 Collaborative Reaction Attribution via Memoized Map
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                To build Slack/Trello-style reaction attributions without repeatedly scanning workspace member arrays on every render (which caused <code className="font-mono text-xs">O(N * M)</code> overhead during rapid reactions), I created a memoized <code className="font-mono text-xs">Map&lt;UserId, Member&gt;</code>. I also formatted readable participant lists with remaining participant counts (e.g., "Sarah, Alex and 3 others reacted").
+                To build Slack/Trello-style reaction attributions without
+                repeatedly scanning workspace member arrays on every render
+                (which caused{" "}
+                <code className="font-mono text-xs">O(N * M)</code> overhead
+                during rapid reactions), I created a memoized{" "}
+                <code className="font-mono text-xs">
+                  Map&lt;UserId, Member&gt;
+                </code>
+                . I also formatted readable participant lists with remaining
+                participant counts (e.g., "Sarah, Alex and 3 others reacted").
               </p>
             </div>
           </section>
@@ -183,7 +239,16 @@ export default function BraandlyCaseStudy() {
             </div>
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              The default HeroUI skeleton shimmer conflicted with the application's dark theme, producing harsh white flashes during async data queries. Rather than writing one-off CSS overrides across individual pages, I engineered a universal <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded font-bold">ThemeSkeleton</code> component with explicit tokenized light- and dark-mode background and shimmer layers, then systematically migrated over 33 core dashboard and workspace files.
+              The default HeroUI skeleton shimmer conflicted with the
+              application's dark theme, producing harsh white flashes during
+              async data queries. Rather than writing one-off CSS overrides
+              across individual pages, I engineered a universal{" "}
+              <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded font-bold">
+                ThemeSkeleton
+              </code>{" "}
+              component with explicit tokenized light- and dark-mode background
+              and shimmer layers, then systematically migrated over 33 core
+              dashboard and workspace files.
             </p>
 
             {/* Design System Comparison */}
@@ -207,7 +272,10 @@ export default function BraandlyCaseStudy() {
                   Filter Tray Reopen Race Condition
                 </h4>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Investigated outside-click listener ordering that caused the filter tray to immediately reopen upon close. Resolved by decoupling the toggle button trigger from document listener targets.
+                  Investigated outside-click listener ordering that caused the
+                  filter tray to immediately reopen upon close. Resolved by
+                  decoupling the toggle button trigger from document listener
+                  targets.
                 </p>
               </div>
 
@@ -216,7 +284,9 @@ export default function BraandlyCaseStudy() {
                   Nested Dropdown Link Events
                 </h4>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Corrected dropdown navigation actions that failed because of conflicting event bubbling between nested Next.js links and interactive trigger buttons.
+                  Corrected dropdown navigation actions that failed because of
+                  conflicting event bubbling between nested Next.js links and
+                  interactive trigger buttons.
                 </p>
               </div>
 
@@ -225,7 +295,9 @@ export default function BraandlyCaseStudy() {
                   Stacking Context & Z-Index
                 </h4>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Eliminated z-index conflicts between sticky headers, color swatches, action toolbars, and fullscreen modals by standardizing layer stacking hierarchies.
+                  Eliminated z-index conflicts between sticky headers, color
+                  swatches, action toolbars, and fullscreen modals by
+                  standardizing layer stacking hierarchies.
                 </p>
               </div>
 
@@ -234,7 +306,9 @@ export default function BraandlyCaseStudy() {
                   Laptop Breakpoint Constraints
                 </h4>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Refined horizontal category scrolling and toolbar layouts at 1024px–1366px viewports, preventing awkward toolbar clipping and overlapping footer links.
+                  Refined horizontal category scrolling and toolbar layouts at
+                  1024px–1366px viewports, preventing awkward toolbar clipping
+                  and overlapping footer links.
                 </p>
               </div>
             </div>
@@ -244,7 +318,17 @@ export default function BraandlyCaseStudy() {
                 Admin Navigation Access Control & Media Optimization
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Replaced insecure negative role checks (<code className="font-mono text-xs">role !== "member"</code>) with an explicit admin-role allowlist (<code className="font-mono text-xs">["admin", "superadmin"].includes(role)</code>) for dashboard navigation links. Additionally converted outdated marketing preview assets to modern WebP format and added responsive Next.js image <code className="font-mono text-xs">sizes</code> attributes to minimize unnecessary cellular bandwidth.
+                Replaced insecure negative role checks (
+                <code className="font-mono text-xs">role !== "member"</code>)
+                with an explicit admin-role allowlist (
+                <code className="font-mono text-xs">
+                  ["admin", "superadmin"].includes(role)
+                </code>
+                ) for dashboard navigation links. Additionally converted
+                outdated marketing preview assets to modern WebP format and
+                added responsive Next.js image{" "}
+                <code className="font-mono text-xs">sizes</code> attributes to
+                minimize unnecessary cellular bandwidth.
               </p>
             </div>
           </section>
@@ -260,7 +344,10 @@ export default function BraandlyCaseStudy() {
                   Fix root causes rather than symptoms:
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
-                  The filter tray defect was an event-ordering problem, not a styling glitch. The solution excluded the trigger from outside-click handling rather than using fragile setTimeout hacks.
+                  The filter tray defect was an event-ordering problem, not a
+                  styling glitch. The solution excluded the trigger from
+                  outside-click handling rather than using fragile setTimeout
+                  hacks.
                 </span>
               </div>
               <div>
@@ -268,7 +355,9 @@ export default function BraandlyCaseStudy() {
                   Reuse shared architectural components:
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
-                  Building a universal themed skeleton solved loading states at the design system level instead of creating 33 separate visual patches.
+                  Building a universal themed skeleton solved loading states at
+                  the design system level instead of creating 33 separate visual
+                  patches.
                 </span>
               </div>
               <div>
@@ -276,7 +365,9 @@ export default function BraandlyCaseStudy() {
                   Keep interactive state strictly consistent:
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
-                  Optimistic task priority changes needed coordinated multi-cache updates and rollback behavior, not merely a transient local badge update.
+                  Optimistic task priority changes needed coordinated
+                  multi-cache updates and rollback behavior, not merely a
+                  transient local badge update.
                 </span>
               </div>
               <div>
@@ -284,7 +375,9 @@ export default function BraandlyCaseStudy() {
                   Make responsive behavior intentional:
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
-                  Laptop layouts required bespoke constraints rather than assuming that mobile and desktop breakpoints covered every viewport.
+                  Laptop layouts required bespoke constraints rather than
+                  assuming that mobile and desktop breakpoints covered every
+                  viewport.
                 </span>
               </div>
             </div>
@@ -296,16 +389,27 @@ export default function BraandlyCaseStudy() {
               Outcome & Verified Evidence
             </h3>
             <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              My contributions expanded Braandly's branding capabilities and improved reliability across task management, brand tooling, loading states, and responsive layouts. The work demonstrates my ability to deliver substantial product features, investigate non-obvious frontend defects, and elevate shared application architecture within an existing multi-contributor codebase.
+              My contributions expanded Braandly's branding capabilities and
+              improved reliability across task management, brand tooling,
+              loading states, and responsive layouts. The work demonstrates my
+              ability to deliver substantial product features, investigate
+              non-obvious frontend defects, and elevate shared application
+              architecture within an existing multi-contributor codebase.
             </p>
 
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
               <div className="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
                 <GitPullRequest className="w-4 h-4 text-indigo-500" />
-                <span>Code and Review Trail (Private Enterprise Repository):</span>
+                <span>
+                  Code and Review Trail (Private Enterprise Repository):
+                </span>
               </div>
               <p className="text-slate-600 dark:text-slate-400 pl-6">
-                Branding Checklist feature suite: PRs <strong>#218</strong>, <strong>#408</strong>, <strong>#422</strong>, <strong>#423</strong>, <strong>#484</strong>, <strong>#494</strong>. Admin navigation security: PRs <strong>#211</strong>, <strong>#220</strong>.
+                Branding Checklist feature suite: PRs <strong>#218</strong>,{" "}
+                <strong>#408</strong>, <strong>#422</strong>,{" "}
+                <strong>#423</strong>, <strong>#484</strong>,{" "}
+                <strong>#494</strong>. Admin navigation security: PRs{" "}
+                <strong>#211</strong>, <strong>#220</strong>.
               </p>
             </div>
           </section>

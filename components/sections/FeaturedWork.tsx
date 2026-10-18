@@ -1,17 +1,11 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import {
   ArrowRight,
   ExternalLink,
   CheckCircle2,
-  Calendar,
-  Layers,
-  Cpu,
-  Shield,
-  Workflow,
   Sparkles,
   GitPullRequest,
   Lock,
@@ -58,7 +52,8 @@ export default function FeaturedWork() {
       id: "holford-homes",
       title: "Holford Homes",
       role: "Frontend Engineer — Consultation Booking",
-      subtitle: "Cross-border real estate booking system with server-side proxying",
+      subtitle:
+        "Cross-border real estate booking system with server-side proxying",
       headlineFocus: "Booking Systems & Timezones",
       problem:
         "Diaspora customers in the UK and US required real-time property consultation scheduling in Nigeria, but the prototype had hardcoded calendars, lacked timezone translation, and exposed upstream endpoint URLs and keys.",
@@ -91,7 +86,8 @@ export default function FeaturedWork() {
       id: "cyclelink",
       title: "CycleLink",
       role: "Frontend Engineer",
-      subtitle: "Connecting household & collector workflows to real backend services",
+      subtitle:
+        "Connecting household & collector workflows to real backend services",
       headlineFocus: "API Integration & Systems Security",
       problem:
         "A waste collection MVP relied heavily on browser localStorage for sensitive KYC information, simulated driver timers, and hardcoded flows, without role-specific authorization boundaries or contract alignment.",
@@ -124,7 +120,10 @@ export default function FeaturedWork() {
   ];
 
   return (
-    <section id="projects" className="py-24 border-t border-slate-200/80 dark:border-slate-800/80">
+    <section
+      id="projects"
+      className="py-24 border-t border-slate-200/80 dark:border-slate-800/80"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
@@ -133,10 +132,13 @@ export default function FeaturedWork() {
             <span>Featured Case Studies</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Projects I've engineered from the ground up
+            Projects I&apos;ve engineered from the ground up
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            I love sinking my teeth into complex web applications. Here are three professional products where I took ownership of core user workflows, resolved architectural bottlenecks, and brought features to life.
+            I love sinking my teeth into complex web applications. Here are
+            three professional products where I took ownership of core user
+            workflows, resolved architectural bottlenecks, and brought features
+            to life.
           </p>
         </div>
 

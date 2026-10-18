@@ -1,17 +1,11 @@
 "use client";
 
-import React from "react";
 import {
-  Clock,
   Globe2,
   Shield,
   Server,
   Laptop,
-  ArrowRight,
-  Calendar,
   CheckCircle2,
-  Video,
-  Phone,
   Code2,
 } from "lucide-react";
 
@@ -34,7 +28,11 @@ export function TimezoneNormalizationBreakdown() {
       </div>
 
       <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-        When an international buyer in London or New York books a consultation with a property advisor in Nigeria, localized display strings like "2:00 PM GMT" must never be sent as the database record. The client must normalize time into an immutable UTC ISO 8601 string while displaying browser-localized time to the buyer.
+        When an international buyer in London or New York books a consultation
+        with a property advisor in Nigeria, localized display strings like
+        &quot;2:00 PM GMT&quot; must never be sent as the database record. The
+        client must normalize time into an immutable UTC ISO 8601 string while
+        displaying browser-localized time to the buyer.
       </p>
 
       {/* Concrete Multi-Region Translation Example */}
@@ -71,7 +69,7 @@ export function TimezoneNormalizationBreakdown() {
               13:00
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Rendered in buyer's local 24-hr format
+              Rendered in buyer&apos;s local 24-hr format
             </p>
           </div>
 
@@ -98,7 +96,8 @@ export function TimezoneNormalizationBreakdown() {
         <div className="flex items-center justify-between text-slate-400">
           <span className="flex items-center gap-1.5 text-amber-400 font-semibold font-sans">
             <Code2 className="w-3.5 h-3.5" />
-            Serialized Payload Sent to Backend (POST /api/consultations/[uuid]/date)
+            Serialized Payload Sent to Backend (POST
+            /api/consultations/[uuid]/date)
           </span>
           <span className="text-[10px] text-slate-500">ISO 8601 UTC</span>
         </div>
@@ -106,7 +105,10 @@ export function TimezoneNormalizationBreakdown() {
           {`{ "consultation_date": "2025-11-20T13:00:00.000Z", "consultation_type": "video" }`}
         </div>
         <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
-          <strong>Key Engineering Decision:</strong> Never store or transmit localized display strings. The client detects the browser's IANA timezone for local presentation, but serializes normalized UTC timestamps for database persistence.
+          <strong>Key Engineering Decision:</strong> Never store or transmit
+          localized display strings. The client detects the browser&apos;s IANA
+          timezone for local presentation, but serializes normalized UTC
+          timestamps for database persistence.
         </p>
       </div>
     </div>
@@ -145,7 +147,8 @@ export function BffProxyArchitectureDiagram() {
           The 3 Next.js App Router Server-Side Proxy Handlers
         </h4>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-          Creating a defensive boundary between client browsers and upstream microservices.
+          Creating a defensive boundary between client browsers and upstream
+          microservices.
         </p>
       </div>
 

@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, GitPullRequest, Calendar, Briefcase, Tag, Lock } from "lucide-react";
+import { ArrowLeft, ExternalLink, Lock } from "lucide-react";
 
 interface CaseStudyHeaderProps {
   title: string;
@@ -53,7 +52,9 @@ export default function CaseStudyHeader({
 
         {/* Category & Status */}
         <div className="flex flex-wrap items-center gap-3 mb-4">
-          <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${categoryColor}`}>
+          <span
+            className={`text-xs font-semibold px-3 py-1 rounded-full border ${categoryColor}`}
+          >
             {category}
           </span>
           <span className="text-xs font-medium text-slate-500 dark:text-slate-400">

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { Menu, X, ArrowUpRight, ChevronDown, Sparkles, FileText, Layers } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function Navbar() {
@@ -25,21 +25,24 @@ export default function Navbar() {
       subtitle: "Product engineering at scale · 71 files, 10k+ adds",
       href: "/work/braandly",
       tag: "Feature Architecture",
-      color: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800/40",
+      color:
+        "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800/40",
     },
     {
       name: "Holford Homes",
       subtitle: "International consultation booking & BFF proxy",
       href: "/work/holford-homes",
       tag: "API Integration",
-      color: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800/40",
+      color:
+        "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800/40",
     },
     {
       name: "CycleLink",
       subtitle: "From frontend MVP to live backend workflows",
       href: "/work/cyclelink",
       tag: "Systems & Security",
-      color: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/40",
+      color:
+        "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/40",
     },
   ];
 
@@ -63,7 +66,9 @@ export default function Navbar() {
                 DO
               </span>
               <span className="flex flex-col">
-                <span className="leading-tight text-base font-semibold">Oluwadarasimi</span>
+                <span className="leading-tight text-base font-semibold">
+                  Oluwadarasimi
+                </span>
                 <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 -mt-0.5">
                   Frontend Engineer
                 </span>
@@ -198,7 +203,11 @@ export default function Navbar() {
               className="md:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               aria-label="Toggle navigation menu"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -249,7 +258,9 @@ export default function Navbar() {
                         className="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
                       >
                         <span>{p.name}</span>
-                        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${p.color}`}>
+                        <span
+                          className={`text-[10px] px-2 py-0.5 rounded-full border ${p.color}`}
+                        >
                           {p.tag}
                         </span>
                       </Link>

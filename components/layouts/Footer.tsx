@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { Mail, ArrowUp, Heart, Code2 } from "lucide-react";
-import { Github, Linkedin, Twitter } from "@/components/ui/Icons";
+import { Mail, ArrowUp } from "lucide-react";
+import { Github, Linkedin } from "@/components/ui/Icons";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -25,7 +24,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
-              Frontend Engineer specializing in API integration, application architecture, state management, and reliable product features. Built with engineering rigor and thoughtful user experiences.
+              Frontend Engineer specializing in API integration, application
+              architecture, state management, and reliable product features.
+              Built with engineering rigor and thoughtful user experiences.
             </p>
             <div className="flex items-center gap-3 pt-1">
               <a
@@ -144,7 +145,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-500">
-          <p>© {new Date().getFullYear()} Oluwadarasimi Omojola. Crafted with Next.js, Tailwind CSS & Framer Motion.</p>
+          <p>
+            © {new Date().getFullYear()} Oluwadarasimi Omojola. Crafted with
+            Next.js, Tailwind CSS & Framer Motion.
+          </p>
           <button
             onClick={scrollToTop}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all shadow-2xs"
