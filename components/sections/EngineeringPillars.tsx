@@ -17,7 +17,7 @@ export default function EngineeringPillars() {
 
   const pillars = [
     {
-      title: "I dig for root causes — never slap on quick band-aids.",
+      title: "I dig for root causes, never slap on quick band-aids.",
       shortTitle: "Root-Cause Debugging",
       tag: "Debugging & Architecture",
       icon: Search,
@@ -34,7 +34,7 @@ export default function EngineeringPillars() {
       },
     },
     {
-      title: "I treat the browser/server boundary with security & rigor.",
+      title: "I treat the browser/server boundary with security",
       shortTitle: "BFF & Secret Isolation",
       tag: "API Integration & Security",
       icon: ShieldCheck,
@@ -51,7 +51,7 @@ export default function EngineeringPillars() {
       },
     },
     {
-      title: "I make UI feel instant — but never leave state stranded.",
+      title: "I make UI feel instant but never leave state stranded.",
       shortTitle: "Optimistic State & Rollbacks",
       tag: "State Management",
       icon: RefreshCw,
@@ -95,8 +95,8 @@ export default function EngineeringPillars() {
         {/* Section Header */}
         <div className="max-w-3xl mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/40 text-xs font-semibold text-indigo-700 dark:text-indigo-300 mb-3">
-            <Zap className="w-3.5 h-3.5 text-amber-500" />
-            <span>My Engineering Mindset</span>
+            <Zap className="w-3.5 h-3.5" />
+            <span>My Engineering Philosophy</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
             How I think when building & debugging software
@@ -104,7 +104,9 @@ export default function EngineeringPillars() {
           <p className="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
             Anyone can copy code from a tutorial or style a button. When you
             hire me, you get an engineer who approaches systems with curiosity,
-            rigor, and a commitment to solving problems at their foundation.
+            rigor, and a commitment to solving problems at their foundation. I
+            reason about systems, make engineering decisions, work within
+            existing codebases, and deliver features that serve actual users.
           </p>
         </div>
 
@@ -169,7 +171,7 @@ export default function EngineeringPillars() {
 
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug">
-                  &ldquo;{pillars[activePillar].title}&rdquo;
+                  {pillars[activePillar].title}
                 </h3>
                 <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
                   {pillars[activePillar].story}
