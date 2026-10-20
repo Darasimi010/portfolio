@@ -81,7 +81,7 @@ export default function ExperienceTimeline() {
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-slate-300 transition-all self-start md:self-auto"
           >
             <FileText className="w-4 h-4 text-amber-500" />
-            <span>Full Recruiter Resume</span>
+            <span>Full Resume</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
