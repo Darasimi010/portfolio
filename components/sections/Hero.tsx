@@ -87,14 +87,10 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-normal max-w-3xl"
             >
-              I don't just{" "}
-              <span className="italic font-medium text-slate-900 dark:text-slate-100">
-                “turn Figma mockups into divs.”
-              </span>{" "}
-              I take ownership of complex product workflows, track down elusive
-              state bugs to their root causes, bridge user interfaces to backend
-              APIs, and build reliable software that real people depend on every
-              day.
+              I don't just turn Figma mockups into divs. I take ownership of
+              complex product workflows, track down elusive state bugs to their
+              root causes, bridge user interfaces to backend APIs, and build
+              reliable software that real people depend on every day.
             </motion.p>
           </div>
 
