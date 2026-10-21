@@ -45,7 +45,6 @@ export default function ExperienceTimeline() {
       badgeColor:
         "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/40",
       bullets: [
-        "Designed and implemented a multi-page Branding Checklist suite spanning brand-audit quizzes, diagnostic scoring, tailored recommendations, searchable task workflows, progress tracking, and an AI chat assistant; contributed 71 files and 10,792+ additions.",
         "Engineered optimistic task-priority updates across three TanStack React Query cache scopes, with rollback on mutation failure, and built memoized user lookup and attribution for collaborative comment reactions.",
         "Developed a reusable dark-mode skeleton component and migrated it across 33+ files, standardizing loading-state styling throughout dashboard and workspace interfaces.",
         "Resolved cross-application defects involving role-based admin navigation, palette and gradient interactions, event-handling race conditions, responsive layouts, and image delivery using WebP assets and responsive Next.js image sizing.",
@@ -71,8 +70,8 @@ export default function ExperienceTimeline() {
               Professional Experience
             </h2>
             <p className="mt-3 text-base text-slate-600 dark:text-slate-400">
-              Concise work-experience entries communicating concrete engineering
-              ownership, architecture contributions, and defensible results.
+              A look at the teams I&apos;ve worked with, the systems I&apos;ve
+              helped build, and the impact I&apos;ve made.
             </p>
           </div>
 
@@ -81,7 +80,7 @@ export default function ExperienceTimeline() {
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-800 shadow-xs hover:border-slate-300 transition-all self-start md:self-auto"
           >
             <FileText className="w-4 h-4 text-amber-500" />
-            <span>Full Resume</span>
+            <span>My Resume</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -131,10 +130,7 @@ export default function ExperienceTimeline() {
                 </ul>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">
-                  Verified Engineering Contribution
-                </span>
+              <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end">
                 <Link
                   href={exp.caseStudyLink}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
