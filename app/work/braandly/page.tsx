@@ -7,7 +7,6 @@ import CaseStudyNav from "@/components/work/CaseStudyNav";
 import {
   OptimisticCacheArchitecture,
   ThemeSkeletonComparison,
-  BrandingJourneyFlow,
 } from "@/components/work/BraandlyArchitectures";
 import { AlertTriangle, Sparkles, GitPullRequest } from "lucide-react";
 
@@ -53,11 +52,11 @@ export default function BraandlyCaseStudy() {
             </p>
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               My work focused on expanding product capabilities and improving
-              the reliability of existing workflows. I built a multi-page
-              Branding Checklist suite, improved task management interactions,
-              standardized dark-mode loading states across more than 33 files,
-              resolved navigation and UI state bugs, tightened role-based
-              navigation visibility, and optimized marketing-page imagery.
+              the reliability of existing workflows. I improved task management
+              interactions, standardized dark-mode loading states across more
+              than 33 files, resolved navigation and UI state bugs, tightened
+              role-based navigation visibility, and optimized marketing-page
+              imagery.
             </p>
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               Rather than treating every issue as an isolated UI defect, I
@@ -77,13 +76,6 @@ export default function BraandlyCaseStudy() {
               Seven distinct hurdles in a growing enterprise codebase
             </h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm text-slate-700 dark:text-slate-300">
-              <li className="flex items-start gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                <span>
-                  Users needed a structured way to assess brand maturity and
-                  work through branding tasks.
-                </span>
-              </li>
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
                 <span>
@@ -119,7 +111,7 @@ export default function BraandlyCaseStudy() {
                   viewport widths.
                 </span>
               </li>
-              <li className="flex items-start gap-2.5 sm:col-span-2">
+              <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
                 <span>
                   Admin dashboard navigation links needed strict role-based
@@ -129,49 +121,11 @@ export default function BraandlyCaseStudy() {
             </ul>
           </section>
 
-          {/* Section 1: Branding Checklist Suite */}
+          {/* Section 1: Optimistic Updates & Cache Synchronization */}
           <section className="space-y-6">
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                01. Feature Architecture
-              </span>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Built the Branding Checklist Suite (71 Files, 10,792+ Additions)
-              </h2>
-            </div>
-
-            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              I implemented a multi-page branding workflow spanning the tool
-              hub, brand audit quiz, diagnostic results, checklist workspace,
-              and checklist catalog.
-            </p>
-
-            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              The quiz evaluates brand maturity and generates tailored
-              recommendations. The results view presents category-level
-              diagnostics, while the checklist workspace supports task
-              completion, progress tracking, search, checklist switching,
-              archiving, and duplication.
-            </p>
-
-            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              I also implemented supporting engagement features, including a
-              contextual AI chat assistant, milestone badge unlocks, and a
-              celebratory confetti component. I diagnosed and resolved a
-              state-reset defect that prevented celebrations from triggering on
-              subsequent milestones and corrected checklist-sharing URL
-              generation.
-            </p>
-
-            {/* Interactive Journey Component */}
-            <BrandingJourneyFlow />
-          </section>
-
-          {/* Section 2: Optimistic Updates & Cache Synchronization */}
-          <section className="space-y-6">
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                02. Interaction Engineering & State Management
+                01. Interaction Engineering & State Management
               </span>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 Coordinated Optimistic Updates & Cache Rollback
@@ -227,11 +181,11 @@ export default function BraandlyCaseStudy() {
             </div>
           </section>
 
-          {/* Section 3: Standardizing Dark Mode Skeletons */}
+          {/* Section 2: Standardizing Dark Mode Skeletons */}
           <section className="space-y-6">
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                03. Design System & Reliability
+                02. Design System & Reliability
               </span>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 Standardized Dark-Mode Loading Across 33+ Files
@@ -255,11 +209,11 @@ export default function BraandlyCaseStudy() {
             <ThemeSkeletonComparison />
           </section>
 
-          {/* Section 4: Root-Cause Bug Fixes */}
+          {/* Section 3: Root-Cause Bug Fixes */}
           <section className="space-y-6">
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                04. Defect Investigation
+                03. Defect Investigation
               </span>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 Resolving Complex UI Behavior & Responsive Layout Defects
