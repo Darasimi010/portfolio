@@ -1,16 +1,6 @@
 "use client";
 
-import {
-  Database,
-  ArrowRight,
-  CheckCircle2,
-  AlertTriangle,
-  HelpCircle,
-  BarChart3,
-  CheckSquare,
-  Sparkles,
-  Layers,
-} from "lucide-react";
+import { Database, CheckCircle2, AlertTriangle, Layers } from "lucide-react";
 
 export function OptimisticCacheArchitecture() {
   const cacheScopes = [
@@ -207,90 +197,6 @@ export function ThemeSkeletonComparison() {
             ✓ Seamless visual parity across all workspace & dashboard routes
           </span>
         </div>
-      </div>
-    </div>
-  );
-}
-
-export function BrandingJourneyFlow() {
-  const steps = [
-    {
-      num: "01",
-      title: "Brand Maturity Audit",
-      desc: "Multi-category diagnostic questionnaire evaluating identity, collateral, messaging, and digital presence.",
-      icon: HelpCircle,
-      tag: "Assessment",
-    },
-    {
-      num: "02",
-      title: "Diagnostic Scoring",
-      desc: "Category-level diagnostic results engine with benchmark rankings and tailored action priorities.",
-      icon: BarChart3,
-      tag: "Analysis",
-    },
-    {
-      num: "03",
-      title: "Checklist Workspace",
-      desc: "Interactive task execution hub with search, category filtering, archive, duplication, and progress tracking.",
-      icon: CheckSquare,
-      tag: "Execution",
-    },
-    {
-      num: "04",
-      title: "AI & Milestone Rewards",
-      desc: "Contextual AI assistant for task guidance, celebratory milestone unlocks, and persistent checklist sharing.",
-      icon: Sparkles,
-      tag: "Engagement",
-    },
-  ];
-
-  return (
-    <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-      <div>
-        <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-          Feature Architecture
-        </span>
-        <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-          The Branding Checklist End-to-End User Journey
-        </h4>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-          71 files created or modified with 10,792+ additions spanning
-          assessment, scoring, workspace execution, and engagement.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {steps.map((step, idx) => {
-          const Icon = step.icon;
-          return (
-            <div
-              key={step.num}
-              className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800 flex flex-col justify-between space-y-3"
-            >
-              <div>
-                <div className="flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400">
-                  <span>STEP {step.num}</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 font-medium">
-                    {step.tag}
-                  </span>
-                </div>
-                <h5 className="font-bold text-sm text-slate-900 dark:text-white mt-2">
-                  {step.title}
-                </h5>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-slate-200/50 dark:border-slate-700/50 flex items-center justify-between text-indigo-500">
-                <Icon className="w-4 h-4" />
-                {idx < 3 && (
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-300 dark:text-slate-600" />
-                )}
-              </div>
-            </div>
-          );
-        })}
       </div>
     </div>
   );
