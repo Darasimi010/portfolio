@@ -10,10 +10,10 @@ export default function ExperienceTimeline() {
       company: "CycleLink",
       role: "Frontend Engineer",
       dates: "August 2026 – Present",
+      tagline:
+        "Waste collection coordination platform connecting households with collectors",
       type: "Contract / Professional Engineering",
       color: "emerald",
-      badgeColor:
-        "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40",
       bullets: [
         "Integrated household and collector pickup workflows with live REST APIs, replacing mock data and simulated interactions with backend-driven application state.",
         "Improved role-aware onboarding and dashboard access, pickup history and pagination, drop-off availability, and pending-verification workflows while aligning frontend behavior with documented API contracts.",
@@ -23,12 +23,12 @@ export default function ExperienceTimeline() {
     },
     {
       company: "Holford Homes",
-      role: "Frontend Engineer — Consultation Booking & API Integration",
-      dates: "October 2025 — December 2025",
+      role: "Frontend Engineer",
+      dates: "September 2025 — December 2025",
+      tagline:
+        "Real estate platform serving Nigerians living abroad who want to purchase property in Nigeria",
       type: "Professional Engineering",
       color: "amber",
-      badgeColor:
-        "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/40",
       bullets: [
         "Replaced a mock consultation booking flow with backend-connected lead submission, live availability retrieval, and appointment selection through three Next.js App Router API handlers.",
         "Implemented a timezone-aware booking calendar with a 42-day grid, browser-local time display, UTC timestamp serialization, and video/phone consultation slot handling.",
@@ -40,16 +40,30 @@ export default function ExperienceTimeline() {
       company: "Braandly",
       role: "Frontend Developer",
       dates: "September 2025 — Present",
+      tagline:
+        "Enterprise brand creation, asset management, and creative collaboration platform",
       type: "Professional Engineering",
       color: "indigo",
-      badgeColor:
-        "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/40",
       bullets: [
         "Engineered optimistic task-priority updates across three TanStack React Query cache scopes, with rollback on mutation failure, and built memoized user lookup and attribution for collaborative comment reactions.",
         "Developed a reusable dark-mode skeleton component and migrated it across 33+ files, standardizing loading-state styling throughout dashboard and workspace interfaces.",
         "Resolved cross-application defects involving role-based admin navigation, palette and gradient interactions, event-handling race conditions, responsive layouts, and image delivery using WebP assets and responsive Next.js image sizing.",
       ],
       caseStudyLink: "/work/braandly",
+    },
+    {
+      company: "Transmission Company of Nigeria (TCN)",
+      role: "Engineering Intern (SIWES)",
+      dates: "April — September 2024 & July — September 2023",
+      tagline:
+        "Connecting the Electricity Generating Companies (GenCos) to the Distribution Companies (DisCos)",
+      type: "Professional Engineering",
+      color: "indigo",
+      bullets: [
+        "Grid Telemetry & Operations: Monitored national grid stability and evaluated regional load-allocation data in the Independent System Operations (ISO) unit to prevent grid imbalances.",
+        "Substation Instrumentation: Assisted senior engineers in testing and calibrating distance protection relays, current transformers, and voltage transformers in the Protection, Control & Metering (PC&M) department.",
+        "High-Voltage Maintenance & Safety: Participated in routine preventive maintenance of 330 kV / 132 kV switchgear, isolators, battery banks, and high-voltage circuit breakers in the Electrical Maintenance Department (EMD), while ensuring strict HSE compliance",
+      ],
     },
   ];
 
@@ -86,7 +100,7 @@ export default function ExperienceTimeline() {
         </div>
 
         {/* Experience List */}
-        <div className="space-y-10 max-w-4xl">
+        <div className="space-y-10 max-w-6xl mx-auto">
           {experiences.map((exp, idx) => (
             <motion.div
               key={exp.company}
@@ -99,17 +113,16 @@ export default function ExperienceTimeline() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100 dark:border-slate-800">
                 <div>
                   <div className="flex items-center gap-2.5">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                      {exp.company}
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50">
+                      {exp.company}{" "}
+                      <span className="text-slate-400 font-normal">·</span>{" "}
+                      <span className="text-indigo-600 dark:text-indigo-400 font-semibold text-lg">
+                        {exp.role}
+                      </span>
                     </h3>
-                    <span
-                      className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${exp.badgeColor}`}
-                    >
-                      {exp.role.split("—")[0].trim()}
-                    </span>
                   </div>
                   <div className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-0.5">
-                    {exp.role}
+                    {exp.tagline}
                   </div>
                 </div>
 
@@ -118,7 +131,6 @@ export default function ExperienceTimeline() {
                   <span>{exp.dates}</span>
                 </div>
               </div>
-
               <div className="mt-5 space-y-3">
                 <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                   {exp.bullets.map((bullet, bIdx) => (
@@ -129,16 +141,17 @@ export default function ExperienceTimeline() {
                   ))}
                 </ul>
               </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end">
-                <Link
-                  href={exp.caseStudyLink}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
-                >
-                  <span>Detailed case study breakdown</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+              {exp.caseStudyLink && (
+                <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end">
+                  <Link
+                    href={exp.caseStudyLink}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+                  >
+                    <span>Read in-depth case study</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
