@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-amber-500 flex items-center justify-center text-white text-sm font-black shadow-xs">
-                DO
+                OO
               </span>
               <span className="text-lg font-bold text-slate-900 dark:text-white">
                 Oluwadarasimi Omojola
@@ -69,7 +69,7 @@ export default function Footer() {
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  CycleLink (API & Systems)
+                  CycleLink Case Study
                 </Link>
               </li>
               <li>
@@ -78,7 +78,7 @@ export default function Footer() {
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                  Holford Homes (Booking & Proxy)
+                  Holford Homes Case Study
                 </Link>
               </li>
               <li>
@@ -87,7 +87,16 @@ export default function Footer() {
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-                  Braandly (Product Scale)
+                  Braandly Case Study
+                </Link>
+              </li>
+              <li className="pt-1">
+                <Link
+                  href="/resume"
+                  className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 transition-colors font-medium flex items-center gap-1.5"
+                >
+                  {/* <span className="w-1.5 h-1.5 rounded-full bg-pink-500" /> */}
+                  View Resume →
                 </Link>
               </li>
             </ul>
@@ -112,7 +121,7 @@ export default function Footer() {
                   href="/#engineering"
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
-                  Engineering Mindset
+                  Engineering Philosophy
                 </Link>
               </li>
               <li>
@@ -128,7 +137,7 @@ export default function Footer() {
                   href="/resume"
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
-                  Recruiter Resume
+                  Resume
                 </Link>
               </li>
               <li>
@@ -136,7 +145,7 @@ export default function Footer() {
                   href="/#contact"
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
-                  Contact
+                  Contact Me
                 </Link>
               </li>
             </ul>
@@ -146,8 +155,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-500">
           <p>
-            © {new Date().getFullYear()} Oluwadarasimi Omojola. Crafted with
-            Next.js, Tailwind CSS & Framer Motion.
+            &copy; {new Date().getFullYear()} Oluwadarasimi Omojola. Crafted
+            with Next.js, React, TypeScript, Tailwind CSS & Framer Motion.
           </p>
           <button
             onClick={scrollToTop}
