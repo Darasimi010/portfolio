@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Send, CheckCircle2, Copy, Sparkles } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { Mail, Send, CheckCircle2, Copy, Sparkles, X } from "lucide-react";
 import { Github, Linkedin } from "@/components/ui/Icons";
 
 export default function ContactSection() {
@@ -24,21 +25,55 @@ export default function ContactSection() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     setStatus("sending");
+    try {
+      const sentAt = new Intl.DateTimeFormat("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+        timeZone: "Africa/Lagos",
+        timeZoneName: "short",
+      }).format(new Date());
 
-    // Construct mailto link as reliable zero-failure fallback
-    const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(
-      formData.subject || "Frontend Engineering Opportunity",
-    )}&body=${encodeURIComponent(
-      `From: ${formData.name} (${formData.email})\n\n${formData.message}`,
-    )}`;
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          time: sentAt,
+        },
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        },
+      );
 
-    setTimeout(() => {
-      window.location.href = mailtoUrl;
       setStatus("success");
-    }, 600);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setStatus("idle");
+      }, 3000);
+    } catch (error) {
+      // console.error("Error sending email:", error);
+      setStatus("error");
+      setTimeout(() => {
+        setStatus("idle");
+      }, 3000);
+    }
   };
 
   return (
@@ -84,14 +119,14 @@ export default function ContactSection() {
                   {copied ? (
                     <>
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                      <span className="text-emerald-600 dark:text-emerald-400">
+                      <span className="text-emerald-600 dark:text-emerald-400 hidden md:block">
                         Copied
                       </span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-3.5 h-3.5" />
-                      <span>Copy</span>
+                      <span className="hidden md:block">Copy</span>
                     </>
                   )}
                 </button>
@@ -203,7 +238,7 @@ export default function ContactSection() {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs hover:shadow-indigo-500/20 active:scale-98 transition-all disabled:opacity-50"
                 >
                   {status === "sending" ? (
-                    <span>Opening Mail Client...</span>
+                    <span>Sending message...</span>
                   ) : (
                     <>
                       <span>Send Message</span>
@@ -216,8 +251,36 @@ export default function ContactSection() {
                   <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 text-xs font-medium text-emerald-700 dark:text-emerald-300 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 shrink-0" />
                     <span>
-                      Your email client has been prepared. Looking forward to
-                      speaking!
+                      Your message has been sent successfully. I'll be in touch
+                      soon!
+                    </span>
+                  </div>
+                )}
+
+                {status === "error" && (
+                  <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/50 text-xs font-medium text-red-700 dark:text-red-300 flex items-center gap-2">
+                    <X className="w-4 h-4 shrink-0" />
+                    <span>
+                      Failed to send your message. Please try again or reach me
+                      on{" "}
+                      <a
+                        href="https://linkedin.com/in/darasimi-omojola"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-indigo-600 hover:underline"
+                      >
+                        LinkedIn
+                      </a>{" "}
+                      or{" "}
+                      <a
+                        href="https://github.com/Darasimi010"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-indigo-600 hover:underline"
+                      >
+                        Github
+                      </a>
+                      .
                     </span>
                   </div>
                 )}
