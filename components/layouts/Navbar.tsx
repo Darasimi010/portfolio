@@ -92,7 +92,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1.5 lg:gap-2">
+          <div className="hidden lg:flex items-center gap-1.5 lg:gap-2">
             {/* Case Studies Dropdown */}
             <div
               className="relative"
@@ -227,7 +227,7 @@ export default function Navbar() {
 
             <Link
               href="/#contact"
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs hover:shadow-indigo-500/25 transition-all active:scale-98"
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs hover:shadow-indigo-500/25 transition-all active:scale-98"
             >
               <span>Get in Touch</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -235,7 +235,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-xl bg-slate-200/70 dark:bg-slate-800/70 text-slate-800 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+              className="lg:hidden p-2 rounded-xl bg-slate-200/70 dark:bg-slate-800/70 text-slate-800 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
             >
               {isOpen ? (
                 <X className="w-5 h-5" />
@@ -254,7 +254,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 overflow-hidden"
+            className="lg:hidden bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 overflow-hidden"
           >
             <div className="px-5 pt-3 pb-6 space-y-3">
               <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 text-xs text-emerald-700 dark:text-emerald-300">
