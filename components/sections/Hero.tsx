@@ -13,13 +13,13 @@ import {
 
 export default function Hero() {
   const highlights = [
-    {
-      title: "Product Feature Ownership",
-      desc: "Architected multi-page workflows, quiz diagnostics, and workspace suites from initial scoping to production.",
-      tag: "Feature Engineering",
-      color:
-        "from-indigo-500/20 to-indigo-500/5 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800/40",
-    },
+    // {
+    //   title: "Product Feature Ownership",
+    //   desc: "Architected multi-page workflows, quiz diagnostics, and workspace suites from initial scoping to production.",
+    //   tag: "Feature Engineering",
+    //   color:
+    //     "from-indigo-500/20 to-indigo-500/5 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800/40",
+    // },
     {
       title: "API Integration & Systems",
       desc: "Engineered Next.js server proxy handlers, dynamic calendars, and timezone-aware appointment conversions.",
