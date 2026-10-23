@@ -31,7 +31,7 @@ export default function Navbar() {
   const projects = [
     {
       name: "Braandly",
-      subtitle: "Product engineering at scale · 71 files, 10k+ adds",
+      subtitle: "Optimistic UI and design system",
       href: "/work/braandly",
       icon: "Code2",
       iconColor:
