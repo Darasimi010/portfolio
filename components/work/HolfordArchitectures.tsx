@@ -231,7 +231,7 @@ export function BffProxyArchitectureDiagram() {
             key={route.path}
             className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200/70 dark:border-slate-800 space-y-1"
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-left md:items-center justify-between flex-col md:flex-row">
               <div className="flex items-center gap-2">
                 <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 font-mono">
                   {route.method}
