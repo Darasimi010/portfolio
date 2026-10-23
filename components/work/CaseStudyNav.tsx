@@ -11,19 +11,16 @@ const studies = [
   {
     slug: "braandly",
     title: "Braandly",
-    subtitle: "Feature Engineering & Scale",
     href: "/work/braandly",
   },
   {
     slug: "holford-homes",
     title: "Holford Homes",
-    subtitle: "Booking Systems & Timezones",
     href: "/work/holford-homes",
   },
   {
     slug: "cyclelink",
     title: "CycleLink",
-    subtitle: "API Integration & Systems Security",
     href: "/work/cyclelink",
   },
 ];
@@ -49,9 +46,6 @@ export default function CaseStudyNav({ currentSlug }: CaseStudyNavProps) {
           <span className="font-bold text-base text-slate-900 dark:text-white mt-1">
             {prevStudy.title}
           </span>
-          <span className="text-xs text-slate-500 dark:text-slate-400">
-            {prevStudy.subtitle}
-          </span>
         </Link>
 
         {/* Next */}
@@ -65,9 +59,6 @@ export default function CaseStudyNav({ currentSlug }: CaseStudyNavProps) {
           </span>
           <span className="font-bold text-base text-slate-900 dark:text-white mt-1">
             {nextStudy.title}
-          </span>
-          <span className="text-xs text-slate-500 dark:text-slate-400">
-            {nextStudy.subtitle}
           </span>
         </Link>
       </div>

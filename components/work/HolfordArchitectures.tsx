@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Globe2,
-  Shield,
-  Server,
-  Laptop,
-  CheckCircle2,
-  Code2,
-} from "lucide-react";
+import { Shield, Server, Laptop, CheckCircle2, Code2 } from "lucide-react";
 
 export function TimezoneNormalizationBreakdown() {
   return (
@@ -20,10 +13,6 @@ export function TimezoneNormalizationBreakdown() {
           <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
             Timezone-Aware Appointment Normalization Architecture
           </h4>
-        </div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 text-xs font-semibold text-amber-700 dark:text-amber-300">
-          <Globe2 className="w-3.5 h-3.5" />
-          <span>Intl.DateTimeFormat & Date.UTC()</span>
         </div>
       </div>
 
