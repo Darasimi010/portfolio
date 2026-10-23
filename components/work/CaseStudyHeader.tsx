@@ -51,7 +51,7 @@ export default function CaseStudyHeader({
         </div>
 
         {/* Category & Status */}
-        <div className="flex flex-wrap items-center gap-3 mb-4">
+        {/* <div className="flex flex-wrap items-center gap-3 mb-4">
           <span
             className={`text-xs font-semibold px-3 py-1 rounded-full border ${categoryColor}`}
           >
@@ -60,7 +60,7 @@ export default function CaseStudyHeader({
           <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
             Professional Work Experience
           </span>
-        </div>
+        </div> */}
 
         {/* Title */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
