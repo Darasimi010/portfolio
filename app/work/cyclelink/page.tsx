@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import CaseStudyHeader from "@/components/work/CaseStudyHeader";
@@ -32,9 +31,6 @@ export default function CycleLinkCaseStudy() {
             "ESLint",
           ]}
           liveUrl="https://cyclelink.vercel.app"
-          prReferences="Internal Engineering Repo & OpenAPI Spec Reviews"
-          category="API Integration & Security"
-          categoryColor="bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40"
         />
 
         {/* Content Body */}
@@ -139,41 +135,11 @@ export default function CycleLinkCaseStudy() {
             <DualRoleWorkflowMatrix />
           </section>
 
-          {/* Section 2: Authentication Journey & Onboarding Resolution */}
+          {/* Section 2: OpenAPI Alignment & Delegated Handlers */}
           <section className="space-y-6">
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                02. User Journey Architecture
-              </span>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Refined Authentication & Onboarding Route Resolution
-              </h2>
-            </div>
-
-            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              I investigated the relationship between access-token retrieval,
-              the current-user endpoint, and onboarding route resolution.
-            </p>
-
-            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              An important architectural distinction was that the introductory
-              onboarding page should remain accessible before authentication,
-              while household and collector setup pages should enforce the
-              relevant account requirements.
-            </p>
-
-            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              I used the expected user journey to challenge an incorrect
-              redirect approach rather than applying authentication checks
-              indiscriminately to every onboarding route.
-            </p>
-          </section>
-
-          {/* Section 3: OpenAPI Alignment & Delegated Handlers */}
-          <section className="space-y-6">
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                03. Contract Alignment & Systems Defense
+                02. Contract Alignment & Systems Defense
               </span>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 OpenAPI Alignment & Identifying the Delegated Handler Gap
@@ -208,11 +174,11 @@ export default function CycleLinkCaseStudy() {
             <MockToBackendArchitectureComparison />
           </section>
 
-          {/* Section 4: Eliminating Local Storage Security Hazards */}
+          {/* Section 3: Eliminating Local Storage Security Hazards */}
           <section className="space-y-6">
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                04. Data Protection & Security
+                03. Data Protection & Security
               </span>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 Eliminated Sensitive Information from Browser Storage
@@ -274,20 +240,20 @@ export default function CycleLinkCaseStudy() {
               </div>
               <div>
                 <span className="font-bold text-emerald-700 dark:text-emerald-300 block mb-1">
-                  Treat authentication as a user journey:
-                </span>
-                <span className="text-slate-700 dark:text-slate-300">
-                  Public exploration, authenticated setup, and protected
-                  operational dashboards require distinct route-guarding logic.
-                </span>
-              </div>
-              <div>
-                <span className="font-bold text-emerald-700 dark:text-emerald-300 block mb-1">
                   Protect sensitive user information:
                 </span>
                 <span className="text-slate-700 dark:text-slate-300">
                   Browser storage must never become a casual persistence layer
                   for credentials or sensitive identity data.
+                </span>
+              </div>
+              <div>
+                <span className="font-bold text-emerald-700 dark:text-emerald-300 block mb-1">
+                  Treat authentication as a user journey:
+                </span>
+                <span className="text-slate-700 dark:text-slate-300">
+                  Public exploration, authenticated setup, and protected
+                  operational dashboards require distinct route-guarding logic.
                 </span>
               </div>
             </div>
