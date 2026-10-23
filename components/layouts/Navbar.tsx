@@ -9,9 +9,10 @@ import {
   X,
   ArrowUpRight,
   ChevronDown,
-  FileText,
   ArrowRight,
-  Mail,
+  Code2,
+  Calendar,
+  Truck,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -32,16 +33,31 @@ export default function Navbar() {
       name: "Braandly",
       subtitle: "Product engineering at scale · 71 files, 10k+ adds",
       href: "/work/braandly",
+      icon: "Code2",
+      iconColor:
+        "bg-violet-100/80 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400",
+      arrowColor:
+        "text-violet-600 dark:text-violet-400 group-hover:text-violet-700 dark:group-hover:text-violet-300",
     },
     {
       name: "Holford Homes",
       subtitle: "International consultation booking & BFF proxy",
       href: "/work/holford-homes",
+      icon: "Calendar",
+      iconColor:
+        "bg-sky-100/80 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400",
+      arrowColor:
+        "text-sky-600 dark:text-sky-400 group-hover:text-sky-700 dark:group-hover:text-sky-300",
     },
     {
       name: "CycleLink",
       subtitle: "From frontend MVP to live backend workflows",
       href: "/work/cyclelink",
+      icon: "Truck",
+      iconColor:
+        "bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400",
+      arrowColor:
+        "text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300",
     },
   ];
 
@@ -55,7 +71,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo & Availability Status */}
+          {/* Logo */}
           <div className="flex items-center gap-4">
             <Link
               href="/"
@@ -109,24 +125,55 @@ export default function Navbar() {
                     className="absolute top-full left-0 mt-1 w-80 p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl z-50"
                   >
                     <div className="px-2 py-1.5 text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
-                      Featured Work
+                      Case Studies
                     </div>
                     {projects.map((p) => (
                       <Link
                         key={p.href}
                         href={p.href}
                         onClick={() => setWorkDropdownOpen(false)}
-                        className="group flex flex-col p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/70 transition-all border border-transparent hover:border-slate-200/60 dark:hover:border-slate-700/60"
+                        className="flex flex-row gap-4 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/70 transition-all border border-transparent hover:border-slate-200/60 dark:hover:border-slate-700/60"
                       >
-                        <div className="flex items-center justify-between">
-                          <span className="font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 flex items-center gap-1.5">
-                            {p.name}
-                            <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-indigo-500" />
+                        <div>
+                          {p.icon === "Code2" && (
+                            <div
+                              className={`p-2 rounded-lg mt-0.5 ${p.iconColor}`}
+                            >
+                              <Code2 className="w-4 h-4" />
+                            </div>
+                          )}
+                          {p.icon === "Calendar" && (
+                            <div
+                              className={`p-2 rounded-lg mt-0.5 ${p.iconColor}`}
+                            >
+                              <Calendar className="w-4 h-4" />
+                            </div>
+                          )}
+                          {p.icon === "Truck" && (
+                            <div
+                              className={`p-2 rounded-lg mt-0.5 ${p.iconColor}`}
+                            >
+                              <Truck className="w-4 h-4" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="group flex flex-col">
+                          <div className="flex items-center justify-between">
+                            <span
+                              className={`font-semibold text-sm text-slate-800 dark:text-slate-200 flex items-center gap-1.5 ${p.arrowColor}`}
+                            >
+                              {p.name}
+                              <ArrowUpRight
+                                className={`w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ${
+                                  p.arrowColor
+                                }`}
+                              />
+                            </span>
+                          </div>
+                          <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">
+                            {p.subtitle}
                           </span>
                         </div>
-                        <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">
-                          {p.subtitle}
-                        </span>
                       </Link>
                     ))}
                   </motion.div>
