@@ -14,9 +14,6 @@ export function DualRoleWorkflowMatrix() {
             Household vs. Collector Operational Workflows
           </h4>
         </div>
-        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
-          Role-Aware API Integration
-        </span>
       </div>
 
       <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -52,7 +49,7 @@ export function DualRoleWorkflowMatrix() {
                 1. Schedule Pickup
               </span>
               <span className="text-slate-500 text-[11px]">
-                Material categories, volume, pickup window, and validated GPS
+                Material categories, quantity, pickup window, and validated GPS
                 coordinates.
               </span>
             </div>
@@ -70,10 +67,10 @@ export function DualRoleWorkflowMatrix() {
             </div>
             <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800">
               <span className="font-semibold text-slate-800 dark:text-slate-200 block">
-                3. Verification & Rating
+                3. Ratings
               </span>
               <span className="text-slate-500 text-[11px]">
-                Weight confirmation, photo verification, and rating submission.
+                Rate collectors after pickup completion.
               </span>
             </div>
           </div>
@@ -107,7 +104,11 @@ export function DualRoleWorkflowMatrix() {
               driver&apos;s phone and name must be persisted in backend
               contracts. If stored only in browser storage, that information is
               lost on device switch or data clear. I documented this missing
-              OpenAPI contract requirement for persistent backend assignment.
+              OpenAPI contract requirement for persistent backend assignment. It
+              was a critical missing piece of the system that would cause
+              significant user frustration if not addressed. It eventually got
+              implemented in the backend and the frontend was updated to use the
+              new API contract.
             </p>
           </div>
         </div>
