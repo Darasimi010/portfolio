@@ -18,11 +18,11 @@ export default function HolfordHomesCaseStudy() {
       <main>
         <CaseStudyHeader
           title="Holford Homes — Building an International Consultation Booking System"
-          role="Frontend Engineer — Consultation Booking & API Integration"
+          role="Frontend Engineer"
           product="Real estate platform serving Nigerians living abroad who want to purchase property in Nigeria"
-          timeline="October 2025 — December 2025"
+          timeline="September 2025 — December 2025"
           technologies={[
-            "Next.js App Router",
+            "Next.js",
             "React",
             "TypeScript",
             "JavaScript Date/Intl APIs",
@@ -30,9 +30,6 @@ export default function HolfordHomesCaseStudy() {
             "Tailwind CSS",
           ]}
           liveUrl="https://www.holfordhomes.com"
-          prReferences="PRs #2, #3; commits d71abd7, 7879abb, 666c583, e7bf5e2"
-          category="Booking Systems & API Proxying"
-          categoryColor="bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/40"
         />
 
         {/* Content Body */}
@@ -82,9 +79,7 @@ export default function HolfordHomesCaseStudy() {
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-sm text-slate-700 dark:text-slate-300">
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2" />
-                <span>
-                  Zero connection to live advisor availability calendars.
-                </span>
+                <span>Zero connection to advisor availability calendars.</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2" />
@@ -129,7 +124,7 @@ export default function HolfordHomesCaseStudy() {
             </p>
 
             <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300 pl-2">
-              <li className="flex items-start gap-2">
+              <li className="flex flex-col md:flex-row items-start gap-2">
                 <code className="text-xs font-mono font-bold bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-amber-600 dark:text-amber-400">
                   POST /api/consultations
                 </code>
@@ -138,7 +133,7 @@ export default function HolfordHomesCaseStudy() {
                   create a consultation record and returns a dynamic UUID.
                 </span>
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex flex-col md:flex-row items-start gap-2">
                 <code className="text-xs font-mono font-bold bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-amber-600 dark:text-amber-400">
                   GET /api/consultations/availabilities
                 </code>
@@ -147,7 +142,7 @@ export default function HolfordHomesCaseStudy() {
                   consultant calendar databases.
                 </span>
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex flex-col md:flex-row items-start gap-2">
                 <code className="text-xs font-mono font-bold bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-amber-600 dark:text-amber-400">
                   POST /api/consultations/[uuid]/date
                 </code>
@@ -263,13 +258,6 @@ export default function HolfordHomesCaseStudy() {
                     accessible toast notifications.
                   </span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <span>
-                    Guarded against applying asynchronous results after
-                    component unmount.
-                  </span>
-                </li>
               </ul>
             </div>
           </section>
@@ -332,21 +320,6 @@ export default function HolfordHomesCaseStudy() {
               presentation, server-side request proxying, backend-aligned form
               values, and robust error handling.
             </p>
-
-            <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
-              <div className="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-                <GitPullRequest className="w-4 h-4 text-amber-500" />
-                <span>
-                  Implementation Evidence (Private Enterprise Repository):
-                </span>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 pl-6">
-                Branch: <strong>feature/booking-availability-flow</strong>; Pull
-                Requests: <strong>PR #2</strong>, <strong>PR #3</strong>;
-                Commits: <strong>d71abd7</strong>, <strong>7879abb</strong>,{" "}
-                <strong>666c583</strong>, <strong>e7bf5e2</strong>.
-              </p>
-            </div>
           </section>
 
           {/* Navigation */}
