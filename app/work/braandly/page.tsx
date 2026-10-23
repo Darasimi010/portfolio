@@ -8,7 +8,7 @@ import {
   OptimisticCacheArchitecture,
   ThemeSkeletonComparison,
 } from "@/components/work/BraandlyArchitectures";
-import { AlertTriangle, Sparkles, GitPullRequest } from "lucide-react";
+import { AlertTriangle, Sparkles } from "lucide-react";
 
 export default function BraandlyCaseStudy() {
   return (
@@ -23,7 +23,7 @@ export default function BraandlyCaseStudy() {
           timeline="September 2025 — Present"
           technologies={[
             "Next.js",
-            "React 19",
+            "React.js",
             "TypeScript",
             "TanStack React Query",
             "Zustand",
@@ -70,7 +70,7 @@ export default function BraandlyCaseStudy() {
               <span>The Engineering Challenge</span>
             </div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-              Seven distinct hurdles in a growing enterprise codebase
+              Six distinct hurdles in a growing enterprise codebase
             </h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm text-slate-700 dark:text-slate-300">
               <li className="flex items-start gap-2.5">
@@ -297,8 +297,7 @@ export default function BraandlyCaseStudy() {
                 <span className="text-slate-700 dark:text-slate-300">
                   The filter tray defect was an event-ordering problem, not a
                   styling glitch. The solution excluded the trigger from
-                  outside-click handling rather than using fragile setTimeout
-                  hacks.
+                  outside-click handling.
                 </span>
               </div>
               <div>
@@ -309,16 +308,6 @@ export default function BraandlyCaseStudy() {
                   Building a universal themed skeleton solved loading states at
                   the design system level instead of creating 33 separate visual
                   patches.
-                </span>
-              </div>
-              <div>
-                <span className="font-bold text-indigo-700 dark:text-indigo-300 block mb-1">
-                  Keep interactive state strictly consistent:
-                </span>
-                <span className="text-slate-700 dark:text-slate-300">
-                  Optimistic task priority changes needed coordinated
-                  multi-cache updates and rollback behavior, not merely a
-                  transient local badge update.
                 </span>
               </div>
               <div>
@@ -340,29 +329,12 @@ export default function BraandlyCaseStudy() {
               Outcome & Verified Evidence
             </h3>
             <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              My contributions expanded Braandly's branding capabilities and
-              improved reliability across task management, brand tooling,
-              loading states, and responsive layouts. The work demonstrates my
-              ability to deliver substantial product features, investigate
-              non-obvious frontend defects, and elevate shared application
-              architecture within an existing multi-contributor codebase.
+              My contributions improved Braandly's reliability across task
+              management, brand tooling, loading states, and responsive layouts.
+              The work demonstrates my ability to investigate and fix
+              non-obvious frontend defects, and improve application architecture
+              within an existing multi-contributor codebase.
             </p>
-
-            <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
-              <div className="flex items-center gap-2 font-semibold text-slate-800 dark:text-slate-200">
-                <GitPullRequest className="w-4 h-4 text-indigo-500" />
-                <span>
-                  Code and Review Trail (Private Enterprise Repository):
-                </span>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 pl-6">
-                Branding Checklist feature suite: PRs <strong>#218</strong>,{" "}
-                <strong>#408</strong>, <strong>#422</strong>,{" "}
-                <strong>#423</strong>, <strong>#484</strong>,{" "}
-                <strong>#494</strong>. Admin navigation security: PRs{" "}
-                <strong>#211</strong>, <strong>#220</strong>.
-              </p>
-            </div>
           </section>
 
           {/* Navigation between case studies */}
