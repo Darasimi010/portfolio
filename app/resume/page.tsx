@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import Link from "next/link";
@@ -27,22 +27,9 @@ Frontend Engineer
 Email: omojoladarasimi9@gmail.com | Portfolio: omojola.vercel.app | GitHub: github.com/Darasimi010 | LinkedIn: linkedin.com/in/darasimi-omojola
 
 PROFESSIONAL SUMMARY
-Frontend engineer who takes ownership of complex product features, traces bugs to their underlying causes, connects user interfaces to backend services, and improves the reliability, security, and usability of real applications. Experienced in Next.js App Router, React 19, TypeScript, TanStack Query, and robust REST/OpenAPI integration.
+Frontend engineer who takes ownership of complex product features, traces bugs to their underlying causes, connects user interfaces to backend services, and improves the reliability, security, and usability of real applications. Experienced in Next.js, React.js, TypeScript, TanStack Query, and robust REST/OpenAPI integration.
 
 PROFESSIONAL EXPERIENCE
-
-Braandly — Frontend Developer
-September 2025 – Present
-• Designed and implemented a multi-page Branding Checklist suite spanning brand-audit quizzes, diagnostic scoring, tailored recommendations, searchable task workflows, progress tracking, and an AI chat assistant; contributed 71 files and 10,792+ additions.
-• Engineered optimistic task-priority updates across three TanStack React Query cache scopes, with rollback on mutation failure, and built memoized user lookup and attribution for collaborative comment reactions.
-• Developed a reusable dark-mode skeleton component and migrated it across 33+ files, standardizing loading-state styling throughout dashboard and workspace interfaces.
-• Resolved cross-application defects involving role-based admin navigation, palette and gradient interactions, event-handling race conditions, responsive layouts, and image delivery using WebP assets and responsive Next.js image sizing.
-
-Holford Homes — Frontend Engineer
-October 2025 – December 2025
-• Replaced a mock consultation booking flow with backend-connected lead submission, live availability retrieval, and appointment selection through three Next.js App Router API handlers.
-• Implemented a timezone-aware booking calendar with a 42-day grid, browser-local time display, UTC timestamp serialization, and video/phone consultation slot handling.
-• Added server-side upstream credential injection, environment-based API configuration, client IP metadata forwarding, backend-aligned form values, and contextual error notifications; resolved endpoint path and configuration issues through iterative pull-request updates.
 
 CycleLink — Frontend Engineer
 August 2026 – Present
@@ -50,10 +37,22 @@ August 2026 – Present
 • Improved role-aware onboarding and dashboard access, pickup history and pagination, drop-off availability, and pending-verification workflows while aligning frontend behavior with documented API contracts.
 • Investigated data-persistence and security issues, including sensitive information stored in browser storage, missing delegated pickup-handler persistence requirements, and inconsistencies in API-driven form and timestamp behavior; used TypeScript, ESLint, and OpenAPI tooling to support debugging and validation.
 
+Braandly — Frontend Developer
+September 2025 – Present
+• Engineered optimistic task-priority updates across three TanStack React Query cache scopes, with rollback on mutation failure, and built memoized user lookup and attribution for collaborative comment reactions.
+• Developed a reusable dark-mode skeleton component and migrated it across 33+ files, standardizing loading-state styling throughout dashboard and workspace interfaces.
+• Resolved cross-application defects involving role-based admin navigation, palette and gradient interactions, event-handling race conditions, responsive layouts, and image delivery using WebP assets and responsive Next.js image sizing.
+
+Holford Homes — Frontend Engineer
+September 2025 – December 2025
+• Replaced a mock consultation booking flow with backend-connected lead submission, live availability retrieval, and appointment selection through three Next.js App Router API handlers.
+• Implemented a timezone-aware booking calendar with a 42-day grid, browser-local time display, UTC timestamp serialization, and video/phone consultation slot handling.
+• Added server-side upstream credential injection, environment-based API configuration, client IP metadata forwarding, backend-aligned form values, and contextual error notifications; resolved endpoint path and configuration issues through iterative pull-request updates.
+
 TECHNICAL STRENGTHS
 • Languages & Runtimes: TypeScript, JavaScript (ES6+), HTML5, CSS3, Node.js
-• Frontend & Frameworks: Next.js (App Router & Pages), React 19, Tailwind CSS, HeroUI, Framer Motion
-• State & Data Fetching: TanStack React Query, Zustand, Redux Toolkit, REST APIs, OpenAPI / Swagger
+• Frontend & Frameworks: Next.js, React, Tailwind CSS, HeroUI, Framer Motion
+• State & Data Fetching: TanStack React Query, Zustand, REST APIs, OpenAPI / Swagger
 • Architecture & Practices: Backend-for-Frontend (BFF), Optimistic UI with Rollbacks, Timezone Normalization, Role-Based Access Control, Defensive Async Design, Systematic Linting & Testing`;
 
     navigator.clipboard.writeText(text);
@@ -88,7 +87,7 @@ TECHNICAL STRENGTHS
                   <>
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                     <span className="text-emerald-600 dark:text-emerald-400">
-                      Copied Text!
+                      Copied!
                     </span>
                   </>
                 ) : (
@@ -119,7 +118,7 @@ TECHNICAL STRENGTHS
                     Oluwadarasimi Omojola
                   </h1>
                   <p className="text-base font-semibold text-indigo-600 dark:text-indigo-400 mt-0.5">
-                    Frontend Engineer — Products & Systems Integration
+                    Frontend Engineer
                   </p>
                 </div>
               </div>
@@ -250,11 +249,11 @@ TECHNICAL STRENGTHS
                       —
                     </span>
                     <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                      Frontend Engineer, Consultation Booking
+                      Frontend Engineer
                     </span>
                   </div>
                   <span className="text-xs font-medium text-slate-500 dark:text-slate-400 font-mono">
-                    October 2025 – December 2025
+                    September 2025 – December 2025
                   </span>
                 </div>
 
@@ -324,16 +323,6 @@ TECHNICAL STRENGTHS
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
                     <span>
-                      Designed and implemented a multi-page Branding Checklist
-                      suite spanning brand-audit quizzes, diagnostic scoring,
-                      tailored recommendations, searchable task workflows,
-                      progress tracking, and an AI chat assistant; contributed{" "}
-                      <strong>71 files and 10,792+ additions</strong>.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-2" />
-                    <span>
                       Engineered optimistic task-priority updates across three
                       TanStack React Query cache scopes, with rollback on
                       mutation failure, and built memoized user lookup and
@@ -384,8 +373,8 @@ TECHNICAL STRENGTHS
                     Core Languages & Frameworks
                   </span>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    TypeScript, JavaScript (ES6+), Next.js (App Router & Pages),
-                    React 19, Tailwind CSS, HTML5, CSS3 / CSS Variables.
+                    TypeScript, JavaScript (ES6+), Next.js, React, Tailwind CSS,
+                    HTML5, CSS3 / CSS Variables.
                   </p>
                 </div>
 
