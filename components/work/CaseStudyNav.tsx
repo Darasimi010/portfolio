@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -31,7 +30,8 @@ const studies = [
 
 export default function CaseStudyNav({ currentSlug }: CaseStudyNavProps) {
   const currentIndex = studies.findIndex((s) => s.slug === currentSlug);
-  const prevStudy = studies[(currentIndex - 1 + studies.length) % studies.length];
+  const prevStudy =
+    studies[(currentIndex - 1 + studies.length) % studies.length];
   const nextStudy = studies[(currentIndex + 1) % studies.length];
 
   return (

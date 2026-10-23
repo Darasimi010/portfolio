@@ -33,9 +33,6 @@ export default function BraandlyCaseStudy() {
             "Framer Motion",
           ]}
           liveUrl="https://braandly.com"
-          prReferences="PRs #218, #408, #422, #423, #484, #494 (Admin: #211, #220)"
-          category="Feature Architecture & Systems"
-          categoryColor="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800/40"
         />
 
         {/* Content Body */}

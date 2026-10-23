@@ -10,9 +10,6 @@ interface CaseStudyHeaderProps {
   timeline: string;
   technologies: string[];
   liveUrl: string;
-  prReferences?: string;
-  category: string;
-  categoryColor: string;
 }
 
 export default function CaseStudyHeader({
@@ -22,9 +19,6 @@ export default function CaseStudyHeader({
   timeline,
   technologies,
   liveUrl,
-  prReferences,
-  category,
-  categoryColor,
 }: CaseStudyHeaderProps) {
   return (
     <div className="pt-28 pb-12 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/40">
@@ -49,18 +43,6 @@ export default function CaseStudyHeader({
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
-
-        {/* Category & Status */}
-        {/* <div className="flex flex-wrap items-center gap-3 mb-4">
-          <span
-            className={`text-xs font-semibold px-3 py-1 rounded-full border ${categoryColor}`}
-          >
-            {category}
-          </span>
-          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-            Professional Work Experience
-          </span>
-        </div> */}
 
         {/* Title */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
@@ -88,15 +70,6 @@ export default function CaseStudyHeader({
             </span>
             <span className="font-medium text-slate-800 dark:text-slate-200 mt-0.5 block">
               {timeline}
-            </span>
-          </div>
-
-          <div>
-            <span className="block text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
-              Verification & Code Trail
-            </span>
-            <span className="font-medium text-slate-800 dark:text-slate-200 mt-0.5 block">
-              {prReferences || "Contribution Report"}
             </span>
           </div>
 
