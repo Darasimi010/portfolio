@@ -82,7 +82,7 @@ export default function Navbar() {
               </span>
               <span className="flex flex-col">
                 <span className="leading-tight text-base font-semibold">
-                  Oluwadarasimi
+                  Oluwadarasimi.
                 </span>
                 <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 -mt-0.5">
                   Frontend Engineer
@@ -257,11 +257,6 @@ export default function Navbar() {
             className="lg:hidden bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 overflow-hidden"
           >
             <div className="px-5 pt-3 pb-6 space-y-3">
-              <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50 text-xs text-emerald-700 dark:text-emerald-300">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                Available for Frontend Engineering Roles
-              </div>
-
               <div className="space-y-1">
                 <Link
                   href="/#about"
