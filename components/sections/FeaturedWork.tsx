@@ -1,496 +1,536 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import {
-  ArrowRight,
-  CheckCircle2,
-  ChevronDown,
-  Code2,
-  ExternalLink,
-  FileText,
-  Info,
-  Layers,
-  Lock,
-  Trophy,
-} from "lucide-react";
-import { projects } from "@/data/projects";
+import { motion, useReducedMotion } from "motion/react";
+import { ArrowUpRight, Check, Globe2 } from "lucide-react";
+import { Github } from "../ui/Icons";
 
-type Project = (typeof projects)[number];
+const primaryProjects = [
+  {
+    number: "01",
+    eyebrow: "FEATURED PROJECT · PROGRESSIVE WEB APP",
+    title: "MarketDash",
+    description:
+      "An offline-capable market dashboard for following US equities, quotes, watchlists and market news.",
+    contribution:
+      "Built the application end-to-end and integrated Finnhub's REST API with server-side credential handling, rate limiting and fallback states.",
+    highlights: [
+      "Installable PWA with offline support",
+      "Watchlist saved on-device, without an account",
+      "Clear loading, error and fallback states",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Serwist"],
+    note: "Personal project using Finnhub's free tier; data coverage and request limits depend on the provider.",
+    liveUrl: "https://marketforged.vercel.app",
+    repoUrl: "https://github.com/Darasimi010/financial-market-dashboard",
+  },
+  {
+    number: "02",
+    eyebrow: "FEATURED PROJECT · DATA-RICH DASHBOARD",
+    title: "Zenith Lead CRM",
+    description:
+      "A lead-management and analytics dashboard concept for a fictional real-estate agency.",
+    contribution:
+      "Kept the data grid, summary cards and three charts in sync by deriving them from one filtered lead dataset.",
+    highlights: [
+      "Shared search and filters across the dashboard",
+      "CSV export of the current filtered view",
+      "Sorting, pagination and loading/error states",
+    ],
+    stack: [
+      "React",
+      "TypeScript",
+      "MUI X DataGrid",
+      "Recharts",
+      "TanStack Query",
+    ],
+    note: "Portfolio prototype built with 60 mock leads; bulk actions are demonstrative and are not persisted to a backend.",
+    liveUrl: "https://zenith-lead-dashboard.vercel.app",
+    repoUrl: "https://github.com/Darasimi010/zenith-lead-dashboard",
+  },
+];
 
-const ACCENTS = {
-  sky: {
-    text: "text-sky-600 dark:text-sky-400",
-    soft: "bg-sky-50/70 dark:bg-sky-950/25",
-    border: "border-sky-200/70 dark:border-sky-800/50",
-    solid: "bg-sky-500",
-    hoverTitle: "group-hover:text-sky-600 dark:group-hover:text-sky-400",
-    ring: "focus-visible:ring-sky-500",
-    button:
-      "bg-sky-600 hover:bg-sky-700 hover:shadow-sky-500/25 focus-visible:ring-sky-500",
+const otherProjects = [
+  {
+    number: "03",
+    title: "IP Address Tracker",
+    type: "API INTEGRATION · MAPS",
+    description:
+      "Search an IP address or domain and view geolocation details on an interactive map.",
+    stack: "React · Vite · Leaflet · ipify API",
+    liveUrl: "https://darasimi-ip-address-tracker.vercel.app",
+    repoUrl: "https://github.com/Darasimi010/IP-Address-Tracker",
   },
-  rose: {
-    text: "text-rose-600 dark:text-rose-400",
-    soft: "bg-rose-50/70 dark:bg-rose-950/25",
-    border: "border-rose-200/70 dark:border-rose-800/50",
-    solid: "bg-rose-500",
-    hoverTitle: "group-hover:text-rose-600 dark:group-hover:text-rose-400",
-    ring: "focus-visible:ring-rose-500",
-    button:
-      "bg-rose-600 hover:bg-rose-700 hover:shadow-rose-500/25 focus-visible:ring-rose-500",
+  {
+    number: "04",
+    title: "SaaS Landing Page",
+    type: "RESPONSIVE UI · MOTION",
+    description:
+      "A modular SaaS marketing page with responsive sections and deliberately restrained animations.",
+    stack: "Next.js · TypeScript · Tailwind CSS · Motion",
+    liveUrl: "https://darasimi-saas-landing-page.vercel.app/",
+    repoUrl: "https://github.com/Darasimi010/saas-product-landing-page",
   },
-  violet: {
-    text: "text-violet-600 dark:text-violet-400",
-    soft: "bg-violet-50/70 dark:bg-violet-950/25",
-    border: "border-violet-200/70 dark:border-violet-800/50",
-    solid: "bg-violet-500",
-    hoverTitle: "group-hover:text-violet-600 dark:group-hover:text-violet-400",
-    ring: "focus-visible:ring-violet-500",
-    button:
-      "bg-violet-600 hover:bg-violet-700 hover:shadow-violet-500/25 focus-visible:ring-violet-500",
+  {
+    number: "05",
+    title: "Spotify Player Concept",
+    type: "INTERACTIVE UI · STATE",
+    description:
+      "A responsive music player with playlists, track controls and a custom playback seekbar.",
+    stack: "React · JavaScript · Tailwind CSS",
+    liveUrl: "https://darasimi-spotify-clone.netlify.app",
+    repoUrl: "https://github.com/Darasimi010/spotify-clone",
   },
-  emerald: {
-    text: "text-emerald-600 dark:text-emerald-400",
-    soft: "bg-emerald-50/70 dark:bg-emerald-950/25",
-    border: "border-emerald-200/70 dark:border-emerald-800/50",
-    solid: "bg-emerald-500",
-    hoverTitle:
-      "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
-    ring: "focus-visible:ring-emerald-500",
-    button:
-      "bg-emerald-600 hover:bg-emerald-700 hover:shadow-emerald-500/25 focus-visible:ring-emerald-500",
-  },
-  amber: {
-    text: "text-amber-600 dark:text-amber-400",
-    soft: "bg-amber-50/70 dark:bg-amber-950/25",
-    border: "border-amber-200/70 dark:border-amber-800/50",
-    solid: "bg-amber-500",
-    hoverTitle: "group-hover:text-amber-600 dark:group-hover:text-amber-400",
-    ring: "focus-visible:ring-amber-500",
-    button:
-      "bg-amber-600 hover:bg-amber-700 hover:shadow-amber-500/25 focus-visible:ring-amber-500",
-  },
-  indigo: {
-    text: "text-indigo-600 dark:text-indigo-400",
-    soft: "bg-indigo-50/70 dark:bg-indigo-950/25",
-    border: "border-indigo-200/70 dark:border-indigo-800/50",
-    solid: "bg-indigo-500",
-    hoverTitle: "group-hover:text-indigo-600 dark:group-hover:text-indigo-400",
-    ring: "focus-visible:ring-indigo-500",
-    button:
-      "bg-indigo-600 hover:bg-indigo-700 hover:shadow-indigo-500/25 focus-visible:ring-indigo-500",
-  },
-} as const;
+];
 
-type Accent = (typeof ACCENTS)[keyof typeof ACCENTS];
-
-function getAccent(name: string): Accent {
-  return (ACCENTS as Record<string, Accent>)[name] ?? ACCENTS.indigo;
+function ProjectLinks({
+  liveUrl,
+  repoUrl,
+}: {
+  liveUrl: string;
+  repoUrl: string;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+      <a
+        href={liveUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-current transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-4"
+      >
+        <Globe2 className="h-4 w-4" aria-hidden="true" />
+        Live project
+        <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+      </a>
+      <a
+        href={repoUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-current/65 transition-colors hover:text-current focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-4"
+      >
+        <Github className="h-4 w-4" aria-hidden="true" />
+        Source code
+        <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+      </a>
+    </div>
+  );
 }
 
-/** Drops empty placeholder strings so unfinished entries never render blanks. */
-const clean = (items: readonly string[]) =>
-  items.filter((item) => item.trim().length > 0);
-
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const [open, setOpen] = useState(false);
-  const reduceMotion = useReducedMotion();
-  const accent = getAccent(project.accentColor);
-  const panelId = `${project.id}-deep-dive`;
-
-  const highlights = clean(project.highlights);
-  const areas = clean(project.engineeringAreas);
-  const challenges = clean(project.challenges);
-  const sections = project.sections.filter(
-    (s) => s.heading.trim() || s.content.trim(),
-  );
-  const decisions = project.engineeringDecisions.filter((d) => d.title.trim());
-  const hasDeepDive = sections.length > 0 || decisions.length > 0;
-
+function MarketDashPreview() {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: Math.min(index, 2) * 0.1 }}
-      className={`group relative rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 sm:p-10 shadow-sm hover:shadow-xl transition-all duration-300 ${project.accentBorder} overflow-hidden`}
+    <div
+      aria-hidden="true"
+      className="relative mx-auto w-full max-w-[560px] rotate-[1deg] rounded-2xl border border-white/10 bg-[#111d17] p-3 shadow-2xl shadow-black/30 sm:p-4"
     >
-      {/* Accent corner glow */}
-      <div
-        className={`absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl ${project.gradient} rounded-bl-full pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity`}
-      />
-
-      <div className="relative z-10 space-y-8">
-        {/* Header */}
-        <header className="flex items-start gap-4 sm:gap-6">
-          <span
-            aria-hidden
-            className={`hidden sm:block text-5xl font-black leading-none tabular-nums opacity-25 ${accent.text}`}
-          >
-            {String(index + 1).padStart(2, "0")}
+      <div className="flex items-center justify-between border-b border-white/10 px-2 pb-3">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <span className="text-[10px] font-bold tracking-[0.18em] text-white/80">
+            MARKETDASH
           </span>
-          <div className="min-w-0">
-            <h3
-              className={`text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white transition-colors ${accent.hoverTitle}`}
-            >
-              {project.title}
-            </h3>
-            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1.5 max-w-2xl">
-              {project.subtitle}
+        </div>
+        <span className="text-[9px] tracking-[0.14em] text-white/40">
+          MARKET OVERVIEW
+        </span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 py-3 sm:gap-3 sm:py-4">
+        {[
+          ["WATCHLIST", "Saved on device"],
+          ["MARKET DATA", "Latest quotes"],
+          ["MARKET NEWS", "Recent updates"],
+        ].map(([label, value]) => (
+          <div
+            key={label}
+            className="rounded-xl border border-white/[0.07] bg-white/[0.035] p-2.5 sm:p-3"
+          >
+            <p className="text-[8px] font-semibold tracking-[0.12em] text-white/40 sm:text-[9px]">
+              {label}
+            </p>
+            <p className="mt-2 text-[10px] font-medium text-white/85 sm:text-xs">
+              {value}
             </p>
           </div>
-        </header>
+        ))}
+      </div>
 
-        {/* Overview + highlights */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-7 space-y-5">
-            <div>
-              <h4 className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Overview
-              </h4>
-              <p className="mt-1.5 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                {project.heroSummary}
-              </p>
-            </div>
-
-            <div
-              className={`p-4 rounded-xl border ${accent.soft} ${accent.border}`}
+      <div className="rounded-xl border border-white/[0.07] bg-[#17251d] p-3 sm:p-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[9px] font-semibold tracking-[0.14em] text-white/45">
+              MARKET ACTIVITY
+            </p>
+            <p className="mt-1 text-xs font-medium text-white/85">
+              Market snapshot
+            </p>
+          </div>
+          <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-2 py-1 text-[9px] text-emerald-200">
+            Feed preview
+          </span>
+        </div>
+        <svg viewBox="0 0 520 124" className="mt-3 h-auto w-full" fill="none">
+          <path
+            d="M0 24H520M0 62H520M0 100H520"
+            stroke="white"
+            strokeOpacity=".07"
+            strokeDasharray="3 6"
+          />
+          <path
+            d="M0 91C23 88 26 63 52 68C77 73 83 48 109 57C137 67 140 80 165 66C190 52 201 31 225 43C249 55 258 73 280 61C303 48 317 23 340 34C365 46 372 69 397 55C421 42 440 31 457 38C478 47 493 28 520 17"
+            stroke="#9CE6AC"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M0 91C23 88 26 63 52 68C77 73 83 48 109 57C137 67 140 80 165 66C190 52 201 31 225 43C249 55 258 73 280 61C303 48 317 23 340 34C365 46 372 69 397 55C421 42 440 31 457 38C478 47 493 28 520 17V124H0V91Z"
+            fill="url(#marketFill)"
+            fillOpacity=".18"
+          />
+          <defs>
+            <linearGradient
+              id="marketFill"
+              x1="260"
+              y1="17"
+              x2="260"
+              y2="124"
+              gradientUnits="userSpaceOnUse"
             >
-              <h4
-                className={`flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
-              >
-                What I Built &amp; Engineered
-              </h4>
-              <p className="mt-1.5 text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
-                {project.strongestContribution}
-              </p>
-            </div>
+              <stop stopColor="#9CE6AC" />
+              <stop offset="1" stopColor="#9CE6AC" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div className="mt-3 flex items-center justify-between px-1 text-[9px] text-white/35">
+        <span>Watchlist · Quotes · News</span>
+        <span>Responsive interface</span>
+      </div>
+    </div>
+  );
+}
 
-            {areas.length > 0 && (
+function ZenithPreview() {
+  return (
+    <div
+      aria-hidden="true"
+      className="rounded-2xl border border-zinc-200 bg-white p-3 shadow-xl shadow-zinc-900/[0.06] dark:border-zinc-700 dark:bg-zinc-900 sm:p-4"
+    >
+      <div className="flex items-center justify-between border-b border-zinc-100 pb-3 dark:border-zinc-800">
+        <div>
+          <p className="text-[9px] font-bold tracking-[0.16em] text-zinc-400">
+            ZENITH / OVERVIEW
+          </p>
+          <p className="mt-1 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+            Lead pipeline
+          </p>
+        </div>
+        <span className="rounded-lg border border-zinc-200 px-2 py-1 text-[9px] text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
+          Export CSV
+        </span>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 py-3">
+        {[
+          ["RECORDS", "60"],
+          ["VIEW", "Filtered"],
+          ["REPORT", "Ready"],
+        ].map(([label, value]) => (
+          <div
+            key={label}
+            className="rounded-lg bg-zinc-50 p-2 dark:bg-zinc-800/70"
+          >
+            <p className="text-[8px] font-semibold tracking-[0.1em] text-zinc-400">
+              {label}
+            </p>
+            <p className="mt-1 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
+              {value}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="overflow-hidden rounded-lg border border-zinc-100 dark:border-zinc-800">
+        <div className="grid grid-cols-[1.3fr_1fr_.7fr] bg-zinc-50 px-2.5 py-2 text-[8px] font-bold tracking-[0.1em] text-zinc-400 dark:bg-zinc-800/70">
+          <span>LEAD</span>
+          <span>STATUS</span>
+          <span>OWNER</span>
+        </div>
+        {["01", "02", "03"].map((row, index) => (
+          <div
+            key={row}
+            className="grid grid-cols-[1.3fr_1fr_.7fr] items-center border-t border-zinc-100 px-2.5 py-2.5 text-[9px] dark:border-zinc-800"
+          >
+            <span className="font-medium text-zinc-600 dark:text-zinc-300">
+              Lead record {row}
+            </span>
+            <span className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
+              <span
+                className={`h-1.5 w-1.5 rounded-full ${index === 1 ? "bg-amber-400" : "bg-emerald-500"}`}
+              />
+              "Qualified"
+            </span>
+            <span className="text-zinc-400">Agent</span>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex items-end gap-1.5 rounded-lg bg-zinc-50 px-3 pb-2 pt-3 dark:bg-zinc-800/70">
+        {[28, 46, 35, 68, 51, 82, 60, 73, 43, 91, 66, 78].map((height, i) => (
+          <span
+            key={i}
+            className="flex-1 rounded-t-sm bg-sky-500/65"
+            style={{ height: `${height * 0.42}px` }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function FeaturedWork() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section
+      id="projects"
+      aria-labelledby="projects-heading"
+      className="relative overflow-hidden border-t border-zinc-200/80 py-24 dark:border-zinc-800"
+    >
+      <div className="pointer-events-none absolute -top-40 right-[-10rem] h-[28rem] w-[28rem] rounded-full bg-emerald-400/[0.07] blur-3xl" />
+
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 max-w-2xl sm:mb-16"
+        >
+          <p className="mb-4 flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-emerald-700 dark:text-emerald-400">
+            <span className="h-px w-7 bg-emerald-500" /> SELECTED WORK
+          </p>
+          <h2
+            id="projects-heading"
+            className="text-4xl font-semibold tracking-[-0.045em] text-zinc-950 dark:text-white sm:text-5xl"
+          >
+            Building things that{" "}
+            <span className="text-zinc-400 dark:text-zinc-500">work.</span>
+          </h2>
+          <p className="mt-5 max-w-xl text-base leading-7 text-zinc-600 dark:text-zinc-400">
+            A selection of projects where I have worked through data,
+            application state, API integration and the details that make
+            interfaces dependable.
+          </p>
+        </motion.div>
+
+        <div className="space-y-6">
+          <motion.article
+            initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.16 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="relative isolate overflow-hidden rounded-[1.75rem] bg-[#0d1711] text-white shadow-xl shadow-zinc-900/[0.08]"
+          >
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-emerald-300/[0.12] via-transparent to-transparent" />
+            <div className="grid items-center gap-10 p-6 sm:p-9 lg:grid-cols-[.88fr_1.12fr] lg:gap-12 lg:p-12">
               <div>
-                <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Engineering Focus
-                </h4>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {areas.map((area) => (
-                    <span
-                      key={area}
-                      className={`px-3 py-1 rounded-full text-xs font-semibold border ${project.badgeColor}`}
+                <p className="mb-6 flex items-center gap-2 text-[10px] font-bold tracking-[0.18em] text-emerald-300">
+                  <span>{primaryProjects[0].number}</span>
+                  <span className="h-px w-5 bg-emerald-300/50" />
+                  {primaryProjects[0].eyebrow}
+                </p>
+                <h3 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+                  {primaryProjects[0].title}
+                </h3>
+                <p className="mt-4 max-w-lg text-sm leading-6 text-white/70 sm:text-base sm:leading-7">
+                  {primaryProjects[0].description}
+                </p>
+                <div className="mt-6 border-l border-emerald-300/50 pl-4">
+                  <p className="text-[10px] font-bold tracking-[0.16em] text-emerald-300">
+                    MY CONTRIBUTION
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-white/85">
+                    {primaryProjects[0].contribution}
+                  </p>
+                </div>
+
+                <ul className="mt-6 space-y-2.5">
+                  {primaryProjects[0].highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex items-start gap-2.5 text-sm text-white/75"
                     >
-                      {area}
+                      <Check
+                        className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300"
+                        aria-hidden="true"
+                      />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {primaryProjects[0].stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[11px] font-medium text-white/70"
+                    >
+                      {tech}
                     </span>
                   ))}
                 </div>
+                <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-white">
+                  <ProjectLinks
+                    liveUrl={primaryProjects[0].liveUrl}
+                    repoUrl={primaryProjects[0].repoUrl}
+                  />
+                </div>
+                <p className="mt-6 max-w-lg text-[11px] leading-5 text-white/40">
+                  {primaryProjects[0].note}
+                </p>
               </div>
-            )}
 
-            <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Tech Stack
-              </h4>
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {project.techStack.map((tech) => (
+              <div className="relative py-2 sm:px-2 lg:py-6">
+                <div className="pointer-events-none absolute -inset-8 rounded-full bg-emerald-300/[0.07] blur-3xl" />
+                <MarketDashPreview />
+              </div>
+            </div>
+          </motion.article>
+
+          <motion.article
+            initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.16 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.06,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="grid overflow-hidden rounded-[1.75rem] border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900 lg:grid-cols-[1fr_.9fr]"
+          >
+            <div className="p-6 sm:p-9 lg:p-10">
+              <p className="mb-5 flex items-center gap-2 text-[10px] font-bold tracking-[0.18em] text-sky-700 dark:text-sky-400">
+                <span>{primaryProjects[1].number}</span>
+                <span className="h-px w-5 bg-sky-500/50" />
+                {primaryProjects[1].eyebrow}
+              </p>
+              <h3 className="text-3xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-white">
+                {primaryProjects[1].title}
+              </h3>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-zinc-600 dark:text-zinc-400 sm:text-base sm:leading-7">
+                {primaryProjects[1].description}
+              </p>
+              <div className="mt-6">
+                <p className="text-[10px] font-bold tracking-[0.16em] text-sky-700 dark:text-sky-400">
+                  MY CONTRIBUTION
+                </p>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-zinc-700 dark:text-zinc-300">
+                  {primaryProjects[1].contribution}
+                </p>
+              </div>
+              <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+                {primaryProjects[1].highlights.map((highlight) => (
+                  <li
+                    key={highlight}
+                    className="flex items-start gap-2 text-sm leading-5 text-zinc-600 dark:text-zinc-400"
+                  >
+                    <Check
+                      className="mt-0.5 h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400"
+                      aria-hidden="true"
+                    />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {primaryProjects[1].stack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60"
+                    className="rounded-full bg-zinc-100 px-3 py-1.5 text-[11px] font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {highlights.length > 0 && (
-            <div className="lg:col-span-5 p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 space-y-3">
-              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Key Technical Highlights
-              </h4>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                {highlights.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <CheckCircle2
-                      className={`w-4 h-4 shrink-0 mt-0.5 ${accent.text}`}
-                    />
-                    <span className="leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        {/* Challenge -> Solution */}
-        {(challenges.length > 0 || project.solution.trim()) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {challenges.length > 0 && (
-              <div className="p-5 rounded-2xl bg-amber-50/60 dark:bg-amber-950/15 border border-amber-200/60 dark:border-amber-900/40 space-y-2.5">
-                <h4 className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
-                  The Challenge
-                </h4>
-                <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                  {challenges.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+              <div className="mt-7 text-zinc-900 dark:text-white">
+                <ProjectLinks
+                  liveUrl={primaryProjects[1].liveUrl}
+                  repoUrl={primaryProjects[1].repoUrl}
+                />
               </div>
-            )}
-            {project.solution.trim() && (
-              <div className="p-5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/15 border border-emerald-200/60 dark:border-emerald-900/40 space-y-2.5">
-                <h4 className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
-                  How I Solved It
-                </h4>
-                <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                  {project.solution}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Outcome */}
-        {project.outcome.trim() && (
-          <div
-            className={`flex items-start gap-3 p-5 rounded-2xl border ${accent.soft} ${accent.border}`}
-          >
-            <span
-              className={`flex items-center justify-center w-9 h-9 rounded-xl shrink-0 text-white ${accent.solid}`}
-            >
-              <Trophy className="w-4.5 h-4.5" />
-            </span>
-            <div>
-              <h4
-                className={`text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
-              >
-                Outcome
-              </h4>
-              <p className="mt-1 text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
-                {project.outcome}
+              <p className="mt-5 max-w-xl text-[11px] leading-5 text-zinc-400 dark:text-zinc-500">
+                {primaryProjects[1].note}
               </p>
             </div>
-          </div>
-        )}
-
-        {/* Expandable deep dive */}
-        {hasDeepDive && (
-          <div>
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
-              aria-controls={panelId}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/70 text-slate-800 dark:text-slate-100 border-slate-200 dark:border-slate-700 transition-colors focus-visible:outline-none focus-visible:ring-2 ${accent.ring}`}
-            >
-              <Layers className={`w-4 h-4 ${accent.text}`} />
-              <span>
-                {open
-                  ? "Hide technical deep dive"
-                  : "Explore technical deep dive"}
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            <AnimatePresence initial={false}>
-              {open && (
-                <motion.div
-                  id={panelId}
-                  key="panel"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.35,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="overflow-hidden"
-                >
-                  <div className="pt-6 space-y-8">
-                    {sections.map((section) => (
-                      <div key={section.heading} className="space-y-4">
-                        <div>
-                          <h4 className="text-lg font-bold text-slate-900 dark:text-white">
-                            {section.heading}
-                          </h4>
-                          {section.subheading.trim() && (
-                            <p
-                              className={`text-sm font-semibold ${accent.text}`}
-                            >
-                              {section.subheading}
-                            </p>
-                          )}
-                          {section.content.trim() && (
-                            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
-                              {section.content}
-                            </p>
-                          )}
-                        </div>
-
-                        {section.technicalDeepDive.title.trim() && (
-                          <div className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 space-y-4">
-                            <div>
-                              <h4
-                                className={`text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
-                              >
-                                {section.technicalDeepDive.title}
-                              </h4>
-                              {section.technicalDeepDive.description.trim() && (
-                                <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                                  {section.technicalDeepDive.description}
-                                </p>
-                              )}
-                            </div>
-                            <ol className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {clean(section.technicalDeepDive.points).map(
-                                (point, pIdx) => (
-                                  <li
-                                    key={point}
-                                    className="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed"
-                                  >
-                                    <span
-                                      className={`flex items-center justify-center w-6 h-6 rounded-full text-[11px] font-bold shrink-0 text-white ${accent.solid}`}
-                                    >
-                                      {pIdx + 1}
-                                    </span>
-                                    <span>{point}</span>
-                                  </li>
-                                ),
-                              )}
-                            </ol>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-
-                    {decisions.length > 0 && (
-                      <div className="space-y-3">
-                        <h4
-                          className={`text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
-                        >
-                          Engineering Decisions
-                        </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {decisions.map((d) => (
-                            <div
-                              key={d.title}
-                              className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 space-y-3"
-                            >
-                              <h5 className="font-bold text-slate-900 dark:text-white">
-                                {d.title}
-                              </h5>
-                              {(
-                                [
-                                  ["Decision", d.decision],
-                                  ["Why", d.rationale],
-                                  ["Trade-off", d.tradeoff],
-                                ] as const
-                              )
-                                .filter(([, text]) => text.trim())
-                                .map(([label, text]) => (
-                                  <div key={label}>
-                                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                                      {label}
-                                    </div>
-                                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                                      {text}
-                                    </p>
-                                  </div>
-                                ))}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        )}
-
-        {/* Footer: honesty note + actions */}
-        <footer className="pt-6 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-          {project.credibilityNote.trim() ? (
-            <p className="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
-              <Info className="w-4 h-4 shrink-0 mt-px" />
-              <span>{project.credibilityNote}</span>
-            </p>
-          ) : (
-            <span />
-          )}
-
-          <div className="flex flex-wrap items-center gap-3">
-            {project.caseStudyUrl && (
-              <Link
-                href={project.caseStudyUrl}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white shadow-xs hover:shadow-lg active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 ${accent.button}`}
-              >
-                <FileText className="w-4 h-4" />
-                <span>Read Case Study</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            )}
-
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white shadow-xs hover:shadow-lg active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 ${accent.button}`}
-            >
-              <span>Live Site</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-
-            {project.isPrivateRepo ? (
-              <span className="inline-flex items-center gap-1 text-[11px] text-slate-400 dark:text-slate-500 font-medium">
-                <Lock className="w-3 h-3 text-amber-500/80" />
-                <span>Private Repository</span>
-              </span>
-            ) : (
-              <a
-                href={project.repoURL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/60 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 shadow-2xs transition-colors"
-              >
-                <Code2 className="w-4 h-4" />
-                <span>Source Code</span>
-              </a>
-            )}
-          </div>
-        </footer>
-      </div>
-    </motion.article>
-  );
-}
-
-export default function FeaturedWork() {
-  return (
-    <section
-      id="projects"
-      className="py-24 border-t border-slate-200/80 dark:border-slate-800/80"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Featured Projects
-          </h2>
-          <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-            I build and improve web applications by combining frontend
-            engineering, API integration, and problem-solving. Here are some of
-            the projects where I took ownership of core user workflows, worked
-            through real bottlenecks, and shipped complete features.
-          </p>
+            <div className="flex items-center bg-zinc-50 p-5 dark:bg-zinc-950/50 sm:p-8 lg:p-10">
+              <ZenithPreview />
+            </div>
+          </motion.article>
         </div>
 
-        {/* Featured Projects */}
-        <div className="space-y-12">
-          {projects.map((project, idx) => (
-            <ProjectCard key={project.id} project={project} index={idx} />
-          ))}
+        <div className="mt-16 sm:mt-20">
+          <div className="mb-6 flex items-end justify-between gap-4 border-b border-zinc-200 pb-4 dark:border-zinc-800">
+            <div>
+              <p className="text-[10px] font-bold tracking-[0.18em] text-zinc-400">
+                ALSO BUILT
+              </p>
+              <h3 className="mt-2 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+                More projects
+              </h3>
+            </div>
+            <span className="pb-1 text-xs text-zinc-400">03—05</span>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-3">
+            {otherProjects.map((project, index) => (
+              <motion.article
+                key={project.number}
+                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.06,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="group flex h-full flex-col rounded-2xl border border-zinc-200/90 bg-white p-5 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700 sm:p-6"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold tabular-nums text-zinc-400">
+                    {project.number}
+                  </span>
+                </div>
+                <p className="mt-7 text-[9px] font-bold tracking-[0.15em] text-emerald-700 dark:text-emerald-400">
+                  {project.type}
+                </p>
+                <h4 className="mt-2 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">
+                  {project.title}
+                </h4>
+                <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                  {project.description}
+                </p>
+                <p className="mt-5 border-t border-zinc-100 pt-4 text-[11px] leading-5 text-zinc-400 dark:border-zinc-800 dark:text-zinc-500">
+                  {project.stack}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 hover:text-emerald-700 dark:hover:text-emerald-400"
+                  >
+                    Live <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                  </a>
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 hover:text-emerald-700 dark:hover:text-emerald-400"
+                  >
+                    Code <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+                  </a>
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
