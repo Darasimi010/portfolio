@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
-  AlertTriangle,
   ArrowRight,
   CheckCircle2,
   ChevronDown,
@@ -13,10 +12,7 @@ import {
   FileText,
   Info,
   Layers,
-  Lightbulb,
   Lock,
-  Scale,
-  Sparkles,
   Trophy,
 } from "lucide-react";
 import { projects } from "@/data/projects";
@@ -97,25 +93,6 @@ function getAccent(name: string): Accent {
 const clean = (items: readonly string[]) =>
   items.filter((item) => item.trim().length > 0);
 
-function Label({
-  icon: Icon,
-  children,
-  className = "text-slate-500 dark:text-slate-400",
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <h4
-      className={`flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider ${className}`}
-    >
-      <Icon className="w-3.5 h-3.5" />
-      {children}
-    </h4>
-  );
-}
-
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [open, setOpen] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -169,7 +146,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 space-y-5">
             <div>
-              <Label icon={Layers}>Overview</Label>
+              <h4 className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Overview
+              </h4>
               <p className="mt-1.5 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                 {project.heroSummary}
               </p>
@@ -178,9 +157,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <div
               className={`p-4 rounded-xl border ${accent.soft} ${accent.border}`}
             >
-              <Label icon={Code2} className={accent.text}>
+              <h4
+                className={`flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
+              >
                 What I Built &amp; Engineered
-              </Label>
+              </h4>
               <p className="mt-1.5 text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
                 {project.strongestContribution}
               </p>
@@ -188,7 +169,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
             {areas.length > 0 && (
               <div>
-                <Label icon={Sparkles}>Engineering Focus</Label>
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Engineering Focus
+                </h4>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {areas.map((area) => (
                     <span
@@ -203,7 +186,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             )}
 
             <div>
-              <Label icon={Layers}>Tech Stack</Label>
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Tech Stack
+              </h4>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {project.techStack.map((tech) => (
                   <span
@@ -219,7 +204,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
           {highlights.length > 0 && (
             <div className="lg:col-span-5 p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 space-y-3">
-              <Label icon={CheckCircle2}>Key Technical Highlights</Label>
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Key Technical Highlights
+              </h4>
               <ul className="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                 {highlights.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
@@ -239,12 +226,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {challenges.length > 0 && (
               <div className="p-5 rounded-2xl bg-amber-50/60 dark:bg-amber-950/15 border border-amber-200/60 dark:border-amber-900/40 space-y-2.5">
-                <Label
-                  icon={AlertTriangle}
-                  className="text-amber-700 dark:text-amber-400"
-                >
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
                   The Challenge
-                </Label>
+                </h4>
                 <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                   {challenges.map((item) => (
                     <li key={item}>{item}</li>
@@ -254,12 +238,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             )}
             {project.solution.trim() && (
               <div className="p-5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/15 border border-emerald-200/60 dark:border-emerald-900/40 space-y-2.5">
-                <Label
-                  icon={Lightbulb}
-                  className="text-emerald-700 dark:text-emerald-400"
-                >
+                <h4 className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                   How I Solved It
-                </Label>
+                </h4>
                 <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                   {project.solution}
                 </p>
@@ -279,9 +260,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               <Trophy className="w-4.5 h-4.5" />
             </span>
             <div>
-              <Label icon={Sparkles} className={accent.text}>
+              <h4
+                className={`text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
+              >
                 Outcome
-              </Label>
+              </h4>
               <p className="mt-1 text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
                 {project.outcome}
               </p>
@@ -348,9 +331,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                         {section.technicalDeepDive.title.trim() && (
                           <div className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 space-y-4">
                             <div>
-                              <Label icon={Code2} className={accent.text}>
+                              <h4
+                                className={`text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
+                              >
                                 {section.technicalDeepDive.title}
-                              </Label>
+                              </h4>
                               {section.technicalDeepDive.description.trim() && (
                                 <p className="mt-1.5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                                   {section.technicalDeepDive.description}
@@ -381,9 +366,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
                     {decisions.length > 0 && (
                       <div className="space-y-3">
-                        <Label icon={Scale} className={accent.text}>
+                        <h4
+                          className={`text-[11px] font-bold uppercase tracking-wider ${accent.text}`}
+                        >
                           Engineering Decisions
-                        </Label>
+                        </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {decisions.map((d) => (
                             <div
@@ -489,7 +476,7 @@ export default function FeaturedWork() {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Selected Projects
+            Featured Projects
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
             I build and improve web applications by combining frontend
