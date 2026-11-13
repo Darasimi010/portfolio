@@ -182,10 +182,10 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="/#engineering"
+              href="/#about"
               className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
             >
-              Engineering Philosophy
+              About Me
             </Link>
 
             <Link
@@ -286,14 +286,6 @@ export default function Navbar() {
                 </div>
 
                 <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-1">
-                  <Link
-                    href="/#engineering"
-                    onClick={() => setIsOpen(false)}
-                    className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    Engineering Philosophy
-                  </Link>
-
                   <Link
                     href="/#experience"
                     onClick={() => setIsOpen(false)}

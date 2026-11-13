@@ -118,14 +118,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/#engineering"
-                  className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                >
-                  Engineering Philosophy
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/#experience"
                   className="text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
