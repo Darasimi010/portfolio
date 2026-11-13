@@ -12,6 +12,7 @@ const STACK = [
   "TypeScript",
   "TailwindCSS",
   "TanStack Query",
+  "Zustand",
   "Git/GitHub",
   "API Integration",
 ];
@@ -150,13 +151,14 @@ const DeviceMockups = () => (
           <p className="pl-4">
             <span className="text-pink-400">exploring</span>: [
             <span className="text-orange-300">&apos;Go&apos;</span>,{" "}
-            <span className="text-orange-300">&apos;PostgreSQL&apos;</span>],
+            <span className="text-orange-300">&apos;Backend&apos;</span>,{" "}
+            <span className="text-orange-300">&apos;APIs&apos;</span>],
           </p>
 
           <p className="pl-4">
             <span className="text-pink-400">focus</span>:{" "}
             <span className="text-green-300">
-              &apos;Backend & Systems Engineering&apos;
+              &apos;Frontend, Backend & Systems Engineering&apos;
             </span>
             ,
           </p>
