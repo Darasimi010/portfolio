@@ -1,5 +1,91 @@
 export const projects = [
   {
+    id: "marketDash",
+    title: "MarketDash",
+    subtitle:
+      "A Progressive Web App for tracking US stock market data, quotes, and news.",
+    heroSummary:
+      "An enterprise-ready, offline-first Progressive Web App (PWA) for real-time tracking and fundamental analysis of US equity markets. Built with Next.js 16 (App Router), React 19, Tailwind CSS v4, and Serwist, strictly leveraging the Finnhub Free REST API with robust rate-limiting, server-side credential isolation, and automated fallback capabilities.",
+    strongestContribution:
+      "Engineered from scratch and connected to API endpoints to get real-life data. Polls for new data every 30 seconds as I didn't want to expose my API keys by using webhooks.",
+    techStack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Lucide React, Sonner",
+      "Framer Motion",
+      "Zod",
+      "Serwist",
+      "Jest",
+      "React Testing Library",
+      "MSW (Mock Service Worker)",
+      "Git/Github",
+      "pnpm",
+      "Docker & Docker Compose",
+    ],
+    caseStudyUrl: "",
+    liveUrl: "https://marketforged.vercel.app",
+    isPrivateRepo: false,
+    repoURL: "https://github.com/Darasimi010/financial-market-dashboard",
+    engineeringAreas: [
+      "Progressive Web App",
+      "Offline-first ",
+      "Robust Rate-limiting",
+      "Server-side Credential Isolation",
+      "Automated Fallback Capabilities",
+    ],
+    highlights: [
+      "Watchlist can be stored and sustained for your device without creating an account",
+      "Loading skeletons and clear error messages keep the feed readable while data loads or when a request fails.",
+    ],
+    challenges: [
+      "I wanted to take on a personal project that was nothing like my previous ones.",
+    ],
+    solution:
+      "Had to figure out a lot of things while working on the project. For example, I was already working on using Vitest then realized Jest was better to use with Next.js",
+    badgeColor:
+      "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800/50",
+    accentBorder: "group-hover:border-rose-500/50",
+    gradient: "from-rose-500/10 via-rose-500/5 to-transparent",
+    accentColor: "rose",
+    sections: [
+      {
+        heading: "Learning Tanstack Query through a real feed",
+        subheading: "Server state for a live list of security alerts",
+        content:
+          "An incident feed is a good fit for a data-fetching library: the list is constantly changing, analysts act on individual items, and the interface has to stay trustworthy when something goes wrong. I built the feed around Tanstack Query so the data layer and the interface could stay separate.",
+        technicalDeepDive: {
+          title: "Fetching and acting on alerts",
+          description:
+            "The feed treats alert data as server state and keeps the triage actions simple and visible.",
+          points: [
+            "Tanstack Query owns fetching for the alert feed, keeping server data separate from interface state.",
+            "Each alert supports adding, deleting, marking as addressed and changing severity.",
+            "Loading states render skeleton placeholders so the layout does not jump when data arrives.",
+            "Failures surface a clear error message instead of an empty or broken feed.",
+          ],
+        },
+      },
+    ],
+    engineeringDecisions: [
+      {
+        title: "Use Tanstack Query for the feed",
+        decision:
+          "Handle data fetching with Tanstack Query instead of hand-written effects and loading flags.",
+        rationale:
+          "Its loading and error states map directly onto the skeleton and error UI an alert feed needs, and it was the library I set out to learn.",
+        tradeoff:
+          "It adds a dependency and a learning curve to what is otherwise a small app.",
+      },
+    ],
+    outcome:
+      "A working offline-first Progressive Web App, deployed on Vercel, covering the US stock market with handled loading and error states.",
+    credibilityNote:
+      "Built as a personal project. Uses a free API that has some limitations but I worked around most of the limitations.",
+  },
+
+  {
     id: "zenith-lead-crm-dashboard",
     title: "Zenith Lead CRM Dashboard",
     subtitle:
