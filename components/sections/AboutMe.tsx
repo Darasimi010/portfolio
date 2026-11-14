@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
-import { ArrowUpRight, Code2, Layers3, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 type Principle = {
   number: string;
@@ -45,17 +45,6 @@ const principles: Principle[] = [
       "At CycleLink, I worked on reducing unsafe reliance on browser storage. I aligned pickup and onboarding flows with backend state and separated public onboarding from protected user journeys.",
   },
 ];
-
-const coreToolkit = [
-  "TypeScript",
-  "JavaScript",
-  "React",
-  "Next.js",
-  "Tailwind CSS",
-  "TanStack Query",
-];
-
-const exploring = ["Go", "PostgreSQL", "APIs", "Backend Engineering"];
 
 function Reveal({
   children,
@@ -168,14 +157,6 @@ export default function AboutMe() {
                   depend on.
                 </p>
               </div>
-
-              {/* <div className="mt-7 border-l-[3px] border-emerald-500 py-1 pl-4 dark:border-emerald-400">
-                <p className="text-sm font-medium leading-6 tracking-[-0.01em] text-zinc-800 dark:text-zinc-100">
-                  “The best interfaces make complexity feel simple. That
-                  simplicity is the result of thoughtful engineering behind
-                  every interaction.”
-                </p>
-              </div> */}
             </div>
           </Reveal>
 
