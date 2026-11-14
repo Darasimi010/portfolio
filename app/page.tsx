@@ -1,27 +1,36 @@
-"use client";
-
-import React from "react";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 import Hero from "@/components/sections/Hero";
 import AboutMe from "@/components/sections/AboutMe";
 import FeaturedWork from "@/components/sections/FeaturedWork";
-import EngineeringPillars from "@/components/sections/EngineeringPillars";
-import ExperienceTimeline from "@/components/sections/ExperienceTimeline";
+import WorkExperience from "@/components/sections/WorkExperience";
 import ContactSection from "@/components/sections/ContactSection";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-main)] transition-colors duration-200">
+    <div className="relative isolate min-h-screen overflow-x-clip bg-[var(--bg-page)] text-[var(--text-main)] transition-colors duration-300">
+      <a
+        href="#main-content"
+        className="sr-only z-[100] rounded-xl bg-emerald-700 px-4 py-3 font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2"
+      >
+        Skip to content
+      </a>
+
       <Navbar />
-      <main className="space-y-20 sm:space-y-28 py-8 sm:py-16">
+
+      <main id="main-content" className="relative">
+        {/*
+          The sections provide their own spacing, backgrounds and reveal
+          animations. Keep the main wrapper free of extra vertical gaps so
+          their borders and surfaces form one continuous visual rhythm.
+        */}
         <Hero />
         <AboutMe />
-        <EngineeringPillars />
-        <ExperienceTimeline />
         <FeaturedWork />
+        <WorkExperience />
         <ContactSection />
       </main>
+
       <Footer />
     </div>
   );
