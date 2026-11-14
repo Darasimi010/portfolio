@@ -1,329 +1,256 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import {
-  Menu,
-  X,
-  ArrowUpRight,
-  ChevronDown,
-  ArrowRight,
-  Code2,
-  Calendar,
-  Truck,
-} from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+  AnimatePresence,
+  MotionConfig,
+  motion,
+  useReducedMotion,
+} from "motion/react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+
+const NAV_ITEMS = [
+  { label: "About", href: "/#about", section: "about" },
+  { label: "Projects", href: "/#projects", section: "projects" },
+  { label: "Experience", href: "/#experience", section: "experience" },
+  { label: "Resume", href: "/resume", section: "resume" },
+] as const;
+
+const EASE_OUT: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [workDropdownOpen, setWorkDropdownOpen] = useState(false);
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 15);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const updateScrollState = () => setScrolled(window.scrollY > 12);
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
   }, []);
 
-  const projects = [
-    {
-      name: "Braandly",
-      subtitle: "Optimistic UI and design system",
-      href: "/work/braandly",
-      icon: "Code2",
-      iconColor:
-        "bg-violet-100/80 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400",
-      arrowColor:
-        "text-violet-600 dark:text-violet-400 group-hover:text-violet-700 dark:group-hover:text-violet-300",
-    },
-    {
-      name: "Holford Homes",
-      subtitle: "International consultation booking & BFF proxy",
-      href: "/work/holford-homes",
-      icon: "Calendar",
-      iconColor:
-        "bg-sky-100/80 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400",
-      arrowColor:
-        "text-sky-600 dark:text-sky-400 group-hover:text-sky-700 dark:group-hover:text-sky-300",
-    },
-    {
-      name: "CycleLink",
-      subtitle: "From frontend MVP to live backend workflows",
-      href: "/work/cyclelink",
-      icon: "Truck",
-      iconColor:
-        "bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400",
-      arrowColor:
-        "text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-700 dark:group-hover:text-emerald-300",
-    },
-  ];
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(pathname === "/resume" ? "resume" : "");
+      return;
+    }
+
+    const sectionIds = ["about", "projects", "experience", "contact"];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-25% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5] },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const isActive = (section: string) => {
+    if (section === "resume") return pathname === "/resume";
+    return pathname === "/" && activeSection === section;
+  };
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/85 dark:bg-[#0b0f19]/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs"
-          : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center gap-4">
+    <MotionConfig reducedMotion="user">
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6">
+        <motion.nav
+          aria-label="Main navigation"
+          initial={reduceMotion ? false : { opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: EASE_OUT }}
+          className={`mx-auto max-w-7xl rounded-2xl border transition-all duration-300 ${
+            scrolled
+              ? "border-emerald-900/10 bg-white/90 shadow-lg shadow-slate-900/[0.06] backdrop-blur-xl dark:border-emerald-100/10 dark:bg-[#0d1711]/90 dark:shadow-black/20"
+              : "border-slate-200/70 bg-white/75 shadow-sm shadow-slate-900/[0.03] backdrop-blur-lg dark:border-slate-800/80 dark:bg-[#0d1711]/75"
+          }`}
+        >
+          <div className="flex h-[4.25rem] items-center justify-between px-3.5 sm:px-5">
+            {/* Brand */}
             <Link
               href="/"
-              className="group flex items-center gap-2.5 text-lg font-bold tracking-tight text-slate-900 dark:text-white"
+              onClick={closeMenu}
+              aria-label="Oluwadarasimi Omojola — home"
+              className="group flex min-w-0 items-center gap-2.5 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#0d1711]"
             >
-              <span className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-amber-500 flex items-center justify-center text-white text-sm font-black shadow-xs group-hover:scale-105 transition-transform">
+              <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-500 text-xs font-black tracking-tight text-white shadow-sm shadow-emerald-900/15 transition-transform duration-300 group-hover:rotate-[-4deg] group-hover:scale-105">
                 OO
+                <span className="absolute inset-x-1 top-0 h-px bg-white/50" />
               </span>
-              <span className="flex flex-col">
-                <span className="leading-tight text-base font-semibold">
-                  Oluwadarasimi.
+              <span className="flex min-w-0 flex-col">
+                <span className="truncate text-[15px] font-bold leading-tight tracking-tight text-slate-950 dark:text-white sm:text-base">
+                  Oluwadarasimi
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    .
+                  </span>
                 </span>
-                <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 -mt-0.5">
-                  Frontend Engineer
+                <span className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.19em] text-slate-500 dark:text-slate-400">
+                  Software Engineer
                 </span>
               </span>
             </Link>
-          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1.5 lg:gap-2">
-            {/* Case Studies Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setWorkDropdownOpen(true)}
-              onMouseLeave={() => setWorkDropdownOpen(false)}
-            >
-              <button
-                className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                  pathname.startsWith("/work")
-                    ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40"
-                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
-                }`}
-                onClick={() => setWorkDropdownOpen(!workDropdownOpen)}
+            {/* Desktop navigation */}
+            <div className="hidden items-center gap-1 lg:flex">
+              {NAV_ITEMS.map((item) => {
+                const active = isActive(item.section);
+                return (
+                  <Link
+                    key={item.section}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`relative rounded-xl px-3.5 py-2 text-[13px] font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
+                      active
+                        ? "text-emerald-700 dark:text-emerald-300"
+                        : "text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                    {active && (
+                      <motion.span
+                        layoutId="navbar-active-indicator"
+                        className="absolute inset-x-3 bottom-0 h-0.5 rounded-full bg-emerald-500"
+                        transition={{
+                          duration: reduceMotion ? 0 : 0.25,
+                          ease: EASE_OUT,
+                        }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Actions */}
+            <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+              <div className="flex items-center border-l border-slate-200 pl-2.5 dark:border-slate-700/80 sm:pl-3">
+                <ThemeToggle />
+              </div>
+
+              <Link
+                href="/#contact"
+                className="group hidden items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm shadow-emerald-900/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-600 hover:shadow-md hover:shadow-emerald-900/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 dark:bg-emerald-600 dark:hover:bg-emerald-500 dark:focus-visible:ring-offset-[#0d1711] lg:inline-flex"
               >
-                <span>Case Studies</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 opacity-70 transition-transform duration-200 ${
-                    workDropdownOpen ? "rotate-180" : ""
-                  }`}
-                />
+                <span>Get in touch</span>
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => setIsOpen((open) => !open)}
+                aria-label={
+                  isOpen ? "Close navigation menu" : "Open navigation menu"
+                }
+                aria-expanded={isOpen}
+                aria-controls="mobile-navigation"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/70 text-slate-700 transition-colors hover:border-emerald-300 hover:text-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-200 dark:hover:border-emerald-700 dark:hover:text-emerald-300 lg:hidden"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={isOpen ? "close" : "open"}
+                    initial={{ opacity: 0, rotate: -45, scale: 0.8 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: 45, scale: 0.8 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.16 }}
+                    className="flex"
+                  >
+                    {isOpen ? (
+                      <X className="h-5 w-5" />
+                    ) : (
+                      <Menu className="h-5 w-5" />
+                    )}
+                  </motion.span>
+                </AnimatePresence>
               </button>
-
-              <AnimatePresence>
-                {workDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-1 w-80 p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl z-50"
-                  >
-                    <div className="px-2 py-1.5 text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
-                      Case Studies
-                    </div>
-                    {projects.map((p) => (
-                      <Link
-                        key={p.href}
-                        href={p.href}
-                        onClick={() => setWorkDropdownOpen(false)}
-                        className="flex flex-row gap-4 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/70 transition-all border border-transparent hover:border-slate-200/60 dark:hover:border-slate-700/60"
-                      >
-                        <div>
-                          {p.icon === "Code2" && (
-                            <div
-                              className={`p-2 rounded-lg mt-0.5 ${p.iconColor}`}
-                            >
-                              <Code2 className="w-4 h-4" />
-                            </div>
-                          )}
-                          {p.icon === "Calendar" && (
-                            <div
-                              className={`p-2 rounded-lg mt-0.5 ${p.iconColor}`}
-                            >
-                              <Calendar className="w-4 h-4" />
-                            </div>
-                          )}
-                          {p.icon === "Truck" && (
-                            <div
-                              className={`p-2 rounded-lg mt-0.5 ${p.iconColor}`}
-                            >
-                              <Truck className="w-4 h-4" />
-                            </div>
-                          )}
-                        </div>
-                        <div className="group flex flex-col">
-                          <div className="flex items-center justify-between">
-                            <span
-                              className={`font-semibold text-sm text-slate-800 dark:text-slate-200 flex items-center gap-1.5 ${p.arrowColor}`}
-                            >
-                              {p.name}
-                              <ArrowUpRight
-                                className={`w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all ${
-                                  p.arrowColor
-                                }`}
-                              />
-                            </span>
-                          </div>
-                          <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">
-                            {p.subtitle}
-                          </span>
-                        </div>
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
-
-            <Link
-              href="/#about"
-              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
-            >
-              About Me
-            </Link>
-
-            <Link
-              href="/#experience"
-              className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
-            >
-              Experience
-            </Link>
-
-            <Link
-              href="/resume"
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                pathname === "/resume"
-                  ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40"
-                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
-              }`}
-            >
-              <span>Resume</span>
-            </Link>
-
-            <Link
-              href="/#contact"
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                pathname === "/resume"
-                  ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40"
-                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
-              }`}
-            >
-              <span>Contact</span>
-            </Link>
           </div>
 
-          {/* Right Action Bar */}
-          <div className="flex items-center gap-3">
-            {/* Theme Toggle Button */}
-            <div className="ml-2 pl-2 border-l border-slate-200 dark:border-slate-800">
-              <ThemeToggle />
-            </div>
-
-            <Link
-              href="/#contact"
-              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs hover:shadow-indigo-500/25 transition-all active:scale-98"
-            >
-              <span>Get in Touch</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-xl bg-slate-200/70 dark:bg-slate-800/70 text-slate-800 dark:text-slate-100 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
-            >
-              {isOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 overflow-hidden"
-          >
-            <div className="px-5 pt-3 pb-6 space-y-3">
-              <div className="space-y-1">
-                <Link
-                  href="/#about"
-                  onClick={() => setIsOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                >
-                  About Me
-                </Link>
-
-                <div className="pt-2 pb-1">
-                  <div className="px-3 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase">
-                    Case Studies
+          {/* Mobile navigation */}
+          <AnimatePresence initial={false}>
+            {isOpen && (
+              <motion.div
+                id="mobile-navigation"
+                key="mobile-navigation"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.24,
+                  ease: EASE_OUT,
+                }}
+                className="overflow-hidden lg:hidden"
+              >
+                <div className="border-t border-slate-200/80 px-3.5 pb-4 pt-3 dark:border-slate-800/90 sm:px-5">
+                  <div className="grid gap-1">
+                    {NAV_ITEMS.map((item, index) => {
+                      const active = isActive(item.section);
+                      return (
+                        <motion.div
+                          key={item.section}
+                          initial={reduceMotion ? false : { opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.2,
+                            delay: reduceMotion ? 0 : index * 0.035,
+                          }}
+                        >
+                          <Link
+                            href={item.href}
+                            onClick={closeMenu}
+                            aria-current={active ? "page" : undefined}
+                            className={`flex items-center justify-between rounded-xl px-3.5 py-3 text-sm font-semibold transition-colors ${
+                              active
+                                ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300"
+                                : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800/70"
+                            }`}
+                          >
+                            {item.label}
+                            <ArrowUpRight
+                              className={`h-4 w-4 ${active ? "text-emerald-600 dark:text-emerald-400" : "text-slate-400"}`}
+                            />
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
                   </div>
-                  <div className="mt-1 space-y-1">
-                    {projects.map((p) => (
-                      <Link
-                        key={p.href}
-                        href={p.href}
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                      >
-                        <span>{p.name}</span>
-                        <ArrowRight className="w-4 h-4 text-slate-400" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-1">
-                  <Link
-                    href="/#experience"
-                    onClick={() => setIsOpen(false)}
-                    className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    Experience
-                  </Link>
-
-                  <Link
-                    href="/resume"
-                    onClick={() => setIsOpen(false)}
-                    className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    <span>Resume</span>
-                  </Link>
 
                   <Link
                     href="/#contact"
-                    className="flex items-center gap-2 p-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 text-sm font-medium text-slate-800 dark:text-slate-200"
+                    onClick={closeMenu}
+                    className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500"
                   >
-                    <span>Contact</span>
+                    Get in touch
+                    <ArrowUpRight className="h-4 w-4" />
                   </Link>
                 </div>
-              </div>
-
-              <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <Link
-                  href="/#contact"
-                  onClick={() => setIsOpen(false)}
-                  className="w-full text-center py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-xs"
-                >
-                  Get in Touch
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.nav>
+      </header>
+    </MotionConfig>
   );
 }
