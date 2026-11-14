@@ -41,106 +41,6 @@ const proofPoints = [
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-// Device mockup illustration component
-const DeviceMockups = () => (
-  <div className="relative w-full max-w-xl">
-    {/* Glowing backdrop */}
-    <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-cyan-500/20 to-purple-600/30 rounded-3xl blur-2xl opacity-60"></div>
-
-    {/* Laptop */}
-    <div className="relative glass-card rounded-xl p-3 shadow-2xl">
-      <div className="bg-[#0f0a1f] rounded-lg p-4 font-mono text-xs text-left overflow-hidden">
-        <div className="flex gap-1.5 mb-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-          <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-        </div>
-        <div className="space-y-1.5 text-[10px] sm:text-xs text-white">
-          <p>
-            <span className="text-purple-400">const</span>{" "}
-            <span className="text-cyan-300">developer</span> = {"{"}
-          </p>
-
-          <p className="pl-4">
-            <span className="text-pink-400">name</span>:{" "}
-            <span className="text-green-300">&apos;Oluwadarasimi&apos;</span>,
-          </p>
-
-          <p className="pl-4">
-            <span className="text-pink-400">role</span>:{" "}
-            <span className="text-green-300">
-              &apos;Frontend Engineer&apos;
-            </span>
-            ,
-          </p>
-
-          <p className="pl-4">
-            <span className="text-pink-400">stack</span>: [
-            <span className="text-orange-300">&apos;TypeScript&apos;</span>,{" "}
-            <span className="text-orange-300">&apos;React&apos;</span>,{" "}
-            <span className="text-orange-300">&apos;Next.js&apos;</span>],
-          </p>
-
-          <p className="pl-4">
-            <span className="text-pink-400">exploring</span>: [
-            <span className="text-orange-300">&apos;Go&apos;</span>,{" "}
-            <span className="text-orange-300">&apos;Backend&apos;</span>,{" "}
-            <span className="text-orange-300">&apos;APIs&apos;</span>],
-          </p>
-
-          <p className="pl-4">
-            <span className="text-pink-400">focus</span>:{" "}
-            <span className="text-green-300">
-              &apos;Frontend, Backend & Systems Engineering&apos;
-            </span>
-            ,
-          </p>
-
-          <p className="pl-4">
-            <span className="text-pink-400">mindset</span>:{" "}
-            <span className="text-green-300">
-              &apos;Curious problem-solver&apos;
-            </span>
-          </p>
-
-          <p>{"}"};</p>
-        </div>
-      </div>
-    </div>
-
-    {/* Tablet - positioned to right */}
-    <div className="absolute -right-4 top-1/4 w-28 sm:w-36 bg-gradient-to-br from-[#1e1b4b]/20 to-[#312e81]/20 rounded-lg p-2 shadow-xl border border-purple-500/30 transform rotate-6 backdrop-blur-[20px] backdrop-saturate-180">
-      <div className="bg-[#0f0a1f] rounded-md p-2">
-        <div className="space-y-1.5">
-          <div className="h-2 bg-purple-500/40 rounded w-3/4"></div>
-          <div className="h-2 bg-cyan-500/40 rounded w-1/2"></div>
-          <div className="h-8 bg-gradient-to-r from-purple-600/30 to-cyan-500/30 rounded mt-2"></div>
-          <div className="h-2 bg-purple-500/30 rounded w-2/3"></div>
-        </div>
-      </div>
-    </div>
-
-    {/* Phone - positioned to bottom right */}
-    <div className="absolute -right-2 -bottom-8 w-20 sm:w-24 bg-gradient-to-br from-[#1e1b4b]/20 to-[#312e81]/20 rounded-xl p-1.5 shadow-xl border border-purple-500/30 transform rotate-12 backdrop-blur-[20px] backdrop-saturate-180">
-      <div className="bg-[#0f0a1f] rounded-lg p-2">
-        <div className="w-6 h-6 mx-auto mb-2 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
-          <svg
-            className="w-3 h-3 text-white"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-          </svg>
-        </div>
-        <div className="space-y-1">
-          <div className="h-1.5 bg-purple-500/40 rounded w-full"></div>
-          <div className="h-1.5 bg-cyan-500/40 rounded w-3/4"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 function EngineeringSnapshot() {
   return (
     <motion.aside
@@ -354,9 +254,6 @@ export default function Hero() {
           </div>
 
           <EngineeringSnapshot />
-          {/* <div className="hidden lg:flex justify-end animate-float delay-500 duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-white/10">
-            <DeviceMockups />
-          </div> */}
         </div>
       </section>
     </MotionConfig>
