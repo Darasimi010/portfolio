@@ -28,6 +28,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setIsOpen(false);
+  }
+
   useEffect(() => {
     const updateScrollState = () => setScrolled(window.scrollY > 12);
     updateScrollState();
@@ -36,12 +42,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (pathname !== "/") {
-      setActiveSection(pathname === "/resume" ? "resume" : "");
       return;
     }
 
