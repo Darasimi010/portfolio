@@ -9,11 +9,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Oluwadarasimi Omojola — Frontend Engineer",
+  title: "Oluwadarasimi Omojola — Software Engineer",
   description:
-    "Frontend engineer specializing in complex product features, root-cause debugging, backend API integration, and reliable user interfaces.",
+    "Software engineer specializing in complex product features, root-cause debugging, backend API integration, and reliable user interfaces.",
   keywords: [
-    "Frontend Engineer",
+    "Software Engineer",
     "React",
     "Next.js",
     "TypeScript",
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Oluwadarasimi Omojola" }],
   openGraph: {
-    title: "Oluwadarasimi Omojola — Frontend Engineer",
+    title: "Oluwadarasimi Omojola — Software Engineer",
     description:
-      "Frontend engineer specializing in complex product features, root-cause debugging, backend API integration, and reliable user interfaces.",
+      "Software engineer specializing in complex product features, root-cause debugging, backend API integration, and reliable user interfaces.",
     type: "website",
   },
 };
