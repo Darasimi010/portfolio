@@ -5,7 +5,11 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export const Github = ({ className = "w-5 h-5", size, ...props }: IconProps) => (
+export const Github = ({
+  className = "w-5 h-5",
+  size,
+  ...props
+}: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size || 20}
@@ -23,7 +27,11 @@ export const Github = ({ className = "w-5 h-5", size, ...props }: IconProps) => 
   </svg>
 );
 
-export const Linkedin = ({ className = "w-5 h-5", size, ...props }: IconProps) => (
+export const Linkedin = ({
+  className = "w-5 h-5",
+  size,
+  ...props
+}: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size || 20}
@@ -37,78 +45,7 @@ export const Linkedin = ({ className = "w-5 h-5", size, ...props }: IconProps) =
   </svg>
 );
 
-export const Twitter = ({ className = "w-5 h-5", size, ...props }: IconProps) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size || 20}
-    height={size || 20}
-    fill="currentColor"
-    viewBox="0 0 24 24"
-    className={className}
-    {...props}
-  >
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
-
-export const ExternalLink = ({ className = "w-4 h-4", size, ...props }: IconProps) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size || 20}
-    height={size || 20}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="2"
-    className={className}
-    {...props}
-  >
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    <polyline points="15 3 21 3 21 9" />
-    <line x1="10" y1="14" x2="21" y2="3" />
-  </svg>
-);
-
-export const Menu = ({ className = "w-6 h-6", size, ...props }: IconProps) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size || 24}
-    height={size || 24}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="2"
-    className={className}
-    {...props}
-  >
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="18" x2="21" y2="18" />
-  </svg>
-);
-
-export const X = ({ className = "w-6 h-6", size, ...props }: IconProps) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width={size || 24}
-    height={size || 24}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth="2"
-    className={className}
-    {...props}
-  >
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-);
-
 export const Icons = {
   Github,
   Linkedin,
-  Twitter,
-  ExternalLink,
-  Menu,
-  X,
 };
