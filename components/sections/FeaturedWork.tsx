@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Check, Globe2 } from "lucide-react";
 import { Github } from "../ui/Icons";
+import Image from "next/image";
 
 const primaryProjects = [
   {
@@ -43,7 +44,7 @@ const primaryProjects = [
       "Recharts",
       "TanStack Query",
     ],
-    note: "Portfolio prototype built with 60 mock leads; bulk actions are demonstrative and are not persisted to a backend.",
+    note: "Lead CRM prototype built with 60 mock leads; bulk actions are demonstrative and are not persisted to a backend.",
     liveUrl: "https://zenith-lead-dashboard.vercel.app",
     repoUrl: "https://github.com/Darasimi010/zenith-lead-dashboard",
   },
@@ -153,53 +154,12 @@ function MarketDashPreview() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-white/[0.07] bg-[#17251d] p-3 sm:p-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[9px] font-semibold tracking-[0.14em] text-white/45">
-              MARKET ACTIVITY
-            </p>
-            <p className="mt-1 text-xs font-medium text-white/85">
-              Market snapshot
-            </p>
-          </div>
-          <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-2 py-1 text-[9px] text-emerald-200">
-            Feed preview
-          </span>
-        </div>
-        <svg viewBox="0 0 520 124" className="mt-3 h-auto w-full" fill="none">
-          <path
-            d="M0 24H520M0 62H520M0 100H520"
-            stroke="white"
-            strokeOpacity=".07"
-            strokeDasharray="3 6"
-          />
-          <path
-            d="M0 91C23 88 26 63 52 68C77 73 83 48 109 57C137 67 140 80 165 66C190 52 201 31 225 43C249 55 258 73 280 61C303 48 317 23 340 34C365 46 372 69 397 55C421 42 440 31 457 38C478 47 493 28 520 17"
-            stroke="#9CE6AC"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M0 91C23 88 26 63 52 68C77 73 83 48 109 57C137 67 140 80 165 66C190 52 201 31 225 43C249 55 258 73 280 61C303 48 317 23 340 34C365 46 372 69 397 55C421 42 440 31 457 38C478 47 493 28 520 17V124H0V91Z"
-            fill="url(#marketFill)"
-            fillOpacity=".18"
-          />
-          <defs>
-            <linearGradient
-              id="marketFill"
-              x1="260"
-              y1="17"
-              x2="260"
-              y2="124"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#9CE6AC" />
-              <stop offset="1" stopColor="#9CE6AC" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+      <Image
+        src="/projects/MarketDash.png"
+        alt="Image of Marketdash homepage"
+        width={1280}
+        height={969}
+      />
       <div className="mt-3 flex items-center justify-between px-1 text-[9px] text-white/35">
         <span>Watchlist · Quotes · News</span>
         <span>Responsive interface</span>
@@ -216,15 +176,14 @@ function ZenithPreview() {
     >
       <div className="flex items-center justify-between border-b border-zinc-100 pb-3 dark:border-zinc-800">
         <div>
-          <p className="text-[9px] font-bold tracking-[0.16em] text-zinc-400">
-            ZENITH / OVERVIEW
-          </p>
-          <p className="mt-1 text-xs font-semibold text-zinc-800 dark:text-zinc-100">
-            Lead pipeline
+          <p className="text-xs font-bold tracking-wide text-zinc-800 dark:text-zinc-100">
+            ZENITH OVERVIEW
           </p>
         </div>
-        <span className="rounded-lg border border-zinc-200 px-2 py-1 text-[9px] text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">
-          Export CSV
+        <span className="rounded-lg border border-zinc-200 px-2 py-1 dark:border-zinc-700">
+          <p className="mt-1 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+            Lead pipeline
+          </p>
         </span>
       </div>
 
@@ -249,37 +208,12 @@ function ZenithPreview() {
       </div>
 
       <div className="overflow-hidden rounded-lg border border-zinc-100 dark:border-zinc-800">
-        <div className="grid grid-cols-[1.3fr_1fr_.7fr] bg-zinc-50 px-2.5 py-2 text-[8px] font-bold tracking-[0.1em] text-zinc-400 dark:bg-zinc-800/70">
-          <span>LEAD</span>
-          <span>STATUS</span>
-          <span>OWNER</span>
-        </div>
-        {["01", "02", "03"].map((row, index) => (
-          <div
-            key={row}
-            className="grid grid-cols-[1.3fr_1fr_.7fr] items-center border-t border-zinc-100 px-2.5 py-2.5 text-[9px] dark:border-zinc-800"
-          >
-            <span className="font-medium text-zinc-600 dark:text-zinc-300">
-              Lead record {row}
-            </span>
-            <span className="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400">
-              <span
-                className={`h-1.5 w-1.5 rounded-full ${index === 1 ? "bg-amber-400" : "bg-emerald-500"}`}
-              />
-              "Qualified"
-            </span>
-            <span className="text-zinc-400">Agent</span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 flex items-end gap-1.5 rounded-lg bg-zinc-50 px-3 pb-2 pt-3 dark:bg-zinc-800/70">
-        {[28, 46, 35, 68, 51, 82, 60, 73, 43, 91, 66, 78].map((height, i) => (
-          <span
-            key={i}
-            className="flex-1 rounded-t-sm bg-sky-500/65"
-            style={{ height: `${height * 0.42}px` }}
-          />
-        ))}
+        <Image
+          src="/projects/zenith-lead-CRM.png"
+          alt="Image of zenith lead CRM dashboard"
+          width={1280}
+          height={969}
+        />
       </div>
     </div>
   );
