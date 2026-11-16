@@ -139,15 +139,15 @@ export default function BraandlyCaseStudy() {
               Crucially, I synchronized optimistic priority updates across three
               TanStack React Query cache scopes: individual tasks (
               <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
-                ['task', id]
+                [&apos;task&apos;, id]
               </code>
               ), project tasks (
               <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
-                ['project', projId, 'tasks']
+                [&apos;project&apos;, projId, &apos;tasks&apos;]
               </code>
               ), and workspace tasks (
               <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
-                ['workspace', 'tasks']
+                [&apos;workspace&apos;, &apos;tasks&apos;]
               </code>
               ). The implementation takes a pre-mutation snapshot and executes
               rollback behavior if the server mutation fails, ensuring the user
@@ -173,7 +173,7 @@ export default function BraandlyCaseStudy() {
                   Map&lt;UserId, Member&gt;
                 </code>
                 . I also formatted readable participant lists with remaining
-                participant counts (e.g., "Sarah, Alex and 3 others reacted").
+                participant counts (e.g., &quot;Sarah, Alex and 3 others reacted&quot;).
               </p>
             </div>
           </section>
@@ -182,7 +182,7 @@ export default function BraandlyCaseStudy() {
           <section className="space-y-6">
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                02. Design System & Reliability
+                02. Design System &amp; Reliability
               </span>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                 Standardized Dark-Mode Loading Across 33+ Files
@@ -191,7 +191,7 @@ export default function BraandlyCaseStudy() {
 
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               The default HeroUI skeleton shimmer conflicted with the
-              application's dark theme, producing harsh white flashes during
+              application&apos;s dark theme, producing harsh white flashes during
               async data queries. Rather than writing one-off CSS overrides
               across individual pages, I engineered a universal{" "}
               <code className="text-xs font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded font-bold">
@@ -270,10 +270,10 @@ export default function BraandlyCaseStudy() {
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Replaced insecure negative role checks (
-                <code className="font-mono text-xs">role !== "member"</code>)
+                <code className="font-mono text-xs">role !== &quot;member&quot;</code>)
                 with an explicit admin-role allowlist (
                 <code className="font-mono text-xs">
-                  ["admin", "superadmin"].includes(role)
+                  [&quot;admin&quot;, &quot;superadmin&quot;].includes(role)
                 </code>
                 ) for dashboard navigation links. Additionally converted
                 outdated marketing preview assets to modern WebP format and
@@ -287,7 +287,7 @@ export default function BraandlyCaseStudy() {
           {/* Engineering Decisions & Trade-offs */}
           <section className="p-6 sm:p-8 rounded-3xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-200/80 dark:border-indigo-900/40 space-y-4">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-              Key Engineering Decisions & Trade-offs
+              Key Engineering Decisions &amp; Trade-offs
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
               <div>
@@ -326,10 +326,10 @@ export default function BraandlyCaseStudy() {
           {/* Outcome & Code Trail */}
           <section className="space-y-4 pt-2">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-              Outcome & Verified Evidence
+              Outcome &amp; Verified Evidence
             </h3>
             <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-              My contributions improved Braandly's reliability across task
+              My contributions improved Braandly&apos;s reliability across task
               management, brand tooling, loading states, and responsive layouts.
               The work demonstrates my ability to investigate and fix
               non-obvious frontend defects, and improve application architecture
