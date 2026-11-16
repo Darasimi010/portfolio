@@ -5,14 +5,6 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  {
-    settings: {
-      react: {
-        version: "19.2.3", // Bypasses detectReactVersion()
-      },
-    },
-  },
-  // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
