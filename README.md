@@ -34,26 +34,28 @@ A modern, responsive portfolio website showcasing my work as a Frontend Develope
 ```
 portfolio/
 ├── app/
-│   ├── globals.css      # Global styles and custom utilities
-│   ├── layout.tsx       # Root layout with metadata
-│   └── page.tsx         # Home page
+│   ├── globals.css          # Global styles, variables, and theme definitions
+│   ├── layout.tsx           # Root layout with ThemeProvider and metadata
+│   ├── page.tsx             # Home page assembling all primary sections
+│   └── resume/page.tsx      # Interactive and printable resume page
+│
 ├── components/
 │   ├── layouts/
-│   │   ├── Navbar.tsx   # Navigation component
-│   │   └── Footer.tsx   # Footer component
+│   │   ├── Navbar.tsx       # Navigation bar with responsive drawer and theme toggle
+│   │   └── Footer.tsx       # Footer with back-to-top and social links
 │   ├── sections/
-│   │   ├── Hero.tsx     # Hero/landing section
-│   │   ├── About.tsx    # About me section
-│   │   ├── Skills.tsx   # Technical skills
-│   │   ├── Experience.tsx # Work experience
-│   │   ├── Projects.tsx # Featured projects
-│   │   └── Contact.tsx  # Contact form
+│   │   ├── Hero.tsx         # Hero section and engineering snapshot
+│   │   ├── AboutMe.tsx      # Engineering principles and methodology
+│   │   ├── FeaturedWork.tsx # Featured project showpieces and prototypes
+│   │   ├── WorkExperience.tsx # Professional engineering background
+│   │   └── ContactSection.tsx # Contact form and direct communication channels
+│   ├── theme/
+│   │   ├── ThemeProvider.tsx # Client theme context provider (system/light/dark)
+│   │   └── ThemeToggle.tsx   # Header toggle button for theme switching
 │   └── ui/
-│       ├── Button.tsx   # Reusable button component
-│       ├── Icons.tsx    # SVG icon components
-│       └── sections.tsx # Section wrapper components
+│       └── Icons.tsx        # Brand SVG icons (Github, Linkedin)
 ├── public/
-│   └── projects/        # Project screenshots
+│   └── projects/        # Static assets
 └── package.json
 ```
 
@@ -116,24 +118,6 @@ portfolio/
 | `npm run start` | Start production server  |
 | `npm run lint`  | Run ESLint               |
 
-## Customization
-
-### Update Personal Information
-
-- **Hero Section**: Edit `components/sections/Hero.tsx` to update your name and tagline
-- **Projects**: Modify the `projects` array in `components/sections/Projects.tsx`
-- **Skills**: Update skills in `components/sections/Skills.tsx`
-- **Experience**: Edit work history in `components/sections/Experience.tsx`
-- **Contact Info**: Update email and location in `components/sections/Contact.tsx`
-
-### Styling
-
-The global styles are defined in `app/globals.css`. The design uses a purple/cyan color palette with glassmorphism effects. Key custom utilities include:
-
-- `.glass-card` - Frosted glass effect for cards
-- `.grid-pattern` - Background grid pattern
-- `.animate-float` - Floating animation for decorative elements
-
 ## Deployment
 
 This project is optimized for deployment on [Vercel](https://vercel.com/):
@@ -154,4 +138,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Built with ❤️ by Oluwadarasimi Omojola
+Built with care by Oluwadarasimi Omojola
