@@ -14,6 +14,8 @@ export default function ArcadeLauncher() {
   useEffect(() => {
     if (!isOpen) return;
 
+    // Capture the trigger node while the dialog is open so cleanup uses the same element.
+    const trigger = triggerRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -27,7 +29,7 @@ export default function ArcadeLauncher() {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
-      triggerRef.current?.focus();
+      trigger?.focus();
     };
   }, [isOpen]);
 
