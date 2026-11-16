@@ -8,7 +8,7 @@ import {
   TimezoneNormalizationBreakdown,
   BffProxyArchitectureDiagram,
 } from "@/components/work/HolfordArchitectures";
-import { GitPullRequest, CheckCircle2, AlertTriangle } from "lucide-react";
+import { CheckCircle2, AlertTriangle } from "lucide-react";
 
 export default function HolfordHomesCaseStudy() {
   return (
