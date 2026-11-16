@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MotionConfig, motion } from "motion/react";
 import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
 import { Github, Linkedin } from "@/components/ui/Icons";
+import ArcadeLauncher from "../ui/ArcadeLauncher";
 
 const NAVIGATION = [
   { label: "About", href: "/#about" },
@@ -168,14 +169,17 @@ export default function Footer() {
               © {new Date().getFullYear()} Oluwadarasimi Omojola. Built with
               care.
             </p>
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="group inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-2 font-medium text-slate-600 shadow-xs transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:text-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-emerald-800 dark:hover:text-emerald-300"
-            >
-              Back to top
-              <ArrowUp className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              <ArcadeLauncher />
+              <button
+                type="button"
+                onClick={scrollToTop}
+                className="group inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-2 font-medium text-slate-600 shadow-xs transition-all hover:-translate-y-0.5 hover:border-emerald-300 hover:text-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-emerald-800 dark:hover:text-emerald-300"
+              >
+                Back to top
+                <ArrowUp className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />
+              </button>
+            </div>
           </div>
         </div>
       </footer>
