@@ -1,184 +1,406 @@
-import { Button } from "@/components/ui/Button";
+"use client";
 
-// Floating star component
-const FloatingStar = ({ className = "" }: { className?: string }) => (
-  <svg
-    className={`absolute animate-float ${className}`}
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-  >
-    <path
-      d="M12 2L14.09 8.26L21 9.27L16 14.14L17.18 21.02L12 17.77L6.82 21.02L8 14.14L3 9.27L9.91 8.26L12 2Z"
-      fill="url(#starGradient)"
-    />
-    <defs>
-      <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#22d3ee" />
-        <stop offset="100%" stopColor="#7c3aed" />
-      </linearGradient>
-    </defs>
-  </svg>
-);
+import {
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
+import Link from "next/link";
+import { MotionConfig, motion, useMotionValue } from "motion/react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
-// Device mockup illustration component
-const DeviceMockups = () => (
-  <div className="relative w-full max-w-xl">
-    {/* Glowing backdrop */}
-    <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/30 via-cyan-500/20 to-purple-600/30 rounded-3xl blur-2xl opacity-60"></div>
+const stack = [
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Tailwind CSS",
+  "TanStack Query",
+  "REST APIs",
+  "Serwist",
+];
 
-    {/* Laptop */}
-    <div className="relative glass-card rounded-xl p-3 shadow-2xl">
-      <div className="bg-[#0f0a1f] rounded-lg p-4 font-mono text-xs text-left overflow-hidden">
-        <div className="flex gap-1.5 mb-3">
-          <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-          <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+type TrailDot = {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  duration: number;
+};
+
+type CursorPosition = {
+  x: number;
+  y: number;
+};
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+function EngineeringIdentity() {
+  const [trail, setTrail] = useState<TrailDot[]>([]);
+  const [isCursorVisible, setIsCursorVisible] = useState(false);
+
+  // Motion values move the leading particle without rerendering on every pointer event.
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+
+  const lastPoint = useRef<CursorPosition | null>(null);
+  const nextDotId = useRef(0);
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    // Do not create a mouse-style cursor on touch screens.
+    if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const point = {
+      x: event.clientX - bounds.left,
+      y: event.clientY - bounds.top,
+    };
+
+    cursorX.set(point.x);
+    cursorY.set(point.y);
+    setIsCursorVisible(true);
+
+    const previous = lastPoint.current;
+
+    if (previous) {
+      const dx = point.x - previous.x;
+      const dy = point.y - previous.y;
+      const distance = Math.hypot(dx, dy);
+
+      // Add particles only after the pointer has moved a few pixels.
+      if (distance >= 4) {
+        // Limit particles per event so a sudden pointer jump cannot flood the DOM.
+        const particleCount = Math.min(12, Math.ceil(distance / 8));
+
+        const newDots = Array.from({ length: particleCount }, (_, index) => {
+          const progress = (index + 1) / particleCount;
+
+          return {
+            id: nextDotId.current++,
+            x: previous.x + dx * progress,
+            y: previous.y + dy * progress,
+            // The particles taper toward the older end of the trail.
+            size: 1.8 + progress * 2.2,
+            opacity: 0.22 + progress * 0.63,
+            duration: 0.25 + progress * 0.12,
+          };
+        });
+
+        setTrail((current) => [...current, ...newDots].slice(-48));
+      }
+    }
+
+    lastPoint.current = point;
+  };
+
+  const handlePointerLeave = () => {
+    setIsCursorVisible(false);
+    lastPoint.current = null;
+  };
+
+  return (
+    <motion.aside
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, delay: 0.25, ease }}
+      aria-label="Personal engineering identity"
+      className="relative mx-auto w-full max-w-[34rem]"
+    >
+      {/* Ambient emerald glow outside the card. */}
+      <div
+        className="pointer-events-none absolute -inset-5 rounded-[2.5rem] bg-emerald-500/[0.08] blur-3xl"
+        aria-hidden="true"
+      />
+
+      <div
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        onPointerCancel={handlePointerLeave}
+        className="relative flex aspect-auto min-h-[26rem] cursor-none flex-col overflow-hidden rounded-[1.8rem] border border-emerald-900/70 bg-[#0b1510] p-6 text-white shadow-[0_28px_90px_-38px_rgba(16,185,129,0.3)] sm:min-h-[30rem] sm:p-8"
+      >
+        {/* Interactive particle trail. */}
+        <div
+          className="pointer-events-none absolute inset-0 z-30 overflow-hidden"
+          aria-hidden="true"
+        >
+          {trail.map((dot) => (
+            <motion.span
+              key={dot.id}
+              initial={{ opacity: dot.opacity, scale: 1 }}
+              animate={{ opacity: 0, scale: 0.08 }}
+              transition={{ duration: dot.duration, ease: "easeOut" }}
+              onAnimationComplete={() => {
+                setTrail((current) =>
+                  current.filter((item) => item.id !== dot.id),
+                );
+              }}
+              className="absolute rounded-full bg-emerald-200 shadow-[0_0_9px_rgba(52,211,153,0.85)]"
+              style={{
+                left: dot.x,
+                top: dot.y,
+                width: dot.size,
+                height: dot.size,
+                marginLeft: -dot.size / 2,
+                marginTop: -dot.size / 2,
+              }}
+            />
+          ))}
+
+          {/* Brighter leading dot. */}
+          {isCursorVisible && (
+            <motion.span
+              className="absolute left-0 top-0 h-[9px] w-[9px] rounded-full bg-emerald-100 shadow-[0_0_12px_3px_rgba(52,211,153,0.65)]"
+              style={{
+                left: cursorX,
+                top: cursorY,
+                marginLeft: -4.5,
+                marginTop: -4.5,
+              }}
+            />
+          )}
         </div>
-        <div className="space-y-1.5 text-[10px] sm:text-xs">
-          <p>
-            <span className="text-purple-400">const</span>{" "}
-            <span className="text-cyan-300">developer</span> = {"{"}
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">name</span>:{" "}
-            <span className="text-green-300">&apos;Oluwadarasimi&apos;</span>,
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">role</span>:{" "}
-            <span className="text-green-300">
-              &apos;Software Developer&apos;
-            </span>
-            ,
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">skills</span>: [
-            <span className="text-orange-300">&apos;React&apos;</span>,{" "}
-            <span className="text-orange-300">&apos;Next.js&apos;</span>],
-          </p>
-          <p className="pl-4">
-            <span className="text-pink-400">passion</span>:{" "}
-            <span className="text-green-300">
-              &apos;Building UIs, Solving problems&apos;
-            </span>
-          </p>
-          <p>{"}"};</p>
-        </div>
-      </div>
-    </div>
 
-    {/* Tablet - positioned to right */}
-    <div className="absolute -right-4 top-1/4 w-28 sm:w-36 bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-lg p-2 shadow-xl border border-purple-500/30 transform rotate-6">
-      <div className="bg-[#0f0a1f] rounded-md p-2">
-        <div className="space-y-1.5">
-          <div className="h-2 bg-purple-500/40 rounded w-3/4"></div>
-          <div className="h-2 bg-cyan-500/40 rounded w-1/2"></div>
-          <div className="h-8 bg-gradient-to-r from-purple-600/30 to-cyan-500/30 rounded mt-2"></div>
-          <div className="h-2 bg-purple-500/30 rounded w-2/3"></div>
-        </div>
-      </div>
-    </div>
+        {/* Subtle technical background grid. */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.13]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(148,163,184,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.2) 1px, transparent 1px)",
+            backgroundSize: "36px 36px",
+          }}
+          aria-hidden="true"
+        />
 
-    {/* Phone - positioned to bottom right */}
-    <div className="absolute -right-2 -bottom-8 w-20 sm:w-24 bg-gradient-to-br from-[#1e1b4b] to-[#312e81] rounded-xl p-1.5 shadow-xl border border-purple-500/30 transform rotate-12">
-      <div className="bg-[#0f0a1f] rounded-lg p-2">
-        <div className="w-6 h-6 mx-auto mb-2 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center">
-          <svg
-            className="w-3 h-3 text-white"
-            fill="currentColor"
-            viewBox="0 0 24 24"
+        {/* Ambient center glow. */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_44%,rgba(16,185,129,0.16),transparent_52%)]"
+          aria-hidden="true"
+        />
+
+        {/* Top identification. */}
+        <div className="relative z-10 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(52,211,153,0.8)]"
+              aria-hidden="true"
+            />
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-200/75">
+              Engineering Identity
+            </p>
+          </div>
+
+          <span className="font-mono text-[10px] tracking-widest text-slate-500">
+            OO
+          </span>
+        </div>
+
+        {/* Central identity artwork. */}
+        <div className="relative flex flex-1 flex-col items-center justify-center py-10">
+          {/* Slow orbital animation. */}
+          <motion.div
+            className="pointer-events-none absolute inset-0 m-auto h-[17rem] w-[17rem]"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 38, ease: "linear", repeat: Infinity }}
+            aria-hidden="true"
           >
-            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-          </svg>
+            <div className="absolute inset-0 rounded-full border border-emerald-200/[0.12]" />
+            <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(52,211,153,0.9)]" />
+          </motion.div>
+
+          {/* Static elliptical geometry. */}
+          <div
+            className="pointer-events-none absolute inset-0 m-auto h-[20rem] w-[10rem] rotate-45 rounded-[50%] border border-emerald-200/[0.10]"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 m-auto h-[20rem] w-[10rem] -rotate-45 rounded-[50%] border border-emerald-200/[0.07]"
+            aria-hidden="true"
+          />
+
+          {/* Ambient particles. */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            aria-hidden="true"
+          >
+            <span className="absolute left-[18%] top-[25%] h-1.5 w-1.5 rounded-full bg-emerald-300/70" />
+            <span className="absolute right-[17%] top-[35%] h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(52,211,153,0.6)]" />
+            <span className="absolute bottom-[24%] left-[25%] h-1 w-1 rounded-full bg-emerald-200/50" />
+          </div>
+
+          {/* Initials. */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5, ease }}
+            role="img"
+            aria-label="O O monogram"
+            className="relative z-10 select-none font-black leading-none tracking-[-0.16em] text-transparent"
+            style={{
+              fontSize: "clamp(8rem, 18vw, 11rem)",
+              WebkitTextStroke: "1.5px rgba(167, 243, 208, 0.8)",
+            }}
+          >
+            OO
+            <span
+              className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.75)]"
+              aria-hidden="true"
+            />
+          </motion.div>
+
+          {/* Personal philosophy. */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7, ease }}
+            className="relative z-10 mt-9 text-center"
+          >
+            <p className="text-xl font-semibold tracking-tight text-slate-100 sm:text-2xl">
+              Think in systems.
+            </p>
+            <p className="mt-1 text-xl font-semibold tracking-tight text-emerald-300 sm:text-2xl">
+              Build with intent.
+            </p>
+          </motion.div>
         </div>
-        <div className="space-y-1">
-          <div className="h-1.5 bg-purple-500/40 rounded w-full"></div>
-          <div className="h-1.5 bg-cyan-500/40 rounded w-3/4"></div>
+
+        {/* Bottom identity labels. */}
+        <div className="relative z-10 border-t border-white/10 pt-5">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+            {["Product thinking", "Engineering", "Execution"].map((item) => (
+              <span
+                key={item}
+                className="text-[9px] font-medium uppercase tracking-[0.15em] text-slate-400 sm:text-[10px]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
+
+        {/* Decorative corner detail. */}
+        <div
+          className="pointer-events-none absolute -bottom-16 -right-16 h-40 w-40 rounded-full border border-emerald-200/[0.07]"
+          aria-hidden="true"
+        />
       </div>
-    </div>
-  </div>
-);
+    </motion.aside>
+  );
+}
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden"
-    >
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-40"></div>
+    <MotionConfig reducedMotion="user">
+      <section
+        aria-labelledby="hero-title"
+        className="relative isolate overflow-hidden border-b border-slate-200/80 bg-white dark:border-slate-800/80 dark:bg-[#090d16]"
+      >
+        {/* Page-level ambient background. */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+          aria-hidden="true"
+        >
+          <div className="absolute -right-40 -top-48 h-[34rem] w-[34rem] rounded-full bg-emerald-500/[0.07] blur-3xl dark:bg-emerald-400/[0.055]" />
+          <div className="absolute -left-48 bottom-[-18rem] h-[30rem] w-[30rem] rounded-full bg-slate-200/50 blur-3xl dark:bg-emerald-950/20" />
+        </div>
 
-      {/* Gradient orbs */}
-      <div className="absolute top-20 right-1/4 w-72 h-72 bg-purple-600/30 rounded-full blur-[100px] animate-pulse"></div>
-      <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[120px]"></div>
-      <div className="absolute top-1/2 right-0 w-64 h-64 bg-pink-600/20 rounded-full blur-[80px]"></div>
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 pb-20 pt-28 sm:px-6 sm:pb-24 sm:pt-32 lg:grid-cols-[minmax(0,1.08fr)_minmax(23rem,0.92fr)] lg:gap-16 lg:px-8 lg:pb-28 lg:pt-36">
+          <div className="max-w-3xl">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.25, ease }}
+              className="mb-5 text-sm font-medium tracking-wide text-slate-500 dark:text-slate-400 sm:text-base"
+            >
+              Hello, I&apos;m
+            </motion.p>
 
-      {/* Floating stars */}
-      <FloatingStar className="top-32 right-20 text-cyan-400" />
-      <FloatingStar className="bottom-40 right-1/3 text-purple-400 delay-500" />
-      <FloatingStar className="top-1/2 left-20 text-pink-400 delay-1000" />
-      <FloatingStar className="bottom-20 right-10 text-cyan-300" />
+            <motion.h1
+              id="hero-title"
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.08, ease }}
+              className="text-[clamp(3rem,7.5vw,6.8rem)] font-bold leading-[0.91] tracking-[-0.075em] text-slate-950 dark:text-white"
+            >
+              Oluwadarasimi
+              <span className="mt-2 block text-emerald-700 dark:text-emerald-400">
+                Omojola
+                <span className="text-slate-300 dark:text-slate-700">.</span>
+              </span>
+            </motion.h1>
 
-      {/* Use same container as other sections */}
-      <div className="w-full px-6 md:px-12 lg:px-24 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left content */}
-            <div className="text-left">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight">
-                OLUWADARASIMI
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white">
-                  OMOJOLA
-                </span>
-              </h1>
-
-              <p className="text-lg sm:text-xl md:text-2xl text-purple-100/90 mb-10 max-w-xl leading-relaxed">
-                Software Developer transforming ideas into exceptional digital
-                experiences.
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.28, ease }}
+            >
+              <p className="mt-8 max-w-2xl text-xl font-medium leading-snug tracking-tight text-slate-800 dark:text-slate-100 sm:text-2xl lg:text-[1.75rem]">
+                I&apos;m a software engineer who builds dependable products that
+                work beautifully and hold up under the hood.
+              </p>
+              <p className="mt-5 max-w-[39rem] text-[15px] leading-7 text-slate-600 dark:text-slate-400 sm:text-base sm:leading-8">
+                I turn complex product workflows into dependable experiences. I
+                connect interfaces to backend services, trace bugs to their root
+                causes, and pay close attention to state, system boundaries, and
+                failure modes. Building software people can rely on.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="#contact" variant="primary">
-                  Contact Me
-                </Button>
-                <Button href="#projects" variant="secondary">
-                  View My Work
-                </Button>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <a
+                  href="#projects"
+                  className="group inline-flex items-center gap-2 rounded-full bg-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-emerald-900/10 transition hover:bg-emerald-600 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:bg-emerald-500 dark:text-[#07130c] dark:hover:bg-emerald-400"
+                >
+                  Explore my work
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+                <Link
+                  href="/resume"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-white dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:hover:border-slate-600 dark:hover:bg-slate-900"
+                >
+                  View resume <ArrowUpRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-1.5 px-2 py-3 text-sm font-semibold text-slate-600 transition hover:text-emerald-700 dark:text-slate-400 dark:hover:text-emerald-300"
+                >
+                  Get in touch <ArrowDownRight className="h-3.5 w-3.5" />
+                </a>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Right content - Device mockups */}
-            <div className="hidden lg:flex justify-end animate-float delay-500 duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-white/10">
-              <DeviceMockups />
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.65, delay: 0.55, ease }}
+              className="mt-11 border-t border-slate-200/80 pt-5 dark:border-slate-800"
+            >
+              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                Tools I work with
+              </p>
+              <ul
+                className="flex flex-wrap gap-x-4 gap-y-2.5"
+                aria-label="Core technology stack"
+              >
+                {stack.map((item) => (
+                  <li
+                    key={item}
+                    className="text-xs font-medium text-slate-600 dark:text-slate-300 sm:text-[13px]"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs text-slate-400 dark:text-slate-500">
+                Currently exploring{" "}
+                <span className="font-medium text-slate-600 dark:text-slate-300">
+                  Go and backend engineering.
+                </span>
+              </p>
+            </motion.div>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom decorative star */}
-      <div className="absolute bottom-10 right-10">
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          className="animate-pulse-glow"
-        >
-          <path
-            d="M12 2L14.09 8.26L21 9.27L16 14.14L17.18 21.02L12 17.77L6.82 21.02L8 14.14L3 9.27L9.91 8.26L12 2Z"
-            fill="url(#bottomStar)"
-          />
-          <defs>
-            <linearGradient id="bottomStar" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#22d3ee" />
-              <stop offset="100%" stopColor="#7c3aed" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </section>
+          <EngineeringIdentity />
+        </div>
+      </section>
+    </MotionConfig>
   );
 }
