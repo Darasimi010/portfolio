@@ -1,7 +1,65 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useSyncExternalStore,
+} from "react";
 import { Volume2, VolumeX, Maximize2, Minimize2 } from "lucide-react";
+
+const HIGH_SCORE_STORAGE_KEY = "block_breaker_high_score";
+const HIGH_SCORE_CHANGE_EVENT = "block-breaker-high-score-change";
+let highScoreFallback = 0;
+
+function getHighScoreSnapshot(): number {
+  if (typeof window === "undefined") return highScoreFallback;
+
+  try {
+    const saved = Number(window.localStorage.getItem(HIGH_SCORE_STORAGE_KEY));
+    if (Number.isFinite(saved)) {
+      return Math.max(highScoreFallback, saved);
+    }
+  } catch {
+    // Continue with the in-memory score when storage is unavailable.
+  }
+
+  return highScoreFallback;
+}
+
+function getServerHighScoreSnapshot(): number {
+  return 0;
+}
+
+function subscribeToHighScore(onStoreChange: () => void): () => void {
+  if (typeof window === "undefined") return () => undefined;
+
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(HIGH_SCORE_CHANGE_EVENT, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(HIGH_SCORE_CHANGE_EVENT, onStoreChange);
+  };
+}
+
+function saveHighScore(score: number): void {
+  highScoreFallback = Math.max(highScoreFallback, score);
+
+  try {
+    window.localStorage.setItem(
+      HIGH_SCORE_STORAGE_KEY,
+      String(highScoreFallback),
+    );
+  } catch {
+    // Keep the score in memory when storage is unavailable.
+  }
+
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event(HIGH_SCORE_CHANGE_EVENT));
+  }
+}
 
 // Web Audio API sound synthesizer - zero external sound files needed
 class SoundController {
@@ -213,8 +271,12 @@ export default function BlockBreakerGame() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const soundRef = useRef<SoundController | null>(null);
 
-  // High score persisted in localStorage
-  const [highScore, setHighScore] = useState<number>(0);
+  // Subscribe to persisted high-score changes without reading browser storage in an effect.
+  const highScore = useSyncExternalStore(
+    subscribeToHighScore,
+    getHighScoreSnapshot,
+    getServerHighScoreSnapshot,
+  );
   const [score, setScore] = useState<number>(0);
   const [lives, setLives] = useState<number>(3);
   const [level, setLevel] = useState<number>(1);
@@ -262,17 +324,12 @@ export default function BlockBreakerGame() {
     screenShake: 0,
   });
 
-  // Initialize Sound and HighScore
+  // Initialize the audio controller. High scores are read through useSyncExternalStore.
   useEffect(() => {
     soundRef.current = new SoundController();
-    try {
-      const saved = localStorage.getItem("block_breaker_high_score");
-      if (saved) {
-        setHighScore(parseInt(saved, 10) || 0);
-      }
-    } catch {
-      // localStorage disabled or not accessible
-    }
+    return () => {
+      soundRef.current = null;
+    };
   }, []);
 
   const toggleSound = () => {
@@ -335,42 +392,43 @@ export default function BlockBreakerGame() {
     return bricks;
   }, []);
 
-  const spawnParticles = (x: number, y: number, color: string, count = 12) => {
-    const { particles } = gameRef.current;
-    for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 4.5 + 1.2;
-      particles.push({
+  const spawnParticles = useCallback(
+    (x: number, y: number, color: string, count = 12) => {
+      const { particles } = gameRef.current;
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 4.5 + 1.2;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          color,
+          size: Math.random() * 3.5 + 1.5,
+          alpha: 1,
+          life: 0,
+          maxLife: Math.random() * 24 + 16,
+        });
+      }
+    },
+    [],
+  );
+
+  const spawnFloatingText = useCallback(
+    (text: string, x: number, y: number, color = "#6ee7b7") => {
+      gameRef.current.floatingTexts.push({
+        id: gameRef.current.nextTextId++,
+        text,
         x,
         y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        color,
-        size: Math.random() * 3.5 + 1.5,
         alpha: 1,
-        life: 0,
-        maxLife: Math.random() * 24 + 16,
+        color,
       });
-    }
-  };
+    },
+    [],
+  );
 
-  const spawnFloatingText = (
-    text: string,
-    x: number,
-    y: number,
-    color = "#6ee7b7",
-  ) => {
-    gameRef.current.floatingTexts.push({
-      id: gameRef.current.nextTextId++,
-      text,
-      x,
-      y,
-      alpha: 1,
-      color,
-    });
-  };
-
-  const resetBallAndPaddle = () => {
+  const resetBallAndPaddle = useCallback(() => {
     const g = gameRef.current;
     g.paddle.w = g.paddle.baseW;
     g.paddle.x = (g.width - g.paddle.w) / 2;
@@ -393,10 +451,10 @@ export default function BlockBreakerGame() {
         trail: [],
       },
     ];
-  };
+  }, []);
 
   // Start / Restart
-  const startGame = () => {
+  const startGame = useCallback(() => {
     const g = gameRef.current;
     g.currentScore = 0;
     g.currentCombo = 0;
@@ -415,9 +473,9 @@ export default function BlockBreakerGame() {
     setLevel(1);
     setCombo(0);
     setGameState("playing");
-  };
+  }, [createBricks, resetBallAndPaddle]);
 
-  const nextLevel = () => {
+  const nextLevel = useCallback(() => {
     const g = gameRef.current;
     g.currentLevel += 1;
     setLevel(g.currentLevel);
@@ -432,18 +490,13 @@ export default function BlockBreakerGame() {
       "#38bdf8",
     );
     if (soundRef.current) soundRef.current.playWin();
-  };
+  }, [createBricks, resetBallAndPaddle, spawnFloatingText]);
 
-  const checkHighScore = (finalScore: number) => {
-    if (finalScore > highScore) {
-      setHighScore(finalScore);
-      try {
-        localStorage.setItem("block_breaker_high_score", finalScore.toString());
-      } catch {
-        // ignore
-      }
+  const checkHighScore = useCallback((finalScore: number) => {
+    if (finalScore > getHighScoreSnapshot()) {
+      saveHighScore(finalScore);
     }
-  };
+  }, []);
 
   // Resize canvas to container resolution
   const handleResize = useCallback(() => {
@@ -514,7 +567,7 @@ export default function BlockBreakerGame() {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [gameState]);
+  }, [gameState, startGame]);
 
   // Pointer / Mouse move on canvas
   const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
@@ -1083,7 +1136,15 @@ export default function BlockBreakerGame() {
 
     animId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(animId);
-  }, [gameState, nextLevel, createBricks, highScore]);
+  }, [
+    gameState,
+    nextLevel,
+    createBricks,
+    checkHighScore,
+    resetBallAndPaddle,
+    spawnParticles,
+    spawnFloatingText,
+  ]);
 
   // Fullscreen toggle for container
   const toggleFullscreen = () => {
