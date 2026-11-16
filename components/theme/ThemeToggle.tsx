@@ -1,23 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { useTheme } from "./ThemeProvider";
-import { Sun, Moon, Monitor } from "lucide-react";
-import { motion } from "motion/react";
+import { Sun, Moon } from "lucide-react";
 
 export function ThemeToggle({ showLabel = false }: { showLabel?: boolean }) {
-  const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <div className="w-9 h-9 rounded-full bg-slate-200/50 dark:bg-slate-800/50 animate-pulse" />
-    );
-  }
+  const { resolvedTheme, toggleTheme } = useTheme();
 
   return (
     <button

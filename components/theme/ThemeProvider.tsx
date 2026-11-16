@@ -14,23 +14,21 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("system");
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("portfolio-theme") as Theme | null;
-    if (
-      saved &&
-      (saved === "light" || saved === "dark" || saved === "system")
-    ) {
-      setThemeState(saved);
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("portfolio-theme") as Theme | null;
+      if (
+        saved &&
+        (saved === "light" || saved === "dark" || saved === "system")
+      ) {
+        return saved;
+      }
     }
-    setMounted(true);
-  }, []);
+    return "system";
+  });
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    // if (!mounted) return;
     const root = document.documentElement;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
